@@ -1,0 +1,1959 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"src",
+				"srcDir"
+			],
+			[
+				"index",
+				"indexFileFilter"
+			],
+			[
+				"server",
+				"serverport"
+			],
+			[
+				"di",
+				"dir (str)"
+			],
+			[
+				"dri",
+				"directory"
+			],
+			[
+				"production",
+				"productionPipeline"
+			],
+			[
+				"dir",
+				"dirScripts (?)"
+			],
+			[
+				"sty",
+				"dirStyles"
+			],
+			[
+				"Datam",
+				"Datamap"
+			],
+			[
+				"S",
+				"SOURCE_DIR (str)"
+			],
+			[
+				"tsS",
+				"tsStream"
+			],
+			[
+				"Secr",
+				"Secretary"
+			],
+			[
+				"durpal_",
+				"drupal_static"
+			],
+			[
+				"$nodes",
+				"$nodes_count"
+			],
+			[
+				"asuminen-node-fee",
+				"asuminen-node-feed-items"
+			],
+			[
+				"asuminen-node",
+				"asuminen-node-feed-item-ad"
+			],
+			[
+				"advero",
+				"advertory"
+			],
+			[
+				"$id",
+				"$idx"
+			],
+			[
+				"$page",
+				"$page_data"
+			],
+			[
+				"tags",
+				"tags_node_feed"
+			],
+			[
+				"$node",
+				"$nodeFeed"
+			],
+			[
+				"asuminen_ads",
+				"asuminen_ads_build_ad"
+			],
+			[
+				"array_key",
+				"array_key_exists"
+			],
+			[
+				"$form",
+				"$form"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"max-",
+				"max-height"
+			],
+			[
+				"initial",
+				"initial-scale"
+			],
+			[
+				"kar",
+				"karla-regular"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"span",
+				"span-columns"
+			],
+			[
+				"pinr",
+				"pinterest"
+			],
+			[
+				"bacgkro",
+				"background"
+			],
+			[
+				"backgr",
+				"background"
+			],
+			[
+				"backg",
+				"background-position-x"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"$maga",
+				"$magazine"
+			],
+			[
+				"save",
+				"saveXML"
+			],
+			[
+				"maga",
+				"magazineAd"
+			],
+			[
+				"variab",
+				"variable_get"
+			],
+			[
+				"$ma",
+				"$magazine_form"
+			],
+			[
+				"borde",
+				"border-radius"
+			],
+			[
+				"custom",
+				"customSlideToggle"
+			],
+			[
+				"$toggle",
+				"$toggleElement"
+			],
+			[
+				"bacgkrou",
+				"background-image"
+			],
+			[
+				"background",
+				"background-position-y"
+			],
+			[
+				"news",
+				"newsletter-toggle"
+			],
+			[
+				"bac",
+				"background-position"
+			],
+			[
+				"asuminen_news",
+				"asuminen_newsletter_subscription_form"
+			],
+			[
+				"asuminen_build_header_",
+				"_asuminen_build_header_footer_content"
+			],
+			[
+				"$laz",
+				"$lazy_img"
+			],
+			[
+				"$tax",
+				"$taxonomy"
+			],
+			[
+				"voca",
+				"vocabulary_machine_name"
+			],
+			[
+				"asu",
+				"asuminen_accounts"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"trans",
+				"transparent"
+			],
+			[
+				"$redirec",
+				"$redirect_url_original"
+			],
+			[
+				"$btn",
+				"$btnContainer"
+			],
+			[
+				"bacgkroun",
+				"background-size"
+			],
+			[
+				"data-back",
+				"data-background-image"
+			],
+			[
+				"$backgro",
+				"$background_color"
+			],
+			[
+				"drupal_get",
+				"drupal_get_path"
+			],
+			[
+				"item",
+				"item-preview"
+			],
+			[
+				"side",
+				"sidebar_second"
+			],
+			[
+				"$catp",
+				"$captcha_point"
+			],
+			[
+				"$tablet",
+				"$tablet-breakpoint"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"kery",
+				"keyword"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"$ligh",
+				"$light-gray"
+			],
+			[
+				"$li",
+				"$light-gray"
+			],
+			[
+				"remo",
+				"removeLast"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"voc",
+				"vocabulary_machine_name"
+			],
+			[
+				"$taxo",
+				"$taxonomies"
+			],
+			[
+				"$lig",
+				"$light-gray"
+			],
+			[
+				"$light",
+				"$light-black"
+			],
+			[
+				"$base",
+				"$base-color"
+			],
+			[
+				"$bor",
+				"$border-radius"
+			],
+			[
+				"$module",
+				"$module_name"
+			],
+			[
+				"moduel",
+				"module_exists"
+			],
+			[
+				"bacgr",
+				"background"
+			],
+			[
+				"competitio",
+				"competitions"
+			],
+			[
+				"append",
+				"appendChild"
+			],
+			[
+				"cont",
+				"content"
+			],
+			[
+				"$var",
+				"$variables"
+			],
+			[
+				"variable",
+				"variable_get"
+			],
+			[
+				"widespca",
+				"widespace"
+			],
+			[
+				"backgroun",
+				"background-color"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"after",
+				"afterLoad"
+			],
+			[
+				"nth-",
+				"nth-of-type"
+			],
+			[
+				"asuminen_bundl",
+				"asuminen_bundle_load"
+			],
+			[
+				"inl",
+				"include"
+			],
+			[
+				"$main",
+				"$main_media"
+			],
+			[
+				"key",
+				"keywordUrl"
+			],
+			[
+				"iframe",
+				"iframeLoaded"
+			],
+			[
+				"all",
+				"allowTransparency"
+			],
+			[
+				"block-asum",
+				"block-asuminen-footer"
+			],
+			[
+				"$ex",
+				"$excluded_pages"
+			],
+			[
+				"$vars",
+				"$vocabularies"
+			],
+			[
+				"asuminen_is",
+				"asuminen_is_node_add_page"
+			],
+			[
+				"current",
+				"current_path"
+			],
+			[
+				"asumi",
+				"asuminen-node-feed"
+			],
+			[
+				"attr",
+				"attributes"
+			],
+			[
+				"asuminen_get_node",
+				"asuminen_get_node_images"
+			],
+			[
+				"asuminen-node-feed",
+				"asuminen-node-feed-item"
+			],
+			[
+				"backgor",
+				"background-color"
+			],
+			[
+				"modu",
+				"modulePath"
+			],
+			[
+				"asumine",
+				"asuminen_ads_get_types"
+			],
+			[
+				"$men",
+				"$menu_id"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"conten",
+				"content-box"
+			],
+			[
+				"$Fo",
+				"$form_id"
+			],
+			[
+				"default",
+				"default_value"
+			],
+			[
+				"$tab",
+				"$tablet-breakpoint"
+			],
+			[
+				"$mno",
+				"$mobile-breakpoint"
+			],
+			[
+				"$mobile",
+				"$mobile-columns"
+			],
+			[
+				"$",
+				"$regular"
+			],
+			[
+				"create",
+				"createBackups"
+			],
+			[
+				"$DB",
+				"$DBDIR_BACKUP"
+			],
+			[
+				"taxo",
+				"taxonomy_term_uri"
+			],
+			[
+				"pro",
+				"project_path"
+			],
+			[
+				"rl",
+				"relative_assets"
+			],
+			[
+				"preferr",
+				"preferred_syntax"
+			],
+			[
+				"output",
+				"output_style"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 220,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "dippa.sublime-project",
+			"settings":
+			{
+				"buffer_size": 592,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "doc/thesis.tex",
+			"settings":
+			{
+				"buffer_size": 28637,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Make/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 6265,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 93.0,
+		"selected_items":
+		[
+			[
+				"LaTeXTools",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
+			[
+				"package cont",
+				"Package Control: Install Package"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"bor",
+				"Preferences: Browse Packages"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"paca",
+				"Package Control: Install Package"
+			],
+			[
+				"brwose",
+				"Preferences: Browse Packages"
+			],
+			[
+				"packages",
+				"Package Control: Disable Package"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"preview",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"previwe",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"line end",
+				"Line Endings Unify"
+			],
+			[
+				"pretti",
+				"HTMLPrettify"
+			],
+			[
+				"packagere",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"packagereso",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"packa",
+				"Package Control: Enable Package"
+			],
+			[
+				"packageres",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"packageresou",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			],
+			[
+				"preivw",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"pre",
+				"Markdown Preview: copy to clipboard"
+			],
+			[
+				"prev",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"previ",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"markdown",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"prewv",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"linte",
+				"SublimeLinter: Show Error List"
+			],
+			[
+				"linter",
+				"SublimeLinter: Show Error List"
+			],
+			[
+				"lint",
+				"SublimeLinter: Show Error List"
+			],
+			[
+				"sublime",
+				"SublimeLinter: Lint Current File"
+			],
+			[
+				"sublimelin",
+				"Preferences: SublimeLinter Settings – Default"
+			],
+			[
+				"prewview",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"previw",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"prew",
+				"Markdown Preview: copy to clipboard"
+			],
+			[
+				"mark",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"markdow",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"markd",
+				"Markdown Preview: preview in Browser"
+			]
+		],
+		"width": 462.0
+	},
+	"console":
+	{
+		"height": 303.0,
+		"history":
+		[
+			"M",
+			"import urllib,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Make/test/public/test-query4.jq",
+		"/Users/Make/Documents/dippa/dippa.sublime-project",
+		"/Users/Make/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+		"/Users/Make/Documents/dippa/doc/thesis.tex",
+		"/Users/Make/Documents/dippa/doc/thesis.pdf",
+		"/Users/Make/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/private/var/www/fusion/libs/processing/test/ref/directionalLight_scale.pde",
+		"/private/var/www/fusion/libs/processing/test/ref/crisp-horizontal-lines.pde",
+		"/private/var/www/fusion/libs/processing/examples/js/instancelib.js",
+		"/private/var/www/fusion/libs/physicsjs/examples/intersection-sandbox.html",
+		"/private/var/www/fusion/libs/threejs-examples/examples/js/ImprovedNoise.js",
+		"/private/var/www/fusion/.tmp/index.html",
+		"/private/var/www/fusion/libs/processing/test/parser/Processing-Book-001/Synthesis/_01_collage/_01_collage/_01_collage.pde",
+		"/private/var/www/fusion/libs/processing/test/ref/background-transparency.pde",
+		"/private/var/www/fusion/libs/processing/test/perf/point-arc.pde",
+		"/private/var/www/fusion/src/default.htm",
+		"/private/var/www/fusion/dist/default.htm",
+		"/private/var/www/fusion/.tmp/default.htm",
+		"/private/var/www/fusion/src/engine/Node.ts",
+		"/private/var/www/fusion/.tmp/engine/Node.js",
+		"/private/var/www/fusion/src/engine/Engine.ts",
+		"/private/var/www/fusion/.bowerrc",
+		"/private/var/www/fusion/src/items/ide/patcher.svg",
+		"/private/var/www/fusion/dist/ide/patcher.svg",
+		"/private/var/www/fusion/.gitignore",
+		"/private/var/www/fusion/src/.bowerrc",
+		"/private/var/www/fusion/.tmp/engine/Engine.js",
+		"/private/var/www/fusion/bower_components/processing/examples/seneca/bug634/endShape-3dtest-noclose/endShape-3dtest-noclose.html",
+		"/private/var/www/fusion/src/ide/awSlidingMenu.js",
+		"/private/var/www/fusion/bower_components/processing/test/parser/Fry-Visualizing-Data/ch03-usmap/step07_fig7_two_sided_alpha/step07_fig7_two_sided_alpha.pde",
+		"/private/var/www/fusion/bower_components/processing/test/ref/additive-wave.pde",
+		"/private/var/www/fusion/bower_components/processing/AUTHORS",
+		"/private/var/www/fusion/src/nodes/html.ts",
+		"/private/var/www/fusion/src/engine/Port.ts",
+		"/private/var/www/fusion/.tmp/engine/Port.js",
+		"/private/var/www/fusion/bower_components/processing/test/perf/pimage-blend-overlay.pde",
+		"/private/var/www/fusion/package.json",
+		"/private/var/www/fusion/src/nodes/core.ts",
+		"/private/var/www/fusion/.tmp/nodes/core.js",
+		"/private/var/www/fusion/bower_components/processing/test/ref/composite-objects.pde",
+		"/private/var/www/fusion/bower_components/processing/CHANGELOG",
+		"/private/var/www/fusion/.tmp/nodes/html.js",
+		"/private/var/www/fusion/bower_components/processing/test/unit/hashmap-toarray.pde",
+		"/private/var/www/fusion/.editorconfig",
+		"/private/var/www/fusion/.tmp/nodes/html.ts",
+		"/private/var/www/fusion/src/nodes/animation.ts",
+		"/private/var/www/fusion/src/nodes/audio.ts",
+		"/private/var/www/fusion/src/nodes/audio_processors.ts",
+		"/private/var/www/fusion/src/nodes/d3.ts",
+		"/private/var/www/fusion/src/nodes/data.ts",
+		"/private/var/www/fusion/src/nodes/interaction.ts",
+		"/private/var/www/fusion/src/nodes/maps.ts",
+		"/private/var/www/fusion/src/nodes/math.ts",
+		"/private/var/www/fusion/src/nodes/mathbox.ts",
+		"/private/var/www/fusion/src/nodes/midi.ts",
+		"/private/var/www/fusion/src/nodes/misc.ts",
+		"/private/var/www/fusion/src/nodes/network.ts",
+		"/private/var/www/fusion/src/nodes/physics2D.ts",
+		"/private/var/www/fusion/src/nodes/script.ts",
+		"/private/var/www/fusion/src/nodes/shape.ts",
+		"/private/var/www/fusion/src/nodes/shape_processors.ts",
+		"/private/var/www/fusion/src/nodes/spreads.ts",
+		"/private/var/www/fusion/src/nodes/superformula.ts",
+		"/private/var/www/fusion/src/nodes/svg.ts",
+		"/private/var/www/fusion/src/nodes/video.ts",
+		"/private/var/www/fusion/src/nodes/webgl.ts",
+		"/private/var/www/fusion/src/nodes/webgl_proc.ts",
+		"/private/var/www/fusion/src/nodes/canvas.ts",
+		"/private/var/www/fusion/src/nodes/visual.ts",
+		"/private/var/www/fusion/src/nodes/css.ts",
+		"/private/var/www/fusion/.gitattributes",
+		"/private/var/www/fusion/src/engine/Link.ts",
+		"/private/var/www/fusion/src/engine/Patch.ts",
+		"/private/var/www/fusion/src/ide/app.ts",
+		"/private/var/www/fusion/src/engine/nodes/animation.ts",
+		"/private/var/www/fusion/src/ide/wire.ts",
+		"/private/var/www/fusion/src/engine/Utils.ts",
+		"/private/var/www/fusion/.tmp/ide/app.js",
+		"/private/var/www/fusion/src/ide/patcher.svg",
+		"/private/var/www/fusion/src/ide/view.js",
+		"/Users/Make/.bash_profile",
+		"/etc/sudoers.tmp",
+		"/etc/sudoers",
+		"/private/var/www/fusion/bower_components/physicsjs/examples/demo-mouse-events.js",
+		"/private/var/www/fusion/dist/scripts/all.js",
+		"/private/var/www/fusion/src/engine/nodes/svg.ts",
+		"/private/var/www/fusion/src/engine/nodes/video.ts",
+		"/private/var/www/fusion/src/engine/nodes/math.ts",
+		"/private/var/www/fusion/src/engine/nodes/visual.ts",
+		"/private/var/www/fusion/.tmp/engine/nodes/victorx.js",
+		"/private/var/www/fusion/src/engine/nodes/victorx.ts",
+		"/private/var/www/fusion/.tmp/engine/nodes/video.js",
+		"/private/var/www/fusion/src/engine/nodes/mathbox.ts",
+		"/private/var/www/fusion/.tmp/engine/nodes/svg.js",
+		"/private/var/www/fusion/bower_components/processing/test/unit/staticVariable.pde",
+		"/private/var/www/fusion/.tmp/ide/sidepanel.js",
+		"/private/var/www/fusion/.tmp/patches/video.json",
+		"/private/var/www/fusion/bower_components/processing/test/unit/variableInheritance.pde",
+		"/private/var/www/fusion/.tmp/ide/view.js",
+		"/private/var/www/fusion/bower_components/physicsjs/dist/behaviors/rigid-constraint-manager.js",
+		"/private/var/www/fusion/bower_components/processing/test/ref/background-color-alpha.pde",
+		"/private/var/www/fusion/.tmp/engine/nodes/webgl_proc.js",
+		"/private/var/www/fusion/.tmp/engine/nodes/webgl.js",
+		"/private/var/www/fusion/.tmp/ide/wire.js",
+		"/private/var/www/fusion/src/ide/default.htm",
+		"/private/var/www/fusion/src/scripts/engine/Utils.ts",
+		"/private/var/www/fusion/src/scripts/nodes/physics2D_jari.ts",
+		"/private/var/www/fusion/.tmp/scripts/ide/sidepanel.js",
+		"/private/var/www/fusion/src/scripts/engine/Port.ts",
+		"/private/var/www/fusion/src/scripts/engine/Engine.ts",
+		"/private/var/www/fusion/patches/physics1.json",
+		"/private/var/www/fusion/bower_components/processing/tools/processing-helper.html",
+		"/private/var/www/fusion/src/scripts/engine/Node.ts",
+		"/private/var/www/fusion/.tmp/scripts/engine/Utils.js",
+		"/private/var/www/fusion/bower_components/processing/test/unit/check-unit-tests.js",
+		"/private/var/www/fusion/src/scripts/engine/Patch.ts",
+		"/private/var/www/fusion/src/scripts/engine/Link.ts",
+		"/private/var/www/fusion/src/scripts/libs/dat.gui_bugfixed.js",
+		"/private/var/www/fusion/bower.json",
+		"/private/var/www/fusion/.tmp/scripts/engine/Port.js",
+		"/private/var/www/fusion/.tmp/scripts/engine/Patch.js",
+		"/private/var/www/fusion/bower_components/threejs-examples/examples/js/controls/PathControls.js",
+		"/private/var/www/fusion/.tmp/images/patcher.svg",
+		"/private/var/www/fusion/bower_components/processing/test/perf/point-arc.pde",
+		"/private/var/www/fusion/.tmp/scripts/engine/Node.js",
+		"/private/var/www/fusion/.tmp/nodetree.xml",
+		"/private/var/www/fusion/.tmp/scripts/engine/Link.js",
+		"/private/var/www/fusion/bower_components/processing/test/lint-notes.txt"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 91.0,
+		"where_history":
+		[
+			"-node_modules/*, -docroot/*,  -*.css, -*.sql*, -*.po, -*/.git/*, -*.min.js",
+			"-node_modules/*, -docroot/*  -*.css, -*.sql*, -*.po, -*/.git/*, -*.min.js",
+			"-node_modules/*, -/docroot/*  -*.css, -*.sql*, -*.po, -*/.git/*, -*.min.js",
+			"-node_modules/*,  -*.css, -*.sql*, -*.po, -*/.git/*, -*.min.js",
+			"-node_modules/*, -docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*, -*.min.js",
+			"-*.css, -*.sql*, -*.po, -*/.git/*, -*.min.js",
+			"-node_modules/*, -docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*, -*.min.js",
+			"-node_modules/*, -docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"-docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"-*.css, -*.sql*, -*.po, -*/.git/*",
+			"asuminen/themes, asuminen/modules, -*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"-*.css, -*.sql*, -*.po, -*/.git/*",
+			"asuminen/themes, asuminen/modules, -*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"-*.css, -*.sql*, -*.po, -*/.git/*",
+			"asuminen/themes, asuminen/modules, -*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"-*.css, -*.sql*, -*.po, -*/.git/*",
+			"asuminen/themes, asuminen/modules, -*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"<project>, -*.css, -*.sql*, -*.po, -*/.git/*",
+			" asuminen/themes, asuminen/modules, -*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"-*.css, -*.sql*, -*.po, -*/.git/*",
+			" asuminen/themes, asuminen/modules, -*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			" -*.css, -*.sql*, -*.po, -*/.git/*",
+			"asuminen/modules, asuminen/themes, -*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"asuminen, -*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"-*/docroot/*, -*.css, -*.sql*, -*.po, -*/.git/*",
+			"-*/docroot/*, -*.css, -*.sql, -*.po, -*/.git/*",
+			"-*/docroot/*, -*.css, -*.sql, -*.po",
+			"-*/docroot/*, -*.css, -*.sql",
+			"asuminen, -*/docroot/*, -*.css, -*.sql",
+			"asuminen, -asuminen/docroot, -*.css, -*.sql",
+			"asuminen, -asuminen/docroot -*.css, -*.sql",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"<project>, -*.css, -*.sql",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"<project>, -*.css, -*.sql",
+			"asuminen/modules, asuminen/themes, -*.css, -*.sql",
+			"<project>, -*.css, -*.sql",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"<project>, -*.css, -*.sql",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"<project>, -*.css, -*.sql",
+			"<project>, asuminen/themes, -*.css, -*.sql",
+			"asuminen/modules, asuminen/themes, -*.css, -*.sql",
+			"<project>, -*.css, -*.sql",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"<project>, -*.css, -*.sql",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"-*.css, -*.sql",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"<project>, -*.css, -*.sql",
+			"<project>",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"-*.sql, -*.css",
+			"-*.sql",
+			"",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql",
+			"<project>",
+			"asuminen/themes, asuminen/modules, -*.css, -*.sql,",
+			"<project>, -*.css, -*.sql,",
+			"<project>, -*.css, -.*sql,",
+			"<project>",
+			"<project>, asuminen/themes, asuminen/modules, -*.css, -.*sql,",
+			"asuminen/themes, asuminen/modules, -*.css, -.*sql, <project>",
+			"asuminen/themes, asuminen/modules, -*.css, -.*sql",
+			"<project>, -*.css, -.*sql",
+			"<project>, -*.css",
+			"asuminen/modules, asuminen/themes, -*.css",
+			"asuminen/modules, asuminen/themes",
+			"<project>,-*.css,-*.sql",
+			"<project>",
+			"asuminen/modules, asuminen/themes",
+			"<project>",
+			"/Users/Make/Downloads/mobile_tools",
+			"/Users/Make/Downloads/mobile_detect",
+			"asuminen/modules, asuminen/themes",
+			"<project>",
+			"asuminen/modules, asuminen/themes",
+			"<project>",
+			"asuminen/themes, asuminen/modules",
+			"<project>",
+			"asuminen/themes, asuminen/modules",
+			"<project>",
+			"asuminen/themes, asuminen/modules",
+			"<project>",
+			"asuminen/themes, asuminen/modules",
+			"<project>",
+			"asuminen/themes, asuminen/modules",
+			"<project>",
+			"asuminen/modules, asuminen/themes",
+			"<project>",
+			"asuminen/themes, asuminen/modules",
+			"<project>",
+			"asuminen/themes, asuminen/modules",
+			"<project>",
+			"asuminen/",
+			"asuminen",
+			"asuminen/themes, asuminen/modules",
+			"<project>",
+			"asuminen/themes/, asuminen/modules/",
+			"<project>",
+			"/Users/Make/_www/asuminen/modules, /Users/Make/_www/asuminen/themes",
+			"/Users/Make/_www/asuminen",
+			"/Users/Make/_www/asuminen/themes, /Users/Make/_www/asuminen/modules",
+			"/Users/Make/_www/asuminen",
+			"/Users/Make/_www/asuminen/themes/, /Users/Make/_www/asuminen/modules/",
+			"/Users/Make/_www/asuminen/themes; /Users/Make/_www/asuminen/modules",
+			"/Users/Make/_www/asuminen",
+			"/Users/Make/_www/asuminen/docroot/sites/all/modules/contrib/pathauto",
+			"/Users/Make/_www/asuminen/themes, /Users/Make/_www/asuminen/modules",
+			"/Users/Make/_www/asuminen/docroot/sites/all/modules/contrib/pathauto",
+			"/Users/Make/_www/asuminen",
+			"/Users/Make/_www/asuminen/modules, /Users/Make/_www/asuminen/themes",
+			"/Users/Make/_www/asuminen",
+			"/Users/Make/_www/asuminen/themes, /Users/Make/_www/asuminen/modules, /Users/Make/_www/asuminen/scripts",
+			"/Users/Make/_www/asuminen/docroot",
+			"/Users/Make/_www/asuminen/modules,/Users/Make/_www/asuminen/themes, /Users/Make/_www/asuminen/scripts",
+			"/Users/Make/_www/asuminen/modules,/Users/Make/_www/asuminen/themes",
+			"/Users/Make/_www/asuminen/docroot",
+			"/Users/Make/Vagrant/asuminen/docroot",
+			"/Users/Make/Vagrant/asuminen/drupal/",
+			"/Users/Make/Vagrant/asuminen/drupal/sites/all/themes/asuminen",
+			"/Users/Make/Vagrant/asuminen/",
+			"/Users/Make/Vagrant/asuminen/drupal/sites/all/modules/contrib/views",
+			"/Users/Make/Vagrant/asuminen",
+			"~/Vagrant/drupal/",
+			"~/Vagrant/drupal",
+			"/Library/WebServer/Documents/alehdet/projektit/apu/core/sites/all/modules/custom",
+			"/Library/WebServer/Documents/alehdet/projektit/core/sites/"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"graphic",
+			".eps",
+			".pdf",
+			"open",
+			"platform sett",
+			"dirStyles",
+			"dirScripts",
+			"connect",
+			"indexFile",
+			"log",
+			"livereload",
+			"livereloadport",
+			"serverport",
+			"connect",
+			"connec",
+			"items",
+			"dirImages",
+			"rename",
+			"all.js",
+			"\\t",
+			"svgmin",
+			"imagemi",
+			"html",
+			"htmlmin",
+			".js",
+			".css",
+			"gulp.src",
+			"config.src",
+			"jshin",
+			"\\t",
+			"    ",
+			"removeComments",
+			"    ",
+			"webkitcssmatrix",
+			"mathbox",
+			"Environment.FPS",
+			"Environment",
+			"node.",
+			"node",
+			"engine/nodes",
+			".if",
+			"tsc",
+			"cache",
+			"util.",
+			"reload",
+			".log",
+			"cyan",
+			"util",
+			"object",
+			"\nmodule F.Nodes.VictorX\n{\n\n}\n",
+			"[object Object]",
+			"catch",
+			"Object",
+			"MathBox.glsl",
+			"Object",
+			"_",
+			"build",
+			"nodes/",
+			"scripts/",
+			"nodetree.xml",
+			"sprite",
+			"tsc",
+			"$.if",
+			"print",
+			"concat",
+			"htmlrepl",
+			"htmlRep",
+			"isProduction",
+			"$.util.env",
+			"isProd",
+			"isProdu",
+			"html",
+			"path.",
+			"_.",
+			"_",
+			"inputs",
+			"this.inputs[2].def;",
+			"thro",
+			"thro	",
+			"cached",
+			".tm",
+			"util.env.",
+			"util.env.watch",
+			"cached",
+			".pipe($.size)\n.pipe($.connect.reload);",
+			".pipe($.size)\n        .pipe($.connect.reload);",
+			"files",
+			"223",
+			"cac",
+			"compileTypeScript",
+			"filter",
+			"tsc",
+			"JS_DIRS",
+			"'styles",
+			"JS_DIRS",
+			"jxon",
+			"THREE",
+			"Core",
+			"es.",
+			"public needUpdate",
+			"watch",
+			"connect",
+			"es.",
+			"$.if",
+			"process",
+			"config.jsDi",
+			"jsDir",
+			"srcDir",
+			"buildDir",
+			"imagesDir",
+			"stylesDir",
+			"scriptsDir",
+			"es.",
+			"events",
+			"module",
+			"compon",
+			"toarra",
+			"compo",
+			"createScriptsStream",
+			"public",
+			"Port(",
+			"new Node",
+			"node",
+			"_targetObject",
+			"setTarget",
+			"needUpdate",
+			"oport",
+			"autoup"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"    ",
+			"\\t",
+			"nodes",
+			"engine/nodes/",
+			"",
+			"buildProduction",
+			".pipe($.size())\n        .pipe($.connect.reload());",
+			"JS_DIR",
+			"SOURCE_DIR",
+			"BUILD_DIR",
+			"IMAGES_DIR",
+			"STYLES_DIR",
+			"SCRIPTS_DIR",
+			"path",
+			"$.path.join",
+			"$joinPath",
+			"src/",
+			"'",
+			"",
+			"page",
+			"",
+			"container",
+			"asuminen",
+			"$advertories",
+			"asuminens_ads",
+			"",
+			"rrem",
+			"#{$base-font-machine-name}",
+			"#{$base-font-family}",
+			"$base-font-family",
+			"{$base-font-family",
+			"#{base-font-family}",
+			"\"#{base-font-family}\"",
+			"{#$base-font-family}",
+			"$desktop",
+			"$accounts",
+			"navigation_toggle",
+			"navigation-toggle",
+			"$accounts",
+			"div",
+			"",
+			"'",
+			"#{$path}/",
+			"#{$path}",
+			"#{$path}/sites/all/themes/asuminen_theme/images/",
+			"element_validate",
+			"h4",
+			"http://placekitten.com/70/52",
+			"$items",
+			"node-feed",
+			"$1_theme",
+			"vars",
+			"default",
+			"\"",
+			"project",
+			"ä",
+			"Sähly",
+			"talokoti_db",
+			"db_name",
+			"drupal",
+			"#{www_root}",
+			"docroot",
+			"functionality"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 220,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								162,
+								162
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "dippa.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 592,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								448,
+								448
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "doc/thesis.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 28637,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1191,
+								1191
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/Make/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6265,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								573,
+								573
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 102.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "dippa.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"engine",
+				"src/engine/Engine.ts"
+			],
+			[
+				"defa",
+				"src/default.htm"
+			],
+			[
+				"node.ts",
+				"src/engine/Node.ts"
+			],
+			[
+				"engine.ts",
+				"src/engine/Engine.ts"
+			],
+			[
+				"awssl",
+				"src/ide/awSlidingMenu.js"
+			],
+			[
+				"html.ts",
+				"src/nodes/html.ts"
+			],
+			[
+				"default",
+				".tmp/default.htm"
+			],
+			[
+				"svg.ts",
+				"src/engine/nodes/svg.ts"
+			],
+			[
+				"video.ts",
+				"src/engine/nodes/video.ts"
+			],
+			[
+				"physics_",
+				"src/scripts/nodes/physics2D_jari.ts"
+			],
+			[
+				"utils",
+				"src/scripts/engine/Utils.ts"
+			],
+			[
+				"utils.ts",
+				"src/scripts/engine/Utils.ts"
+			],
+			[
+				"port.ts",
+				"src/scripts/engine/Port.ts"
+			],
+			[
+				"patch.ts",
+				"src/scripts/engine/Patch.ts"
+			],
+			[
+				"link",
+				"src/scripts/engine/Link.ts"
+			],
+			[
+				"ap.",
+				"src/scripts/ide/app.ts"
+			],
+			[
+				"animation",
+				"src/scripts/nodes/animation.ts"
+			],
+			[
+				"animation.ts",
+				"src/scripts/nodes/animation.ts"
+			],
+			[
+				"view",
+				"src/scripts/ide/view.js"
+			],
+			[
+				"shape",
+				"src/scripts/nodes/shape.ts"
+			],
+			[
+				"en",
+				"src/scripts/engine/Engine.ts"
+			],
+			[
+				"app",
+				"src/scripts/ide/app.ts"
+			],
+			[
+				"app.t",
+				"app/scripts/ide/app.ts"
+			],
+			[
+				".css",
+				"app/styles/fusion.css"
+			],
+			[
+				"def",
+				"app/default.htm"
+			],
+			[
+				"app.",
+				"app/scripts/ide/app.ts"
+			],
+			[
+				"animat",
+				"app/scripts/nodes/animation.ts"
+			],
+			[
+				"web",
+				"app/scripts/nodes/webgl_proc.ts"
+			],
+			[
+				"webpr",
+				"app/scripts/nodes/webgl_proc.js"
+			],
+			[
+				"asuminen.",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"asuminne.mod",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"asuminne.module",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"page",
+				"themes/asuminen_theme/templates/page.tpl.php"
+			],
+			[
+				"page.tpl.ph",
+				"docroot/modules/system/page.tpl.php"
+			],
+			[
+				"kotivin",
+				"modules/kotivinkki/kotivinkki.module"
+			],
+			[
+				"templat",
+				"themes/asuminen_theme/template.php"
+			],
+			[
+				"taloko",
+				"modules/talokoti/talokoti.module"
+			],
+			[
+				"asuminen.ads.cl",
+				"modules/asuminen/js/asuminen.ads.client.js"
+			],
+			[
+				"readme",
+				"docs/README.markdown"
+			],
+			[
+				"install",
+				"scripts/install-asuminen-sites.sh"
+			],
+			[
+				"asuminen.make",
+				"files/asuminen.make"
+			],
+			[
+				"asuminen.js",
+				"modules/asuminen/js/asuminen.js"
+			],
+			[
+				"asuminen.ads",
+				"modules/asuminen/js/asuminen.ads.client.js"
+			],
+			[
+				"node.tpl",
+				"themes/asuminen_theme/templates/node.tpl.php"
+			],
+			[
+				"node.tpl.ph",
+				"docroot/modules/node/node.tpl.php"
+			],
+			[
+				"honeypot",
+				"docroot/sites/all/modules/contrib/honeypot/honeypot.module"
+			],
+			[
+				"asuminen_ads.m",
+				"modules/asuminen_ads/asuminen_ads.module"
+			],
+			[
+				"asuminen.mo",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"face",
+				"modules/asuminen/templates/asuminen-facebook-like-box.tpl.php"
+			],
+			[
+				"",
+				"themes/css/sass/viherpiha/partials/_elements.scss"
+			],
+			[
+				"pinter",
+				"modules/asuminen/templates/asuminen-pinterest-profile-widget.tpl.php"
+			],
+			[
+				"asumine",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"asuminen.a",
+				"modules/asuminen/js/asuminen.ads.client.js"
+			],
+			[
+				"asuminen.ad",
+				"modules/asuminen/js/asuminen.ads.client.js"
+			],
+			[
+				"htm",
+				"themes/asuminen_theme/templates/html.tpl.php"
+			],
+			[
+				"html.pt",
+				"docroot/modules/system/html.tpl.php"
+			],
+			[
+				"asuminen",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"asuminen.ads.js",
+				"modules/asuminen/js/asuminen.ads.js"
+			],
+			[
+				"asuminen.ads.s",
+				"modules/asuminen/js/asuminen.ads.js"
+			],
+			[
+				"asuminen.ads.cli",
+				"modules/asuminen/js/asuminen.ads.client.js"
+			],
+			[
+				"pager.js",
+				"modules/asuminen/js/asuminen.pager.js"
+			],
+			[
+				"selec",
+				"modules/asuminen/js/vendor/selectivizr.min.js"
+			],
+			[
+				"asuminen.lib",
+				"modules/asuminen/includes/asuminen.lib.inc"
+			],
+			[
+				"asuminen.mod",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"asuminen.insta",
+				"modules/asuminen/asuminen.install"
+			],
+			[
+				"asuminen.libn",
+				"modules/asuminen/includes/asuminen.lib.inc"
+			],
+			[
+				"asuminen_ads",
+				"modules/asuminen_ads/js/asuminen_ads.js"
+			],
+			[
+				"asuminen.module",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"html.tpl",
+				"themes/asuminen_theme/templates/html.tpl.php"
+			],
+			[
+				"page.tpl",
+				"themes/asuminen_theme/templates/page.tpl.php"
+			],
+			[
+				"viherpiha_",
+				"themes/viherpiha_theme/viherpiha_theme.info"
+			],
+			[
+				"elements",
+				"themes/css/sass/asuminen/partials/_elements.scss"
+			],
+			[
+				"template",
+				"themes/asuminen_theme/template.php"
+			],
+			[
+				"asuminen.admin",
+				"modules/asuminen/includes/asuminen.admin.inc"
+			],
+			[
+				"eleme",
+				"themes/css/sass/asuminen/partials/_elements.scss"
+			],
+			[
+				"asuminen_ads.js",
+				"modules/asuminen_ads/js/asuminen_ads.js"
+			],
+			[
+				"base",
+				"themes/css/sass/asuminen/partials/_base.scss"
+			],
+			[
+				"asuminen_theme",
+				"themes/asuminen_theme/template.php"
+			],
+			[
+				"asuminen.ads.",
+				"modules/asuminen/js/asuminen.ads.js"
+			],
+			[
+				"asuminen.m",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"_elem",
+				"themes/css/sass/asuminen/partials/_elements.scss"
+			],
+			[
+				"asuminen.modle",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"html.tp",
+				"themes/asuminen_theme/templates/html.tpl.php"
+			],
+			[
+				"asuminen.modu",
+				"modules/asuminen/asuminen.module"
+			],
+			[
+				"asuminen_ads.",
+				"modules/asuminen_ads/js/asuminen_ads.js"
+			],
+			[
+				"asuminen_a",
+				"modules/asuminen_ads/js/asuminen_ads.js"
+			],
+			[
+				"form",
+				"docroot/sites/all/modules/contrib/examples/form_example/form_example_tutorial.inc"
+			],
+			[
+				"form.mod",
+				"docroot/sites/all/modules/contrib/examples/form_example/form_example.module"
+			],
+			[
+				"asuminen.admin.",
+				"modules/asuminen/includes/asuminen.admin.inc"
+			],
+			[
+				"lib.inc",
+				"modules/asuminen/includes/asuminen.lib.inc"
+			],
+			[
+				"taxnomy.pages",
+				"docroot/modules/taxonomy/taxonomy.pages.inc"
+			],
+			[
+				"taxonomy.pages",
+				"docroot/modules/taxonomy/taxonomy.pages.inc"
+			],
+			[
+				"taxonomy.pag",
+				"docroot/modules/taxonomy/taxonomy.pages.inc"
+			],
+			[
+				"taxonomy",
+				"docroot/modules/taxonomy/taxonomy.module"
+			],
+			[
+				"asuminen.admi",
+				"modules/asuminen/includes/asuminen.admin.inc"
+			],
+			[
+				"asuminen_as",
+				"modules/asuminen_ads/asuminen_ads.module"
+			],
+			[
+				"asuminen.pages.inc",
+				"modules/asuminen/includes/asuminen.pages.inc"
+			],
+			[
+				"eas",
+				"modules/asuminen_ads/EAS_fif.html"
+			],
+			[
+				"asuminen.info",
+				"modules/asuminen/asuminen.info"
+			],
+			[
+				"sprite",
+				"themes/asuminen_theme/stylesheets/sprites.css"
+			],
+			[
+				"sprti",
+				"themes/asuminen_theme/stylesheets/sprites.css"
+			],
+			[
+				"config.rb",
+				"themes/css/config.rb"
+			],
+			[
+				"main.css",
+				"themes/viherpiha_theme/stylesheets/main.css"
+			],
+			[
+				"conf",
+				"themes/css/config.rb"
+			],
+			[
+				"all",
+				"themes/css/sass/asuminen/_all.scss"
+			],
+			[
+				"asumnen",
+				"modules/asuminen/asuminen.info"
+			],
+			[
+				"html.p",
+				"themes/asuminen_theme/templates/html.tpl.php"
+			],
+			[
+				"asuminen.li",
+				"modules/asuminen/includes/asuminen.lib.inc"
+			],
+			[
+				"html",
+				"themes/asuminen_theme/templates/html.tpl.php"
+			],
+			[
+				"databa",
+				"scripts/database-manage.sh"
+			],
+			[
+				"settings",
+				"docroot/sites/viherpiha.fi/settings.php"
+			],
+			[
+				"asuminen.in",
+				"modules/asuminen/asuminen.info"
+			],
+			[
+				"_fonts",
+				"themes/css/sass/asuminen/partials/_fonts.scss"
+			],
+			[
+				"_fonts.scss",
+				"themes/css/sass/asuminen/partials/_fonts.scss"
+			],
+			[
+				"fonts",
+				"themes/asuminen_theme/fonts/sourcesanspro/sourcesanspro-bold.svg"
+			],
+			[
+				"page.tpl.p",
+				"themes/asuminen_theme/templates/page.tpl.php"
+			],
+			[
+				"node.ptl",
+				"themes/asuminen_theme/templates/node.tpl.php"
+			],
+			[
+				"addthis",
+				"modules/asuminen/templates/asuminen-add-this-widget.tpl.php"
+			],
+			[
+				"blocks",
+				"themes/css/sass/asuminen/partials/_blocks.scss"
+			],
+			[
+				"blocks.s",
+				"themes/css/sass/asuminen/partials/_blocks.scss"
+			],
+			[
+				"base.scss",
+				"themes/css/sass/asuminen/partials/_base.scss"
+			],
+			[
+				"kotivinkki_theme",
+				"themes/kotivinkki_theme/kotivinkki_theme.info"
+			],
+			[
+				"font",
+				"themes/css/sass/viherpiha/fonts.scss"
+			],
+			[
+				"font.scss",
+				"themes/asuminen_theme/stylesheets/fonts.css"
+			],
+			[
+				"sites",
+				"docroot/sites/sites.php"
+			],
+			[
+				"template.",
+				"themes/asuminen_theme/template.php"
+			],
+			[
+				"viherpiha",
+				"themes/viherpiha_theme/viherpiha_theme.info"
+			],
+			[
+				"fonts.css",
+				"themes/asuminen_theme/stylesheets/fonts.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/private/var/www/fusion/fusion.sublime-project"
+			],
+			[
+				"fus",
+				"/private/var/www/fusion/fusion.sublime-project"
+			],
+			[
+				"-pro",
+				"/private/var/www/fusion/fusion.sublime-project"
+			]
+		],
+		"width": 518.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"drupal_add_js",
+				"drupal_add_js"
+			]
+		],
+		"width": 392.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 305.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
