@@ -21,6 +21,7 @@
 *.mtc1
 *.out
 *.synctex.gz
+*.fdb_latexmk
 # Mac
 .DS_Store
 .AppleDouble
@@ -29,3 +30,7 @@ Icon
 ._*
 .Spotlight-V100
 .Trashes
+
+
+# Project specific
+thesis.pdf
