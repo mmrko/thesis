@@ -31,6 +31,7 @@
 				"*.synctex.gz",
 				"*.fdb_latexmk",
 				"*.pdf",
+				"*.sty",
 				// Mac
 				".DS_Store",
 				".AppleDouble",

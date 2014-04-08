@@ -520,18 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 220,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "dippa.sublime-project",
 			"settings":
 			{
-				"buffer_size": 592,
+				"buffer_size": 605,
 				"line_ending": "Unix"
 			}
 		},
@@ -539,7 +531,7 @@
 			"file": "doc/thesis.tex",
 			"settings":
 			{
-				"buffer_size": 28637,
+				"buffer_size": 31803,
 				"line_ending": "Unix"
 			}
 		},
@@ -746,12 +738,25 @@
 	},
 	"file_history":
 	[
+		"/Users/Make/Documents/dippa/luminotrace/.gitignore",
+		"/Users/Make/Documents/dippa/luminotrace/.cordova/config.json",
+		"/Users/Make/Documents/dippa/luminotrace/plugins/android.json",
+		"/Users/Make/Documents/dippa/luminotrace/www/config.xml",
+		"/Users/Make/Documents/dippa/luminotrace/node_modules/cordova/node_modules/npm/scripts/clean-old.sh",
+		"/Users/Make/Documents/dippa/luminotrace/cordova",
+		"/Users/Make/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/Make/Documents/dippa/luminotrace/node_modules/cordova/src/emulate.js",
+		"/Users/Make/Documents/dippa/luminotrace/platforms/ios/cordova/emulate",
+		"/Users/Make/Documents/dippa/luminotrace/node_modules/cordova/node_modules/q/q.js",
+		"/Users/Make/Documents/dippa/luminotrace/platforms/android/cordova/lib/check_reqs.js",
+		"/Users/Make/Documents/dippa/luminotrace/platforms/android/CordovaLib/src/org/apache/cordova/NativeToJsMessageQueue.java",
+		"/Users/Make/Documents/dippa/luminotrace/platforms/ios/CordovaLib/Classes/CDVCommandQueue.h",
+		"/Users/Make/Documents/dippa/.gitignore",
 		"/Users/Make/test/public/test-query4.jq",
 		"/Users/Make/Documents/dippa/dippa.sublime-project",
 		"/Users/Make/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
 		"/Users/Make/Documents/dippa/doc/thesis.tex",
 		"/Users/Make/Documents/dippa/doc/thesis.pdf",
-		"/Users/Make/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/private/var/www/fusion/libs/processing/test/ref/directionalLight_scale.pde",
 		"/private/var/www/fusion/libs/processing/test/ref/crisp-horizontal-lines.pde",
 		"/private/var/www/fusion/libs/processing/examples/js/instancelib.js",
@@ -860,20 +865,7 @@
 		"/private/var/www/fusion/bower_components/processing/tools/processing-helper.html",
 		"/private/var/www/fusion/src/scripts/engine/Node.ts",
 		"/private/var/www/fusion/.tmp/scripts/engine/Utils.js",
-		"/private/var/www/fusion/bower_components/processing/test/unit/check-unit-tests.js",
-		"/private/var/www/fusion/src/scripts/engine/Patch.ts",
-		"/private/var/www/fusion/src/scripts/engine/Link.ts",
-		"/private/var/www/fusion/src/scripts/libs/dat.gui_bugfixed.js",
-		"/private/var/www/fusion/bower.json",
-		"/private/var/www/fusion/.tmp/scripts/engine/Port.js",
-		"/private/var/www/fusion/.tmp/scripts/engine/Patch.js",
-		"/private/var/www/fusion/bower_components/threejs-examples/examples/js/controls/PathControls.js",
-		"/private/var/www/fusion/.tmp/images/patcher.svg",
-		"/private/var/www/fusion/bower_components/processing/test/perf/point-arc.pde",
-		"/private/var/www/fusion/.tmp/scripts/engine/Node.js",
-		"/private/var/www/fusion/.tmp/nodetree.xml",
-		"/private/var/www/fusion/.tmp/scripts/engine/Link.js",
-		"/private/var/www/fusion/bower_components/processing/test/lint-notes.txt"
+		"/private/var/www/fusion/bower_components/processing/test/unit/check-unit-tests.js"
 	],
 	"find":
 	{
@@ -1019,6 +1011,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Please download, build and install version",
+			"shell_out_to_emulate",
+			"Device Api",
+			"back end",
+			"appendix",
+			"\\section",
 			"graphic",
 			".eps",
 			".pdf",
@@ -1140,13 +1138,7 @@
 			"createScriptsStream",
 			"public",
 			"Port(",
-			"new Node",
-			"node",
-			"_targetObject",
-			"setTarget",
-			"needUpdate",
-			"oport",
-			"autoup"
+			"new Node"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1227,52 +1219,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": ".gitignore",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 220,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								162,
-								162
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "dippa.sublime-project",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 592,
+						"buffer_size": 605,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								448,
-								448
+								394,
+								394
 							]
 						],
 						"settings":
@@ -1284,24 +1248,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "doc/thesis.tex",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 28637,
+						"buffer_size": 31803,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1191,
-								1191
+								992,
+								992
 							]
 						],
 						"settings":
@@ -1316,7 +1280,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "/Users/Make/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
 					"semi_transient": false,
 					"settings":
@@ -1341,7 +1305,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1380,7 +1344,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 102.0
+		"height": 265.0
 	},
 	"output.find_results":
 	{
@@ -1951,7 +1915,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 305.0,
+	"side_bar_width": 352.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
