@@ -1,3 +1,8 @@
+# Project specific
+thesis.pdf
+app/cordova
+
+# LaTeX
 *.aux
 *.glo
 *.idx
@@ -22,6 +27,7 @@
 *.out
 *.synctex.gz
 *.fdb_latexmk
+
 # Mac
 .DS_Store
 .AppleDouble
@@ -31,9 +37,16 @@ Icon
 .Spotlight-V100
 .Trashes
 
-# Project specific
-thesis.pdf
-app/cordova
-
 # NPM
 app/node_modules
+
+# Java
+*.class
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+# Package Files #
+*.jar
+*.war
+*.ear
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
