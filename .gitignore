@@ -33,6 +33,7 @@ Icon
 
 # Project specific
 thesis.pdf
+app/cordova
 
 # NPM
 app/node_modules
