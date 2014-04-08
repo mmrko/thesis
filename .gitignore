@@ -31,6 +31,8 @@ Icon
 .Spotlight-V100
 .Trashes
 
-
 # Project specific
 thesis.pdf
+
+# NPM
+node_modules
