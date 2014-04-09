@@ -4,9 +4,9 @@
   "description":"",
   "keywords": [ ],
   "scripts": {
-    "postinstall" : "ln -s ./node_modules/cordova/bin/cordova ./cordova"
+    "postinstall" : "rm ./cordova; ln -s ./node_modules/cordova/bin/cordova ./cordova"
   },
   "dependencies": {
-    "cordova" : "3.3.1-0.1.2"
+    "cordova" : "3.4.0-0.1.3"
   }
 }
