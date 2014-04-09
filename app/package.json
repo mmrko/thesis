@@ -1,12 +1,10 @@
 {
   "name": "luminotrace",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description":"",
   "keywords": [ ],
   "scripts": {
-    "postinstall" : "ln -s ./node_modules/cordova/bin/cordova ./cordova",
-    "prod" : "npm run www-prod; ./cordova build --verbose",
-    "dev" : "npm run www-dev; ./cordova build --verbose"
+    "postinstall" : "ln -s ./node_modules/cordova/bin/cordova ./cordova"
   },
   "dependencies": {
     "cordova" : "3.3.1-0.1.2"
