@@ -19,6 +19,15 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
+    <name>luminotrace</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
     <feature name="Console">
         <param name="ios-package" value="CDVLogger" />
     </feature>
@@ -32,13 +41,4 @@
     <feature name="Capture">
         <param name="ios-package" value="CDVCapture" />
     </feature>
-    <name>luminotrace</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
 </widget>
