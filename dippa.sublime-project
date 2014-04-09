@@ -1,0 +1,47 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": ".",
+			"file_exclude_patterns": [
+				// LaTeX
+				"*.aux",
+				"*.glo",
+				"*.idx",
+				"*.log",
+				"*.toc",
+				"*.ist",
+				"*.acn",
+				"*.acr",
+				"*.alg",
+				"*.bbl",
+				"*.blg",
+				"*.dvi",
+				"*.glg",
+				"*.gls",
+				"*.ilg",
+				"*.ind",
+				"*.lof",
+				"*.lot",
+				"*.maf",
+				"*.mtc",
+				"*.mtc1",
+				"*.out",
+				"*.synctex.gz",
+				"*.fdb_latexmk",
+				"*.pdf",
+				"*.sty",
+				// Mac
+				".DS_Store",
+				".AppleDouble",
+				".LSOverride",
+				"Icon",
+				"._*",
+				".Spotlight-V100",
+				".Trashes"
+			]
+		}
+	]
+}
+

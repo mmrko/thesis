@@ -54,7 +54,6 @@ hs_err_pid*
 # Sublime Text
 *.cache
 Package Control.sublime-settings
-/*.sublime-project
 *.sublime-workspace
 sftp-config*.json
 Package Control.last-run
