@@ -196,10 +196,10 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "org.apache.cordova.console": "0.2.7",
     "org.apache.cordova.file": "1.0.1",
     "org.apache.cordova.media": "0.2.9",
-    "org.apache.cordova.media-capture": "0.2.8"
+    "org.apache.cordova.media-capture": "0.2.8",
+    "org.apache.cordova.console": "0.2.7"
 }
 // BOTTOM OF METADATA
 });

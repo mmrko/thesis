@@ -52,9 +52,6 @@
         }
     },
     "installed_plugins": {
-        "org.apache.cordova.console": {
-            "PACKAGE_NAME": "com.luminotrace.app"
-        },
         "org.apache.cordova.file": {
             "PACKAGE_NAME": "com.luminotrace.app"
         },
@@ -62,6 +59,9 @@
             "PACKAGE_NAME": "com.luminotrace.app"
         },
         "org.apache.cordova.media-capture": {
+            "PACKAGE_NAME": "com.luminotrace.app"
+        },
+        "org.apache.cordova.console": {
             "PACKAGE_NAME": "com.luminotrace.app"
         }
     },

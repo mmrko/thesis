@@ -206,9 +206,8 @@
         <PostBuildEvent>
         </PostBuildEvent>
     </PropertyGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.console\DebugConsole.cs" />
-    </ItemGroup>
+    <ItemGroup />
+    <ItemGroup />
     <ItemGroup>
         <Compile Include="Plugins\org.apache.cordova.file\File.cs" />
     </ItemGroup>
@@ -238,6 +237,9 @@
         <Compile Include="Plugins\org.apache.cordova.media-capture\VideoRecorder.xaml.cs">
             <DependentUpon>VideoRecorder.xaml</DependentUpon>
         </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.console\DebugConsole.cs" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/cordova.js" />
