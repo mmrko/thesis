@@ -1,18 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.luminotrace.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <feature name="Console">
-        <param name="wp-package" value="DebugConsole" />
-    </feature>
-    <feature name="File">
-        <param name="wp-package" value="File" />
-    </feature>
-    <feature name="Media">
-        <param name="wp-package" value="Media" />
-    </feature>
-    <feature name="Capture">
-        <param name="wp-package" value="Capture" />
-    </feature>
-    <name>luminotrace</name>
+    <name>HelloCordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -21,4 +9,16 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <feature name="File">
+        <param name="wp-package" value="File" />
+    </feature>
+    <feature name="Capture">
+        <param name="wp-package" value="Capture" />
+    </feature>
+    <feature name="Console">
+        <param name="wp-package" value="DebugConsole" />
+    </feature>
+    <feature name="Media">
+        <param name="wp-package" value="Media" />
+    </feature>
 </widget>
