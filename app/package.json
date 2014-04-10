@@ -27,6 +27,15 @@
     "gulp-size": "~0.3.0",
     "gulp-util": "~2.2.14",
     "open": "0.0.5",
-    "chalk": "~0.4.0"
+    "chalk": "~0.4.0",
+    "gulp-embedlr": "~0.5.2",
+    "gulp-cond": "0.0.2",
+    "minimist": "0.0.8",
+    "gulp-clean": "~0.2.4",
+    "gulp-autoprefixer": "0.0.7",
+    "gulp-imagemin": "~0.2.0",
+    "run-sequence": "~0.3.6",
+    "gulp-livereload": "~1.2.0",
+    "tiny-lr": "0.0.5"
   }
 }
