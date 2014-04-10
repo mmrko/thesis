@@ -14,5 +14,9 @@ platforms/ios/www
 platforms/ios/LuminoTrace/config.xml
 platforms/ios/.staging
 
+# WP8
+platforms/wp8/Bin/
+platforms/wp8/obj/
+
 # Emulator logs
 platforms/ios/cordova/console.log
