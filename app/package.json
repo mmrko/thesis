@@ -1,0 +1,26 @@
+{
+  "name": "LuminoTrace",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:mmrko/luminotrace.git"
+  },
+  "keywords": [
+    "PhoneGap",
+    "Apache Cordova"
+  ],
+  "author": "Marko Raatikka",
+  "license": "ISC",
+  "devDependencies": {
+    "exec": "~0.1.0",
+    "gulp-load-plugins": "~0.5.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp": "~3.6.0",
+    "ripple-emulator": "~0.9.21",
+    "browserify": "~3.40.0"
+  }
+}
