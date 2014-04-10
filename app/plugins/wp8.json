@@ -9,19 +9,19 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"File\"><param name=\"wp-package\" value=\"File\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Capture\"><param name=\"wp-package\" value=\"Capture\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Console\"><param name=\"wp-package\" value=\"DebugConsole\" /></feature>",
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"File\"><param name=\"wp-package\" value=\"File\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Media\"><param name=\"wp-package\" value=\"Media\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Capture\"><param name=\"wp-package\" value=\"Capture\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -35,16 +35,16 @@
                             "count": 2
                         },
                         {
-                            "xml": "<Capability Name=\"ID_CAP_MEDIALIB_PHOTO\" />",
-                            "count": 1
-                        },
-                        {
                             "xml": "<Capability Name=\"ID_CAP_MEDIALIB_PLAYBACK\" />",
                             "count": 2
                         },
                         {
                             "xml": "<Capability Name=\"ID_CAP_MICROPHONE\" />",
                             "count": 2
+                        },
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_MEDIALIB_PHOTO\" />",
+                            "count": 1
                         },
                         {
                             "xml": "<Capability Name=\"ID_CAP_ISV_CAMERA\" />",
@@ -56,19 +56,18 @@
         }
     },
     "installed_plugins": {
-        "org.apache.cordova.media-capture": {
-            "PACKAGE_NAME": "{1FEA2B52-99DE-47C1-B49F-487267BE2DBD}"
-        },
         "org.apache.cordova.console": {
-            "PACKAGE_NAME": "{1FEA2B52-99DE-47C1-B49F-487267BE2DBD}"
+            "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
+        },
+        "org.apache.cordova.file": {
+            "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
         },
         "org.apache.cordova.media": {
-            "PACKAGE_NAME": "{1FEA2B52-99DE-47C1-B49F-487267BE2DBD}"
+            "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
+        },
+        "org.apache.cordova.media-capture": {
+            "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
         }
     },
-    "dependent_plugins": {
-        "org.apache.cordova.file": {
-            "PACKAGE_NAME": "{1FEA2B52-99DE-47C1-B49F-487267BE2DBD}"
-        }
-    }
+    "dependent_plugins": {}
 }
