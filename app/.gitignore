@@ -1,4 +1,18 @@
+# Android
+platforms/android/assets/www
 platforms/android/CordovaLib/ant-build/
 platforms/android/CordovaLib/ant-gen/
 platforms/android/ant-build/
 platforms/android/ant-gen/
+platforms/android/bin/
+platforms/android/res/xml/config.xml
+
+# iOS
+platforms/ios/build/
+platforms/ios/CordovaLib/build/
+platforms/ios/www
+platforms/ios/LuminoTrace/config.xml
+platforms/ios/.staging
+
+# Emulator logs
+platforms/ios/cordova/console.log
