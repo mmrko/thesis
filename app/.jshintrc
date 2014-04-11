@@ -13,5 +13,11 @@
 	"strict": false,
 	"trailing": true,
 	"smarttabs": true,
-	"devel": true
+	"devel": true,
+	"browser": true,
+	"globals": {
+	    "jQuery": true,
+	    "ionic": true,
+	    "angular": true
+	}
 }
