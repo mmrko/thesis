@@ -242,22 +242,19 @@
         <Compile Include="Plugins\org.apache.cordova.console\DebugConsole.cs" />
     </ItemGroup>
     <ItemGroup>
+        <Content Include="www/app.js" />
+    </ItemGroup>
+    <ItemGroup>
         <Content Include="www/cordova.js" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/cordova_plugins.js" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="www/css/index.css" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www/img/logo.png" />
-    </ItemGroup>
-    <ItemGroup>
         <Content Include="www/index.html" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="www/js/index.js" />
+        <Content Include="www/ionic.png" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/plugins/org.apache.cordova.console/www/console-via-logger.js" />
@@ -345,5 +342,8 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/plugins/org.apache.cordova.media-capture/www/capture.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/style.css" />
     </ItemGroup>
 </Project>
