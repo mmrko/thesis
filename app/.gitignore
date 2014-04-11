@@ -24,3 +24,4 @@ platforms/ios/cordova/console.log
 
 # Custom
 /www
+www_src/libs
