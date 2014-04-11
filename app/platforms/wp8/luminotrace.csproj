@@ -248,16 +248,10 @@
         <Content Include="www/cordova_plugins.js" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="www/css/style.css" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www/img/ionic.png" />
+        <Content Include="www/images/ionic.png" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/index.html" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www/js/app.js" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/plugins/org.apache.cordova.console/www/console-via-logger.js" />
@@ -345,5 +339,17 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/plugins/org.apache.cordova.media-capture/www/capture.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/scripts/main.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/scripts/vendor.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/styles/main.css" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/styles/vendor.css" />
     </ItemGroup>
 </Project>
