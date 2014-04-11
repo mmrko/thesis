@@ -18,21 +18,21 @@ gulp.task('lint', function () {
 gulp.task('scripts', ['lint'], function () {
   return gulp.src(config.wwwPath('js/**/*.js'))
       .pipe($.jscs())
-      .pipe(gulp.dest(config.destPath()))
+      .pipe(gulp.dest(config.destPath('js')))
       .pipe($.size());
 });
 
 gulp.task('styles', function () {
   return gulp.src(config.wwwPath('css/**/*.css'))
       .pipe($.autoprefixer('last 1 version'))
-      .pipe(gulp.dest(config.destPath()))
+      .pipe(gulp.dest(config.destPath('css')))
       .pipe($.size());
 });
 
 gulp.task('images', function () {
   return gulp.src(config.wwwPath('img/**/*.{jpg,jpeg,gif,png}'))
       .pipe($.cond(config.production, $.imagemin()))
-      .pipe(gulp.dest(config.destPath()))
+      .pipe(gulp.dest(config.destPath('img')))
       .pipe($.size());
 });
 
