@@ -22,6 +22,9 @@ platforms/wp8/www
 # Emulator logs
 platforms/ios/cordova/console.log
 
+# Sass
+.sass-cache
+
 # Custom
 /www
 www_src/libs
