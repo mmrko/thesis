@@ -18,6 +18,7 @@
 	"globals": {
 	    "jQuery": true,
 	    "ionic": true,
-	    "angular": true
+	    "angular": true,
+	    "cordova": true
 	}
 }
