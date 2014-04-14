@@ -3,8 +3,6 @@ var argv = require('minimist')(process.argv.slice(2)),
     fs = require('fs'),
     emulate = argv._.indexOf('emulate') !== -1 || argv.emulate;
 
-console.log(emulate);
-
 var config = {
     ripple : {
         port : 4000,
