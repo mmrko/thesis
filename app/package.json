@@ -26,7 +26,6 @@
     "jshint-stylish": "~0.1.5",
     "gulp-size": "~0.3.0",
     "gulp-util": "~2.2.14",
-    "open": "0.0.5",
     "chalk": "~0.4.0",
     "gulp-embedlr": "~0.5.2",
     "gulp-cond": "0.0.2",
@@ -36,9 +35,17 @@
     "gulp-imagemin": "~0.2.0",
     "run-sequence": "~0.3.6",
     "gulp-livereload": "~1.2.0",
-    "tiny-lr": "0.0.5",
     "gulp-ruby-sass": "~0.4.2",
     "gulp-useref": "~0.3.1",
-    "wiredep": "~1.4.3"
+    "wiredep": "~1.4.3",
+    "lazypipe": "~0.2.1",
+    "gulp-cached": "0.0.3",
+    "gulp-filter": "~0.4.0",
+    "gulp-csso": "~0.2.7",
+    "gulp-strip-debug": "~0.3.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-print": "~1.0.3",
+    "opn": "~0.1.1",
+    "gulp-symlink": "~0.4.2"
   }
 }

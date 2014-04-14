@@ -1,30 +1,26 @@
 var gulp = require('gulp'),
-    livereloadserver = require('tiny-lr')(),
     browserify = require('browserify'),
     exec = require('exec'),
-    open = require('open'),
-    ripple = require('ripple-emulator'),
     chalk = require('chalk'),
-    wiredep = require('wiredep').stream,
     runSequence = require('run-sequence'),
+    lazypipe = require('lazypipe'),
     config = require('./gulpfile.config.js'),
     $ = require('gulp-load-plugins')();
 
-gulp.task('lint', function () {
-    return gulp.src(config.wwwPath('scripts/**.js'))
-        .pipe($.jshint())
-        .pipe($.jshint.reporter('jshint-stylish'));
-});
-
-gulp.task('scripts', ['lint'], function () {
+gulp.task('scripts', function () {
     return gulp.src(config.wwwPath('scripts/**/*.js'))
+        .pipe($.cached('scripts'))
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish'))
         .pipe($.jscs())
         .pipe($.size());
 });
 
 gulp.task('styles', function () {
     return gulp.src(config.wwwPath('styles/**/*.scss'))
-        .pipe($.rubySass())
+        .pipe($.rubySass({
+            style: config.emulate ? 'compressed' : 'expanded'
+        }))
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest(config.wwwPath('styles')))
         .pipe($.size());
@@ -38,9 +34,19 @@ gulp.task('images', function () {
 });
 
 gulp.task('html', ['styles', 'scripts'], function () {
+
+    var jsFilter = $.filter(['**/*.js', '!cordova.js']),
+        cssFilter = $.filter('**/*.css');
+
     return gulp.src(config.wwwPath('*.html'))
-        .pipe($.cond(!config.production, $.embedlr()))
+        .pipe($.cond(config.emulate, $.embedlr()))
         .pipe($.useref.assets())
+        .pipe(jsFilter)
+        .pipe($.cond(config.production, $.uglify({ mangle: false })))
+        .pipe(jsFilter.restore())
+        .pipe(cssFilter)
+        .pipe($.cond(config.production, $.csso()))
+        .pipe(cssFilter.restore())
         .pipe($.useref.restore())
         .pipe($.useref())
         .pipe(gulp.dest(config.destPath()))
@@ -48,15 +54,12 @@ gulp.task('html', ['styles', 'scripts'], function () {
 });
 
 gulp.task('wiredep', function () {
-
     return gulp.src(config.wwwPath('*.html'))
-        .pipe(wiredep({
-            directory: config.vendorPath,
-            ignorePath: config.wwwPath()
+        .pipe(require('wiredep').stream({
+            directory: config.vendorPath
         }))
         .pipe(gulp.dest(config.wwwPath()));
 });
-
 
 gulp.task('prepare', function (cb) {
     exec(['cordova', 'prepare'], function (err, out, code) {
@@ -68,37 +71,60 @@ gulp.task('prepare', function (cb) {
 });
 
 gulp.task('connect', function () {
-    ripple.emulate.start({port: 4000});
-    livereloadserver.listen(config.livereloadport);
+    require('ripple-emulator').emulate.start({port: 4000});
 });
 
 gulp.task('serve', ['connect'], function () {
     var url = 'http://localhost:' + config.ripple.port + '/index.html' + config.ripple.queryString;
     $.util.log('Running Ripple Emulator at ' + chalk.cyan(url));
-    open(url);
+    require('opn')(url);
 });
 
 gulp.task('clean', function () {
     return gulp.src(config.destPath(), { read: false }).pipe($.clean());
 });
 
+gulp.task('symlink', function () {
+    gulp.src('config.xml', { read: false }).pipe($.cond(config.emulate, $.symlink(config.destPath())));
+});
+
 gulp.task('watch', ['serve'], function () {
 
-    gulp.watch([config.wwwPath('**'), '!' + config.vendorPath + '/**'], function (event) {
-      runSequence('prepare', function () {
-          gulp.src(event.path).pipe($.livereload(livereloadserver));
-      });
+    var server = $.livereload();
+
+    gulp.watch(config.wwwPath('scripts/**/*.js'), function (event) {
+        if (event.type === 'deleted') {
+            delete $.cached.caches['scripts'];
+        }
+        return gulp.start('html');
     });
 
-    gulp.watch(config.wwwPath('styles/**/*.css'), ['styles']);
-    gulp.watch(config.wwwPath('scripts/**/*.js'), ['scripts']);
+    gulp.watch(config.wwwPath('styles/**/*.scss'), ['html']);
     gulp.watch(config.wwwPath('images/**/*'), ['images']);
     gulp.watch(config.wwwPath('*.html'), ['html']);
     gulp.watch('bower.json', ['wiredep']);
+
+    gulp.watch([
+        config.wwwPath('styles/**/*.css'),
+        config.wwwPath('scripts/**/*.js'),
+        config.wwwPath('images/**/*'),
+        config.wwwPath('*.html')
+    ]).on('change', function (event) {
+        runSequence('prepare', function () {
+            server.changed(event.path);
+        });
+    });
+
 });
 
-gulp.task('build', ['html', 'images']);
+gulp.task('emulate', ['default'], function () {
+    gulp.start('watch');
+});
+
+gulp.task('build', ['html', 'images', 'symlink'], function () {
+    return gulp.start('prepare');
+});
 
 gulp.task('default', ['clean'], function () {
-  return gulp.start('build');
+    return gulp.start('build');
 });
