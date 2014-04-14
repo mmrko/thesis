@@ -7,4 +7,7 @@
     <author email="marko.raatikka@aalto.fi" href="http://media.tkk.fi/webservices">Marko Raatikka</author>
     <content src="index.html" />
     <access origin="*" />
+    <preference name="webviewbounce" value="false" />
+	<preference name="UIWebViewBounce" value="false" />
+	<preference name="DisallowOverscroll" value="true" />
 </widget>
