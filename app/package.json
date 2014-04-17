@@ -46,6 +46,8 @@
     "gulp-uglify": "~0.2.1",
     "gulp-print": "~1.0.3",
     "opn": "~0.1.1",
-    "gulp-symlink": "~0.4.2"
+    "gulp-symlink": "~0.4.2",
+    "gulp-htmlmin": "~0.1.2",
+    "gulp-plumber": "~0.6.1"
   }
 }

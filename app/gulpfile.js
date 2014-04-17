@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     lazypipe = require('lazypipe'),
     config = require('./gulpfile.config.js'),
+    path = require('path'),
     $ = require('gulp-load-plugins')();
 
 gulp.task('scripts', function () {
@@ -12,34 +13,34 @@ gulp.task('scripts', function () {
         .pipe($.cached('scripts'))
         .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish'))
-        .pipe($.jscs())
-        .pipe($.size());
+        .pipe($.jscs());
 });
 
 gulp.task('styles', function () {
     return gulp.src(config.wwwPath('styles/**/*.scss'))
+        .pipe($.plumber())
         .pipe($.rubySass({
-            style: config.emulate ? 'compressed' : 'expanded'
+            style: config.emulate ? 'expanded' : 'compressed',
+            debugInfo: true
         }))
         .pipe($.autoprefixer('last 1 version'))
-        .pipe(gulp.dest(config.wwwPath('styles')))
-        .pipe($.size());
+        .pipe(gulp.dest(config.wwwPath('styles')));
 });
 
 gulp.task('images', function () {
-    return gulp.src(config.wwwPath('images/**/*'))
+    return gulp.src(config.wwwPath('images/**'))
         .pipe($.cond(config.production, $.imagemin()))
         .pipe(gulp.dest(config.destPath('images')))
         .pipe($.size());
 });
 
-gulp.task('html', ['styles', 'scripts'], function () {
+gulp.task('useref', ['styles', 'scripts'], function () {
 
     var jsFilter = $.filter(['**/*.js', '!cordova.js']),
-        cssFilter = $.filter('**/*.css');
+        cssFilter = $.filter('**/*.css'),
+        indexFileFilter = $.filter(config.indexFile);
 
-    return gulp.src(config.wwwPath('*.html'))
-        .pipe($.cond(config.emulate, $.embedlr()))
+    return gulp.src(config.wwwPath(config.indexFile))
         .pipe($.useref.assets())
         .pipe(jsFilter)
         .pipe($.cond(config.production, $.uglify({ mangle: false })))
@@ -49,19 +50,26 @@ gulp.task('html', ['styles', 'scripts'], function () {
         .pipe(cssFilter.restore())
         .pipe($.useref.restore())
         .pipe($.useref())
+        .pipe(indexFileFilter)
+        .pipe($.cond(config.emulate, $.embedlr(), $.htmlmin(config.pluginOptions.htmlmin)))
+        .pipe(indexFileFilter.restore())
         .pipe(gulp.dest(config.destPath()))
         .pipe($.size());
 });
 
 gulp.task('wiredep', function () {
-    return gulp.src(config.wwwPath('*.html'))
-        .pipe(require('wiredep').stream({
+
+    var wiredep = require('wiredep').stream;
+
+    return gulp.src(config.wwwPath(config.indexFile))
+        .pipe(wiredep({
             directory: config.vendorPath
         }))
         .pipe(gulp.dest(config.wwwPath()));
 });
 
-gulp.task('prepare', function (cb) {
+// Run `cordova prepare`
+gulp.task('cordova-prepare', function (cb) {
     exec(['cordova', 'prepare'], function (err, out, code) {
         if (err instanceof Error) {
           throw err;
@@ -71,11 +79,13 @@ gulp.task('prepare', function (cb) {
 });
 
 gulp.task('connect', function () {
-    require('ripple-emulator').emulate.start({port: 4000});
+    require('ripple-emulator').emulate.start({
+        port: config.ripple.port
+    });
 });
 
 gulp.task('serve', ['connect'], function () {
-    var url = 'http://localhost:' + config.ripple.port + '/index.html' + config.ripple.queryString;
+    var url = 'http://localhost:' + config.ripple.port + '/' + config.indexFile + config.ripple.queryString;
     $.util.log('Running Ripple Emulator at ' + chalk.cyan(url));
     require('opn')(url);
 });
@@ -85,44 +95,66 @@ gulp.task('clean', function () {
 });
 
 gulp.task('symlink', function () {
+    // Symlink config.xml to www/config.xml to keep Ripple happy
     gulp.src('config.xml', { read: false }).pipe($.cond(config.emulate, $.symlink(config.destPath())));
 });
 
 gulp.task('watch', ['serve'], function () {
 
-    var server = $.livereload();
+    var server = $.livereload(), filter;
 
+    gulp.watch(config.wwwPath('images/**'), ['images']);
+    gulp.watch(config.wwwPath('styles/**/*.scss'), ['styles']);
     gulp.watch(config.wwwPath('scripts/**/*.js'), function (event) {
-        if (event.type === 'deleted') {
+        if (event.type === 'deleted' && $.cached.caches.hasOwnProperty('scripts')) {
             delete $.cached.caches['scripts'];
         }
-        return gulp.start('html');
+        gulp.start('scripts');
     });
-
-    gulp.watch(config.wwwPath('styles/**/*.scss'), ['html']);
-    gulp.watch(config.wwwPath('images/**/*'), ['images']);
-    gulp.watch(config.wwwPath('*.html'), ['html']);
-    gulp.watch('bower.json', ['wiredep']);
 
     gulp.watch([
-        config.wwwPath('styles/**/*.css'),
         config.wwwPath('scripts/**/*.js'),
-        config.wwwPath('images/**/*'),
-        config.wwwPath('*.html')
-    ]).on('change', function (event) {
-        runSequence('prepare', function () {
-            server.changed(event.path);
-        });
+        config.wwwPath('styles/**/*.css'),
+        config.wwwPath(config.indexFile)
+    ]).on('change', function (file) {
+
+        filter = $.filter('**/*' + path.extname(file.path));
+
+        return gulp.src(config.wwwPath(config.indexFile))
+            .pipe($.embedlr())
+            .pipe($.useref.assets())
+            .pipe($.useref.restore())
+            .pipe($.useref())
+            .pipe(filter)
+            .pipe(gulp.dest(config.destPath()))
+            .pipe($.size());
     });
 
+    // Run cordova-prepare when assets change
+    gulp.watch([
+        config.destPath('styles/**/*.css'),
+        config.destPath('scripts/**/*.js'),
+        config.destPath('images/**'),
+        config.destPath(config.indexFile)
+    ], ['cordova-prepare'])
+
+    // Refresh the browser when assets have been moved under www directory of each platform
+    // Hard-coded path value. Since all the files will be moved by `cordova prepare` it's
+    // enough for us to watch over the indexFile
+    gulp.watch('platforms/ios/www/' + config.indexFile).on('change', function (file) {
+        server.changed(file.path);
+    });
+
+    gulp.watch('bower.json', ['wiredep']);
+
 });
 
-gulp.task('emulate', ['default'], function () {
-    gulp.start('watch');
+gulp.task('emulate', ['symlink', 'build'], function () {
+    return gulp.start('watch');
 });
 
-gulp.task('build', ['html', 'images', 'symlink'], function () {
-    return gulp.start('prepare');
+gulp.task('build', ['useref', 'images'], function () {
+    return gulp.start('cordova-prepare');
 });
 
 gulp.task('default', ['clean'], function () {
