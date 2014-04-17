@@ -242,6 +242,9 @@
         <Compile Include="Plugins\org.apache.cordova.console\DebugConsole.cs" />
     </ItemGroup>
     <ItemGroup>
+        <Content Include="www/config.xml" />
+    </ItemGroup>
+    <ItemGroup>
         <Content Include="www/cordova.js" />
     </ItemGroup>
     <ItemGroup>

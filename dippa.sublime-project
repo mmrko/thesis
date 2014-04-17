@@ -2,10 +2,8 @@
 	"folders":
 	[
 		{
-			"follow_symlinks": true,
-			"path": ".",
-			"file_exclude_patterns": [
-				// LaTeX
+			"file_exclude_patterns":
+			[
 				"*.aux",
 				"*.glo",
 				"*.idx",
@@ -32,7 +30,6 @@
 				"*.fdb_latexmk",
 				"*.pdf",
 				"*.sty",
-				// Mac
 				".DS_Store",
 				".AppleDouble",
 				".LSOverride",
@@ -40,8 +37,9 @@
 				"._*",
 				".Spotlight-V100",
 				".Trashes"
-			]
+			],
+			"follow_symlinks": true,
+			"path": "."
 		}
 	]
 }
-
