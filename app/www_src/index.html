@@ -7,7 +7,7 @@
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="libs/ionic/release/css/ionic.css" />
+    <link rel="stylesheet" href="libs/ionic/css/ionic.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -21,8 +21,8 @@
     <script src="libs/angular-animate/angular-animate.js"></script>
     <script src="libs/angular-sanitize/angular-sanitize.js"></script>
     <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="libs/ionic/release/js/ionic.js"></script>
-    <script src="libs/ionic/release/js/ionic-angular.js"></script>
+    <script src="libs/ionic/js/ionic.js"></script>
+    <script src="libs/ionic/js/ionic-angular.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -34,15 +34,28 @@
     <!-- endbuild -->
 
   </head>
-  <body ng-app="starter">
+  <body ng-app="luminotrace">
 
-    <ion-pane>
-        <ion-header-bar class="bar-stable">
-            <h1 class="title">LuminoTrace</h1>
-        </ion-header-bar>
-        <ion-content>
-        </ion-content>
-    </ion-pane>
+   <ion-side-menus>
+
+    <!-- Center content -->
+    <ion-side-menu-content>
+      <ion-header-bar class="bar-dark">
+        <h1 class="title">Todo</h1>
+      </ion-header-bar>
+      <ion-content>
+      </ion-content>
+    </ion-side-menu-content>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left">
+      <ion-header-bar class="bar-dark">
+        <h1 class="title">Projects</h1>
+      </ion-header-bar>
+    </ion-side-menu>
+
+  </ion-side-menus>
+</body>
 
   </body>
 </html>
