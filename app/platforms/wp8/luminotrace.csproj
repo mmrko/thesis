@@ -242,6 +242,9 @@
         <Compile Include="Plugins\org.apache.cordova.console\DebugConsole.cs" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.camera\Camera.cs" />
+    </ItemGroup>
+    <ItemGroup>
         <Content Include="www/config.xml" />
     </ItemGroup>
     <ItemGroup>
@@ -251,10 +254,34 @@
         <Content Include="www/cordova_plugins.js" />
     </ItemGroup>
     <ItemGroup>
+        <Content Include="www/fonts/ionicons.eot" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/fonts/ionicons.svg" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/fonts/ionicons.ttf" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/fonts/ionicons.woff" />
+    </ItemGroup>
+    <ItemGroup>
         <Content Include="www/images/ionic.png" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/index.html" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/plugins/org.apache.cordova.camera/www/Camera.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/plugins/org.apache.cordova.camera/www/CameraConstants.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/plugins/org.apache.cordova.camera/www/CameraPopoverHandle.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/plugins/org.apache.cordova.camera/www/CameraPopoverOptions.js" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/plugins/org.apache.cordova.console/www/console-via-logger.js" />
