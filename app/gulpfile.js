@@ -15,6 +15,7 @@ gulp.task('scripts', function () {
 
 gulp.task('styles', function () {
     return gulp.src(config.wwwPath('styles/**/*.scss'))
+        .pipe($.cached('styles'))
         .pipe($.plumber())
         .pipe($.rubySass({
             style: config.emulate ? 'expanded' : 'compressed'
@@ -25,6 +26,7 @@ gulp.task('styles', function () {
 
 gulp.task('images', function () {
     return gulp.src(config.wwwPath('images/**'))
+        .pipe($.cached('images'))
         .pipe($.if(config.minify, $.imagemin()))
         .pipe(gulp.dest(config.destPath('images')))
         .pipe($.size());
@@ -96,7 +98,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('symlink', function () {
-    // Symlink config.xml to www/config.xml to keep Ripple happy
+    // Symlink config.xml to config.destPath to keep Ripple happy
     return gulp.src('config.xml', { read: false }).pipe($.symlink(config.destPath()));
 });
 
@@ -104,16 +106,29 @@ gulp.task('watch', ['serve', 'symlink'], function () {
 
     var server = $.livereload(), filter;
 
-    gulp.watch(config.wwwPath('images/**'), ['images']);
-    gulp.watch(config.wwwPath('styles/**/*.scss'), ['styles']);
-    gulp.watch(config.wwwPath('scripts/**/*.js'), function (event) {
-        if (event.type === 'deleted' && $.cached.caches.hasOwnProperty('scripts')) {
-            delete $.cached.caches['scripts'];
+    gulp.watch([
+        config.wwwPath('styles/**/*.scss'),
+        config.wwwPath('scripts/**/*.js'),
+        config.wwwPath('images/**')
+    ], function (event) {
+        switch (path.extname(event.path))
+        {
+            case '.scss':
+                if (event.type === 'deleted') { delete $.cached.caches['styles'][event.path]; }
+                gulp.start('styles');
+                break;
+            case '.js':
+                if (event.type === 'deleted') { delete $.cached.caches['scripts'][event.path]; }
+                gulp.start('scripts');
+                break;
+            default:
+                if (event.type === 'deleted') { delete $.cached.caches['images'][event.path]; }
+                gulp.start('images');
+                break;
         }
-        gulp.start('scripts');
     });
 
-    // Simply move assets from config.wwwPath to config.destPath when they are changed
+    // Simply move assets from config.wwwPath to config.destPath when they change
     gulp.watch([
         config.wwwPath('scripts/**/*.js'),
         config.wwwPath('styles/**/*.css'),
@@ -133,12 +148,7 @@ gulp.task('watch', ['serve', 'symlink'], function () {
     });
 
     // Run cordova-prepare task when assets change in config.destPath
-    gulp.watch([
-        config.destPath('styles/**/*.css'),
-        config.destPath('scripts/**/*.js'),
-        config.destPath('images/**'),
-        config.destPath(config.indexFile)
-    ], ['cordova-prepare'])
+    gulp.watch(config.destPath('**'), ['cordova-prepare']);
 
     // Refresh the browser when assets have been moved under the platform-specific www directories.
     // Since `cordova prepare` will move all the files in config.destPath it's enough for us to
@@ -149,8 +159,6 @@ gulp.task('watch', ['serve', 'symlink'], function () {
 
     // Inject Bower dependencies
     gulp.watch('bower.json', ['wiredep']);
-
-    gulp.start('symlink');
 });
 
 gulp.task('emulate', ['default'], function (cb) {
