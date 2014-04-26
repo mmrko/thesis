@@ -110,7 +110,7 @@ gulp.task('watch', ['serve', 'symlink'], function () {
         config.wwwPath('styles/**/*.scss'),
         config.wwwPath('scripts/**/*.js'),
         config.wwwPath('images/**')
-    ], function (event) {
+    ]).on('changed', function (event) {
         switch (path.extname(event.path))
         {
             case '.scss':
