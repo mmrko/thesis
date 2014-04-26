@@ -21,11 +21,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
+                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
+                            "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -77,10 +77,10 @@
         "org.apache.cordova.media-capture": {
             "PACKAGE_NAME": "com.luminotrace.app"
         },
-        "org.apache.cordova.console": {
+        "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.luminotrace.app"
         },
-        "org.apache.cordova.camera": {
+        "org.apache.cordova.console": {
             "PACKAGE_NAME": "com.luminotrace.app"
         }
     },

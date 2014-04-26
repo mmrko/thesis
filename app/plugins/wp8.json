@@ -21,11 +21,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Console\"><param name=\"wp-package\" value=\"DebugConsole\" /></feature>",
+                            "xml": "<feature name=\"Camera\"><param name=\"wp-package\" value=\"Camera\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Camera\"><param name=\"wp-package\" value=\"Camera\" /></feature>",
+                            "xml": "<feature name=\"Console\"><param name=\"wp-package\" value=\"DebugConsole\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -69,10 +69,10 @@
         "org.apache.cordova.media-capture": {
             "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
         },
-        "org.apache.cordova.console": {
+        "org.apache.cordova.camera": {
             "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
         },
-        "org.apache.cordova.camera": {
+        "org.apache.cordova.console": {
             "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
         }
     },
