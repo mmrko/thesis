@@ -20,6 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "ionic": "driftyco/ionic-bower#master"
+    "ionic": "driftyco/ionic#master"
   }
 }
