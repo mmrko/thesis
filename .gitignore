@@ -69,3 +69,6 @@ SublimeREPLHistory/changelog
 SublimeREPLHistory/command
 SublimeREPLHistory/external_id
 SublimeREPLHistory/ts
+
+# WebStorm
+.idea/
