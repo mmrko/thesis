@@ -75,7 +75,7 @@ gulp.task('wiredep', function () {
 
 // Run `cordova prepare`
 gulp.task('cordova-prepare', function (cb) {
-    exec(['cordova', 'prepare'], function (err, out, code) {
+    exec(['cordova', 'prepare'], function (err) {
         if (err instanceof Error) { throw err; }
         cb();
     });
@@ -90,7 +90,7 @@ gulp.task('connect', function () {
 gulp.task('serve', ['connect'], function () {
     var url = 'http://localhost:' + config.ripple.port + '/' + config.indexFile + config.ripple.queryString;
     $.util.log('Running Ripple Emulator at ' + chalk.cyan(url));
-    require('opn')(url);
+    if (config.open) { require('opn')(url); }
 });
 
 gulp.task('clean', function () {
@@ -104,13 +104,13 @@ gulp.task('symlink', function () {
 
 gulp.task('watch', ['serve', 'symlink'], function () {
 
-    var server = $.livereload(), filter;
+    var server = $.livereload();
 
     gulp.watch([
         config.wwwPath('styles/**/*.scss'),
         config.wwwPath('scripts/**/*.js'),
         config.wwwPath('images/**')
-    ]).on('changed', function (event) {
+    ]).on('change', function (event) {
         switch (path.extname(event.path))
         {
             case '.scss':
@@ -135,7 +135,7 @@ gulp.task('watch', ['serve', 'symlink'], function () {
         config.wwwPath(config.indexFile)
     ]).on('change', function (file) {
 
-        filter = $.filter('**/*' + path.extname(file.path));
+        var filter = $.filter('**/*' + path.extname(file.path));
 
         return gulp.src(config.wwwPath(config.indexFile))
             .pipe($.embedlr())
@@ -161,7 +161,7 @@ gulp.task('watch', ['serve', 'symlink'], function () {
     gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('emulate', ['default'], function (cb) {
+gulp.task('emulate', ['default'], function () {
     return gulp.start('watch');
 });
 

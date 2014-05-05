@@ -13,6 +13,7 @@ var config = {
     indexFile : 'index.html',
     emulate: !!argv.emulate || argv._.indexOf('emulate') !== -1,
     minify: !!argv.minify,
+    open: !!argv.open,
     ripple : {
         port : 4000,
         queryString : '?enableripple=cordova-3.0.0-Nexus4',
@@ -20,6 +21,6 @@ var config = {
     pluginOptions: {
         htmlmin: { collapseWhitespace: true, removeComments:true }
     }
-}
+};
 
 module.exports = config;
