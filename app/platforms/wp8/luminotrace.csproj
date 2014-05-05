@@ -211,6 +211,45 @@
     <ItemGroup />
     <ItemGroup />
     <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.file\File.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.media\Media.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.media\AudioPlayer.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.media-capture\Capture.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.media-capture\AudioCaptureTask.cs" />
+    </ItemGroup>
+    <ItemGroup />
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.media-capture\AudioRecorder.xaml.cs">
+            <DependentUpon>AudioRecorder.xaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.media-capture\VideoCaptureTask.cs" />
+    </ItemGroup>
+    <ItemGroup />
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.media-capture\VideoRecorder.xaml.cs">
+            <DependentUpon>VideoRecorder.xaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.camera\Camera.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.console\DebugConsole.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/config.xml" />
+    </ItemGroup>
+    <ItemGroup>
         <Content Include="www/cordova.js" />
     </ItemGroup>
     <ItemGroup>
@@ -227,6 +266,9 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/fonts/ionicons.woff" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www/images/ionic.png" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www/index.html" />
@@ -343,40 +385,7 @@
         <Content Include="www/styles/vendor.css" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.file\File.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.media\Media.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.media\AudioPlayer.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.media-capture\Capture.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.media-capture\AudioCaptureTask.cs" />
-    </ItemGroup>
-    <ItemGroup />
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.media-capture\AudioRecorder.xaml.cs">
-            <DependentUpon>AudioRecorder.xaml</DependentUpon>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.media-capture\VideoCaptureTask.cs" />
-    </ItemGroup>
-    <ItemGroup />
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.media-capture\VideoRecorder.xaml.cs">
-            <DependentUpon>VideoRecorder.xaml</DependentUpon>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.camera\Camera.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.console\DebugConsole.cs" />
+        <Compile Include="Plugins\org.apache.cordova.device\Device.cs" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www\plugins\org.apache.cordova.file\www\DirectoryEntry.js" />
@@ -476,6 +485,9 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include="www\plugins\org.apache.cordova.console\www\logger.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="www\plugins\org.apache.cordova.device\www\device.js" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www\cordova_plugins.js" />

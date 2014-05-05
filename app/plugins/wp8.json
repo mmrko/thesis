@@ -27,6 +27,10 @@
                         {
                             "xml": "<feature name=\"Console\"><param name=\"wp-package\" value=\"DebugConsole\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"wp-package\" value=\"Device\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -53,6 +57,10 @@
                         {
                             "xml": "<Capability Name=\"ID_CAP_ISV_CAMERA\" />",
                             "count": 2
+                        },
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_IDENTITY_DEVICE\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -73,6 +81,9 @@
             "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
         },
         "org.apache.cordova.console": {
+            "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
+        },
+        "org.apache.cordova.device": {
             "PACKAGE_NAME": "{EC066273-F559-4195-A07D-5384765C254A}"
         }
     },

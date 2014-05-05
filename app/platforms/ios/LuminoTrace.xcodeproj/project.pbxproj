@@ -48,6 +48,7 @@
 		DDD9DEAF93004E60B7D10450 /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5279EEBF9B46B78BE11297 /* CDVJpegHeaderWriter.m */; };
 		22075CD116144F0BB93D5F98 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145D805DE34C48F38B170CFC /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1B931418A3BD41A5BE2CF817 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 249D25C253D34A0D8C8A38AE /* CDVLogger.m */; };
+		CD231B2AFA734414AD078FE0 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5805B3C8D0C841C98E88E308 /* CDVDevice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,8 @@
 		145D805DE34C48F38B170CFC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "ImageIO.framework"; path = "System/Library/Frameworks/ImageIO.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		249D25C253D34A0D8C8A38AE /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		68A4BCD1AC4B4B0E946FB5AD /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		5805B3C8D0C841C98E88E308 /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		65DEA037908C4DED85BED1F9 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,8 @@
 				8CD4D5C693F24DD7BC5DBE15 /* CDVExif.h */,
 				249D25C253D34A0D8C8A38AE /* CDVLogger.m */,
 				68A4BCD1AC4B4B0E946FB5AD /* CDVLogger.h */,
+				5805B3C8D0C841C98E88E308 /* CDVDevice.m */,
+				65DEA037908C4DED85BED1F9 /* CDVDevice.h */,
 			);
 			name = Plugins;
 			path = "LuminoTrace/Plugins";
@@ -474,6 +479,7 @@
 				4CF525C1D0674AA1896EF320 /* CDVCamera.m in Sources */,
 				DDD9DEAF93004E60B7D10450 /* CDVJpegHeaderWriter.m in Sources */,
 				1B931418A3BD41A5BE2CF817 /* CDVLogger.m in Sources */,
+				CD231B2AFA734414AD078FE0 /* CDVDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
