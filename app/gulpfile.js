@@ -1,12 +1,13 @@
-var gulp = require('gulp'),
+var path = require('path'),
+    gulp = require('gulp'),
     exec = require('exec'),
     chalk = require('chalk'),
-    path = require('path'),
-    config = require('./gulpfile.config.js'),
-    $ = require('gulp-load-plugins')();
+    runSequence = require('run-sequence'),
+    $ = require('gulp-load-plugins')(),
+    config = require('./gulpfile.config.js');
 
 gulp.task('scripts', function () {
-    return gulp.src(config.wwwPath('scripts/**/*.js'))
+    return gulp.src(config.srcPath('scripts/**/*.js'))
         .pipe($.cached('scripts'))
         .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish'))
@@ -14,18 +15,18 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src(config.wwwPath('styles/**/*.scss'))
+    return gulp.src(config.srcPath('styles/**/*.scss'))
         .pipe($.cached('styles'))
         .pipe($.plumber())
         .pipe($.rubySass({
-            style: config.emulate ? 'expanded' : 'compressed'
+            style: config.minify ? 'compressed' : 'expanded'
         }))
         .pipe($.autoprefixer('last 1 version'))
-        .pipe(gulp.dest(config.wwwPath('styles')));
+        .pipe(gulp.dest(config.srcPath('styles')));
 });
 
 gulp.task('images', function () {
-    return gulp.src(config.wwwPath('images/**'))
+    return gulp.src(config.srcPath('images/**/*'))
         .pipe($.cached('images'))
         .pipe($.if(config.minify, $.imagemin()))
         .pipe(gulp.dest(config.destPath('images')))
@@ -40,25 +41,46 @@ gulp.task('fonts', function () {
         .pipe($.size());
 });
 
-gulp.task('useref', ['styles', 'scripts'], function () {
+// Process Angular templates
+gulp.task('ng-templates', function () {
+    return gulp.src(config.srcPath('templates/**/*.html'))
+        .pipe($.angularTemplatecache(config.pluginOptions.ngTemplateCache))
+        .pipe($.header.apply(this, config.pluginOptions.header))
+        .pipe(gulp.dest(config.srcPath('scripts')));
+});
 
-    var jsFilter = $.filter(['**/*.js', '!cordova.js']),
+gulp.task('useref', ['styles', 'scripts', 'ng-templates'], function () {
+
+    var jsFilter = $.filter(['**/*.js']),
+        jsFilterVendor = $.filter(['!**/*/vendor.js']),
         cssFilter = $.filter('**/*.css'),
         indexFileFilter = $.filter(config.indexFile);
 
-    return gulp.src(config.wwwPath(config.indexFile))
+    return gulp.src(config.srcPath(config.indexFile))
         .pipe($.useref.assets())
+
+        // scripts
         .pipe(jsFilter)
-        .pipe($.if(config.minify, $.uglify({ mangle: false })))
+        .pipe(jsFilterVendor)
+        .pipe($.if(config.minify, $.ngmin()))
+        .pipe(jsFilterVendor.restore())
+        .pipe($.if(config.minify, $.uglify()))
         .pipe(jsFilter.restore())
+
+        // styles
         .pipe(cssFilter)
         .pipe($.if(config.minify, $.csso()))
         .pipe(cssFilter.restore())
+
         .pipe($.useref.restore())
         .pipe($.useref())
+
+        // config.indexFile
         .pipe(indexFileFilter)
-        .pipe($.if(config.emulate, $.embedlr(), $.htmlmin(config.pluginOptions.htmlmin)))
+        .pipe($.if(config.emulate, $.embedlr()))
+        .pipe($.if(config.minify, $.htmlmin(config.pluginOptions.htmlmin)))
         .pipe(indexFileFilter.restore())
+
         .pipe(gulp.dest(config.destPath()))
         .pipe($.size());
 });
@@ -68,13 +90,13 @@ gulp.task('wiredep', function () {
 
     var wiredep = require('wiredep').stream;
 
-    return gulp.src(config.wwwPath(config.indexFile))
+    return gulp.src(config.srcPath(config.indexFile))
         .pipe(wiredep({ directory: config.vendorPath}))
-        .pipe(gulp.dest(config.wwwPath()));
+        .pipe(gulp.dest(config.srcPath()));
 });
 
-// Run `cordova prepare`
 gulp.task('cordova-prepare', function (cb) {
+    // Run `cordova prepare`
     exec(['cordova', 'prepare'], function (err) {
         if (err instanceof Error) { throw err; }
         cb();
@@ -98,7 +120,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('symlink', function () {
-    // Symlink config.xml to config.destPath to keep Ripple happy
+    // Symlink config.xml to config.destPath so that Ripple finds it
     return gulp.src('config.xml', { read: false }).pipe($.symlink(config.destPath()));
 });
 
@@ -107,37 +129,31 @@ gulp.task('watch', ['serve', 'symlink'], function () {
     var server = $.livereload();
 
     gulp.watch([
-        config.wwwPath('styles/**/*.scss'),
-        config.wwwPath('scripts/**/*.js'),
-        config.wwwPath('images/**')
-    ]).on('change', function (event) {
-        switch (path.extname(event.path))
-        {
-            case '.scss':
-                if (event.type === 'deleted') { delete $.cached.caches['styles'][event.path]; }
-                gulp.start('styles');
-                break;
-            case '.js':
-                if (event.type === 'deleted') { delete $.cached.caches['scripts'][event.path]; }
-                gulp.start('scripts');
-                break;
-            default:
-                if (event.type === 'deleted') { delete $.cached.caches['images'][event.path]; }
-                gulp.start('images');
-                break;
-        }
-    });
-
-    // Simply move assets from config.wwwPath to config.destPath when they change
-    gulp.watch([
-        config.wwwPath('scripts/**/*.js'),
-        config.wwwPath('styles/**/*.css'),
-        config.wwwPath(config.indexFile)
+        config.srcPath('styles/**/*.scss'),
+        config.srcPath('scripts/**/*.js'),
+        config.srcPath('images/**/*')
     ]).on('change', function (file) {
 
+        var directory = path.relative(config.srcPath(), file.path), // e.g. styles/x/y/z.scss
+            type = directory.split(path.sep)[0]; // styles, scripts, images
+
+        // If a file was deleted, remove it from the cache as well
+        if (file.type === 'deleted') { delete $.cached.caches[type][file.path]; }
+
+        gulp.start(type);
+    });
+
+    // When assets in config.indexFile change move them to config.destPath
+    gulp.watch([
+        config.srcPath('scripts/**/*.js'),
+        config.srcPath('styles/**/*.css'),
+        config.srcPath(config.indexFile)
+    ]).on('change', function (file) {
+
+        // Filter by file extension
         var filter = $.filter('**/*' + path.extname(file.path));
 
-        return gulp.src(config.wwwPath(config.indexFile))
+        return gulp.src(config.srcPath(config.indexFile))
             .pipe($.embedlr())
             .pipe($.useref.assets())
             .pipe($.useref.restore())
@@ -147,17 +163,19 @@ gulp.task('watch', ['serve', 'symlink'], function () {
             .pipe($.size());
     });
 
-    // Run cordova-prepare task when assets change in config.destPath
-    gulp.watch(config.destPath('**'), ['cordova-prepare']);
+    // Run cordova-prepare task when assets have been moved to config.destPath
+    // This is needed in order to make Ripple work with LiveReload: without
+    // running 'cordova prepare' assets will return status 304 and content won't refresh
+    gulp.watch(config.destPath('**/*'), ['cordova-prepare']);
 
-    // Refresh the browser when assets have been moved under the platform-specific www directories.
-    // Since `cordova prepare` will move all the files in config.destPath it's enough for us to
-    // watch over changes in one file only (e.g. config.indexFile)
-    gulp.watch(path.join('platforms/ios/www', config.indexFile)).on('change', function (file) {
+    // Since `cordova prepare` will move all the files from config.destPath it's enough for us to
+    // watch one file only (e.g. config.indexFile)
+    gulp.watch(path.join('platforms', 'ios', 'www', config.indexFile)).on('change', function (file) {
         server.changed(file.path);
     });
 
-    // Inject Bower dependencies
+    gulp.watch(config.srcPath('templates/**/*.html'), ['ng-templates']);
+
     gulp.watch('bower.json', ['wiredep']);
 });
 
@@ -169,6 +187,6 @@ gulp.task('build', ['useref', 'images', 'fonts'], function () {
     return gulp.start('cordova-prepare');
 });
 
-gulp.task('default', ['clean'], function () {
-    return gulp.start('build');
+gulp.task('default', ['clean'], function (cb) {
+    runSequence('build', cb);
 });
