@@ -38,6 +38,7 @@ node_modules
 hs_err_pid*
 
 # Custom
-/www
+www/
 src/libs
 src/styles/*.css
+src/scripts/templates.js
