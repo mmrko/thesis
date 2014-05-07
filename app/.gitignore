@@ -24,7 +24,7 @@ platforms/wp8/config.xml
 .sass-cache
 
 # NPM
-node_modules
+/node_modules
 
 # Java
 *.class
@@ -38,7 +38,7 @@ node_modules
 hs_err_pid*
 
 # Custom
-www/
-src/libs
-src/styles/*.css
-src/scripts/templates.js
+/www
+libs
+styles/*.css
+scripts/templates.js
