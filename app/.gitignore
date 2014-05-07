@@ -40,5 +40,5 @@ hs_err_pid*
 # Custom
 /www
 libs
-styles/*.css
-scripts/templates.js
+src/styles/*.css
+src/scripts/templates.js
