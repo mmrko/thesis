@@ -3,15 +3,18 @@ var argv = require('minimist')(process.argv.slice(2)),
     fs = require('fs');
 
 var config = {
-    destPath : function (glob) {
+    wwwPath : function (glob) {
         return glob ? path.join('www', glob) : 'www';
     },
-    srcPath : function (glob) {
-        return glob ? path.join('src', glob) : 'src';
+    tmpPath : function (glob) {
+        return glob ? path.join('.tmp', glob) : '.tmp';
+    },
+    destPath : function (glob) {
+        return glob ? path.join('dist', glob) : 'dist';
     },
     vendorPath : JSON.parse(fs.readFileSync('.bowerrc')).directory,
     indexFile : 'index.html',
-    emulate: !!argv.emulate || argv._.indexOf('emulate') !== -1,
+    emulate: !!argv.emulate,
     minify: !!argv.minify,
     open: !!argv.open,
     ripple : {

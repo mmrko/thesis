@@ -38,7 +38,8 @@ platforms/wp8/config.xml
 hs_err_pid*
 
 # Custom
-/www
+/dist
+.tmp
 libs
 src/styles/*.css
 src/scripts/templates.js
