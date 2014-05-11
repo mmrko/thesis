@@ -131,7 +131,7 @@ gulp.task('watch', ['symlink', 'serve'], function () {
         var directory = path.relative(config.srcPath(), file.path), // e.g. styles/x/y/z.scss
             type = directory.split(path.sep)[0]; // styles, scripts, images, templates
 
-        // If a file was deleted, remove it from the cache as well
+        // If a file was deleted, delete it from the gulp-cached cache as well
         if (file.type === 'deleted' && $.cached.caches.hasOwnProperty(type)) {
             delete $.cached.caches[type][file.path];
         }
