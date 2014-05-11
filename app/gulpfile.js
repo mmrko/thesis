@@ -5,7 +5,7 @@ var path = require('path'),
     $ = require('gulp-load-plugins')(),
     config = require('./gulpfile.config.js');
 
-gulp.task('scripts', function () {
+gulp.task('jshint', function () {
     return gulp.src(config.srcPath('scripts/**/*.js'))
         .pipe($.cached('scripts'))
         .pipe($.jshint())
@@ -48,7 +48,7 @@ gulp.task('templates', function () {
         .pipe(gulp.dest(config.tmpPath('scripts')));
 });
 
-gulp.task('useref', ['styles', 'scripts', 'templates'], function () {
+gulp.task('useref', ['styles', 'templates'], function () {
 
     var jsFilter = $.filter(['**/*.js']),
         jsFilterVendor = $.filter(['!**/*/vendor.js']),
@@ -95,11 +95,16 @@ gulp.task('wiredep', function () {
 
 
 gulp.task('connect', function () {
-    require('ripple-emulator').emulate.start({
-        port: config.ripple.port,
-        path: [config.srcPath(), config.tmpPath()],
-        middleware: './ripple-middleware'
-    });
+    if (config.ripple) {
+        require('ripple-emulator').emulate.start({
+            port: config.ripple.port,
+            path: [config.srcPath(), config.tmpPath()],
+            middleware: './ripple-middleware'
+        });
+    }
+    else {
+
+    }
 });
 
 gulp.task('serve', ['connect'], function () {
@@ -153,7 +158,7 @@ gulp.task('watch', ['symlink', 'serve'], function () {
 });
 
 
-gulp.task('build', ['useref', 'images', 'fonts']);
+gulp.task('build', ['useref', 'images', 'fonts', 'jshint']);
 
 gulp.task('default', ['clean'], function () {
     gulp.start('build')
