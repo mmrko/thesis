@@ -3,7 +3,7 @@ var argv = require('minimist')(process.argv.slice(2)),
     fs = require('fs');
 
 var config = {
-    wwwPath : function (glob) {
+    srcPath : function (glob) {
         return glob ? path.join('www', glob) : 'www';
     },
     tmpPath : function (glob) {

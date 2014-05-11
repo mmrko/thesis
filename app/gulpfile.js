@@ -6,7 +6,7 @@ var path = require('path'),
     config = require('./gulpfile.config.js');
 
 gulp.task('scripts', function () {
-    return gulp.src(config.wwwPath('scripts/**/*.js'))
+    return gulp.src(config.srcPath('scripts/**/*.js'))
         .pipe($.cached('scripts'))
         .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish'))
@@ -14,7 +14,7 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src(config.wwwPath('styles/**/*.scss'))
+    return gulp.src(config.srcPath('styles/**/*.scss'))
         .pipe($.cached('styles'))
         .pipe($.plumber())
         .pipe($.rubySass({
@@ -25,7 +25,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('images', function () {
-    return gulp.src(config.wwwPath('images/**/*'))
+    return gulp.src(config.srcPath('images/**/*'))
         .pipe($.cached('images'))
         .pipe($.if(config.minify, $.imagemin()))
         .pipe(gulp.dest(config.destPath('images')))
@@ -42,7 +42,7 @@ gulp.task('fonts', function () {
 
 // Process Angular templates
 gulp.task('templates', function () {
-    return gulp.src(config.wwwPath('templates/**/*.html'))
+    return gulp.src(config.srcPath('templates/**/*.html'))
         .pipe($.angularTemplatecache(config.pluginOptions.ngTemplateCache))
         .pipe($.header.apply(this, config.pluginOptions.header))
         .pipe(gulp.dest(config.tmpPath('scripts')));
@@ -55,8 +55,8 @@ gulp.task('useref', ['styles', 'scripts', 'templates'], function () {
         cssFilter = $.filter('**/*.css'),
         indexFileFilter = $.filter(config.indexFile);
 
-    return gulp.src(config.wwwPath(config.indexFile))
-        .pipe($.useref.assets({ searchPath: [config.wwwPath(), config.tmpPath()]}))
+    return gulp.src(config.srcPath(config.indexFile))
+        .pipe($.useref.assets({ searchPath: [config.srcPath(), config.tmpPath()]}))
 
         // scripts
         .pipe(jsFilter)
@@ -88,16 +88,16 @@ gulp.task('wiredep', function () {
 
     var wiredep = require('wiredep').stream;
 
-    return gulp.src(config.wwwPath(config.indexFile))
+    return gulp.src(config.srcPath(config.indexFile))
         .pipe(wiredep({ directory: config.vendorPath}))
-        .pipe(gulp.dest(config.wwwPath()));
+        .pipe(gulp.dest(config.srcPath()));
 });
 
 
 gulp.task('connect', function () {
     require('ripple-emulator').emulate.start({
         port: config.ripple.port,
-        path: [config.wwwPath(), config.tmpPath()],
+        path: [config.srcPath(), config.tmpPath()],
         middleware: './ripple-middleware'
     });
 });
@@ -117,18 +117,18 @@ gulp.task('symlink', function () {
     return gulp.src('config.xml', { read: false }).pipe($.symlink(config.tmpPath()));
 });
 
-gulp.task('watch', ['symlink'], function () {
+gulp.task('watch', ['symlink', 'serve'], function () {
 
     var server = $.livereload();
 
     gulp.watch([
-        config.wwwPath('styles/**/*.scss'),
-        config.wwwPath('scripts/**/*.js'),
-        config.wwwPath('images/**/*'),
-        config.wwwPath('templates/**/*.html')
+        config.srcPath('styles/**/*.scss'),
+        config.srcPath('scripts/**/*.js'),
+        config.srcPath('images/**/*'),
+        config.srcPath('templates/**/*.html')
     ]).on('change', function (file) {
 
-        var directory = path.relative(config.wwwPath(), file.path), // e.g. styles/x/y/z.scss
+        var directory = path.relative(config.srcPath(), file.path), // e.g. styles/x/y/z.scss
             type = directory.split(path.sep)[0]; // styles, scripts, images, templates
 
         // If a file was deleted, remove it from the cache as well
@@ -140,11 +140,11 @@ gulp.task('watch', ['symlink'], function () {
     });
 
     gulp.watch([
-        config.wwwPath('scripts/**/*.js'),
+        config.srcPath('scripts/**/*.js'),
         config.tmpPath('styles/**/*.css'),
-        config.wwwPath('images/**/*'),
-        config.wwwPath('templates/**/*.html'),
-        config.wwwPath(config.indexFile)
+        config.srcPath('images/**/*'),
+        config.srcPath('templates/**/*.html'),
+        config.srcPath(config.indexFile)
     ]).on('change', function (file) {
         server.changed(file.path);
     });
