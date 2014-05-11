@@ -14,14 +14,13 @@ var config = {
     },
     vendorPath : JSON.parse(fs.readFileSync('.bowerrc')).directory,
     indexFile : 'index.html',
-    emulate: !!argv.emulate,
+    livereloadPort: 35729,
+    serverPort: 9000,
+    ripple: !!argv.ripple,
     minify: !!argv.minify,
     open: !!argv.open,
-    ripple : {
-        port : 4000,
-        queryString : '?enableripple=cordova-3.0.0-Nexus4'
-    },
     pluginOptions: {
+        ripple: { queryString: '?enableripple=cordova-3.0.0-Nexus4' },
         htmlmin: { collapseWhitespace: true, removeComments: true },
         ngTemplateCache: { module: 'luminotrace.templates', root: 'templates', standalone: true },
         header: ['/* Don\'t edit this file directly. See the \'ng-templates\' task in gulpfile.js */\n']

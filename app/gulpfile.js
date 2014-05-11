@@ -97,18 +97,31 @@ gulp.task('wiredep', function () {
 gulp.task('connect', function () {
     if (config.ripple) {
         require('ripple-emulator').emulate.start({
-            port: config.ripple.port,
+            port: config.serverPort,
             path: [config.srcPath(), config.tmpPath()],
             middleware: './ripple-middleware'
         });
     }
     else {
+        var connect = require('connect');
+        var app = connect()
+            .use(require('connect-livereload')({ port: config.livereloadPort }))
+            .use(connect.static(config.srcPath()))
+            .use(connect.static(config.tmpPath()))
+            .use(connect.static(path.join('platforms', 'ios', 'www')))
+            .use('/' + config.vendorPath, connect.static(config.vendorPath))
+            .use(connect.directory(config.srcPath()));
 
+        require('http').createServer(app)
+            .listen(config.serverPort)
+            .on('listening', function () {
+                console.log('Started connect web server on http://localhost:' + config.serverPort);
+            });
     }
 });
 
 gulp.task('serve', ['connect'], function () {
-    var url = 'http://localhost:' + config.ripple.port + '/' + config.indexFile + config.ripple.queryString;
+    var url = 'http://localhost:' + config.serverPort + '/' + config.indexFile + config.pluginOptions.ripple.queryString;
     $.util.log('Running Ripple Emulator at ' + chalk.cyan(url));
     if (config.open) { require('opn')(url); }
 });
