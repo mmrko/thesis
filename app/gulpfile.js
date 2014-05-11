@@ -3,7 +3,7 @@ var path = require('path'),
     exec = require('exec'),
     chalk = require('chalk'),
     $ = require('gulp-load-plugins')(),
-    config = require('./gulpfile.config.js');
+    config = require('./gulpfile.config');
 
 gulp.task('jshint', function () {
     return gulp.src(config.srcPath('scripts/**/*.js'))

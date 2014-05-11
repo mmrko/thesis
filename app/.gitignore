@@ -26,6 +26,9 @@ platforms/wp8/config.xml
 # NPM
 /node_modules
 
+# Bower
+/bower_components
+
 # Java
 *.class
 # Mobile Tools for Java (J2ME)
@@ -40,6 +43,5 @@ hs_err_pid*
 # Custom
 /dist
 .tmp
-libs
 src/styles/*.css
 src/scripts/templates.js
