@@ -1,1 +1,1 @@
-Place platform specific code in their respective directories. The contents will be copied to platforms/<platform> upon cordova compile/emulate/build.
+Place platform specific code in their respective directories. The contents will be copied to `platforms/<platform>` upon cordova compile/emulate/build/run.
