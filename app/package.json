@@ -50,7 +50,7 @@
     "gulp-useref": "~0.4.3",
     "gulp-util": "~2.2.14",
     "jshint-stylish": "~0.2.0",
-    "minimist": "0.0.9",
+    "minimist": "0.1.0",
     "opn": "~0.1.1",
     "ripple-emulator": "~0.9.22",
     "through2": "~0.4.1",
