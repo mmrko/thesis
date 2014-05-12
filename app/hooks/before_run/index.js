@@ -1,3 +1,4 @@
 #!/usr/local/bin/node
 
-require('../move_www')('BEFORE RUN');
+require('../platforms_merge')();
+require('../www_move')();

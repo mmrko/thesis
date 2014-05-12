@@ -5,7 +5,9 @@ var fs = require('fs'),
     chalk = require('chalk'),
     cwd = process.cwd();
 
-module.exports = function (hook) {
+module.exports = function () {
+    var hook = path.basename(path.dirname(module.parent.filename));
+
     console.log(chalk.cyan('** HOOK: ' + hook + ' <START> **'));
 
     if (fs.existsSync(path.join(cwd, 'dist'))) {
