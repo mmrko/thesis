@@ -5,7 +5,7 @@ var addPlatforms = function (platforms, cb) {
     exec(['cordova', 'platform', 'add'].concat(platforms || ['android']), function(err) {
         if (err instanceof Error)
             throw err;
-        cb();
+        return cb && cb();
     });
 };
 

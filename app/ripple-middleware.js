@@ -3,6 +3,8 @@ var lr = require('connect-livereload'),
     config = require('./gulpfile.config');
 
 module.exports = function (app, options) {
-    app.use(lr());
-    app.use('/' + config.vendorPath, connect.static(config.vendorPath));
-}
+    app.use(lr())
+        .use(connect.static(config.tmpPath()))
+        .use('/' + config.vendorPath, connect.static(config.vendorPath))
+        .use(connect.directory(config.srcPath()));
+};

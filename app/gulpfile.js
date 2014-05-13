@@ -98,7 +98,6 @@ gulp.task('connect', function () {
     if (config.ripple) {
         require('ripple-emulator').emulate.start({
             port: config.serverPort,
-            path: [config.srcPath(), config.tmpPath()],
             middleware: './ripple-middleware'
         });
     }
@@ -108,8 +107,8 @@ gulp.task('connect', function () {
             .use(require('connect-livereload')({ port: config.livereloadPort }))
             .use(connect.static(config.srcPath()))
             .use(connect.static(config.tmpPath()))
+            .use(path.join('/', config.vendorPath), connect.static(config.vendorPath))
             .use(connect.static(path.join('platforms', 'ios', 'www')))
-            .use('/' + config.vendorPath, connect.static(config.vendorPath))
             .use(connect.directory(config.srcPath()));
 
         require('http').createServer(app)

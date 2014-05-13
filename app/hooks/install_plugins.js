@@ -14,7 +14,7 @@ var installPlugins = function (cb) {
     exec(['cordova', 'plugin', 'add'].concat(ids), function(err) {
         if (err instanceof Error)
             throw err;
-        cb();
+        return cb && cb();
     });
 };
 

@@ -18,4 +18,4 @@ module.exports = function () {
     }
 
     console.log(chalk.cyan('** HOOK: ' + hook + ' <END> **'));
-}
+};
