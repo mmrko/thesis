@@ -5,9 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "bower update",
-    "init": "npm install && npm run cordova-create && npm run cordova-after-create && npm run patch-ripple && gulp",
-    "cordova-create": "cordova create temp com.luminotrace.app LuminoTrace && node ./hooks/platforms_move.js",
-    "cordova-after-create": "node ./hooks/after_create.js",
+    "init": "npm install && npm run cordova-init && npm run patch-ripple && gulp",
+    "cordova-init": "mkdir -p platforms && node ./hooks/cordova_init.js",
     "patch-ripple": "cd ./node_modules/ripple-emulator/ && ./configure && jake;"
   },
   "repository": {

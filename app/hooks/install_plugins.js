@@ -2,6 +2,7 @@ var fs = require('fs'),
     exec = require('exec'),
     xml2json = require('xml2json');
 
+// Install plugins listed in config.xml
 var installPlugins = function (cb) {
     var config = fs.readFileSync('config.xml', { encoding: 'utf8' })
         , jsonStr = xml2json.toJson(config)

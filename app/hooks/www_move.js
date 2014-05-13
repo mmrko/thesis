@@ -5,7 +5,10 @@ var fs = require('fs'),
     chalk = require('chalk'),
     cwd = process.cwd();
 
-module.exports = function () {
+// Since cordova always deploys www files from www/ we need to temporarily
+// rename our build destination folder (dist/) to www/ so that our built
+// assets are deployed instead of the unoptimized ones in www/
+var move = function () {
     var hook = path.basename(path.dirname(module.parent.filename));
 
     console.log(chalk.cyan('** HOOK: ' + hook + ' <START> **'));
@@ -19,3 +22,5 @@ module.exports = function () {
 
     console.log(chalk.cyan('** HOOK: ' + hook + ' <END> **'));
 };
+
+module.exports = move;
