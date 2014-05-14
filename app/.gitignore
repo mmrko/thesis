@@ -21,12 +21,6 @@ src/styles/*.css
 src/scripts/templates.js
 /node_modules/*
 
-!/node_modules/cordova
-/node_modules/cordova/*
-!/node_modules/cordova/src
-/node_modules/cordova/src/*
-!/node_modules/cordova/src/util.js
-
 !/node_modules/ripple-emulator
 /node_modules/ripple-emulator/*
 !/node_modules/ripple-emulator/lib
