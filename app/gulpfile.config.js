@@ -19,6 +19,11 @@ var config = {
     ripple: !!argv.ripple,
     minify: !!argv.minify,
     open: !!argv.open,
+    cordova: {
+        platform: argv.platform || 'ios',
+        release: !!argv.release ? '--release' : '',
+        device: !!argv.device? '--device' : ''
+    },
     pluginOptions: {
         ripple: { queryString: '?enableripple=cordova-3.0.0-Nexus4' },
         htmlmin: { collapseWhitespace: true, removeComments: true },

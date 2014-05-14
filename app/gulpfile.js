@@ -1,9 +1,10 @@
 var path = require('path'),
     gulp = require('gulp'),
-    exec = require('exec'),
     chalk = require('chalk'),
     $ = require('gulp-load-plugins')(),
     config = require('./gulpfile.config');
+
+require('./gulpfile.cordova')(gulp, config);
 
 gulp.task('jshint', function () {
     return gulp.src(config.srcPath('scripts/**/*.js'))
@@ -169,9 +170,8 @@ gulp.task('watch', ['symlink', 'serve'], function () {
     gulp.watch('bower.json', ['wiredep']);
 });
 
-
 gulp.task('build', ['useref', 'images', 'fonts', 'jshint']);
 
 gulp.task('default', ['clean'], function () {
-    gulp.start('build')
+    return gulp.start('build');
 });

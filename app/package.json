@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "bower update",
     "init": "npm install && git apply ripple.patch && npm run cordova-init && gulp",
-    "cordova-init": "git apply cordova.patch && mkdir -p platforms && node ./hooks/after_create/cordova_init.js"
+    "cordova-init": "mkdir -p platforms && gulp cordova-create"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,6 @@
     "gulp-bower-files": "~0.2.2",
     "gulp-cached": "0.0.3",
     "gulp-clean": "~0.2.4",
-    "gulp-cond": "0.0.2",
     "gulp-csso": "~0.2.8",
     "gulp-filter": "~0.4.1",
     "gulp-flatten": "0.0.2",
