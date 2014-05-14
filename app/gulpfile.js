@@ -50,34 +50,34 @@ gulp.task('templates', function () {
 
 gulp.task('useref', ['styles', 'templates'], function () {
 
-    var jsFilter = $.filter(['**/*.js']),
-        jsFilterVendor = $.filter(['!**/*/vendor.js']),
-        cssFilter = $.filter('**/*.css'),
-        indexFileFilter = $.filter(config.indexFile);
+    var jsFiles = $.filter(['**/*.js']),
+        jsNoVendorFiles = $.filter(['!**/*/vendor.js']),
+        cssFiles= $.filter('**/*.css'),
+        indexFile= $.filter(config.indexFile);
 
     return gulp.src(config.srcPath(config.indexFile))
         .pipe($.useref.assets({ searchPath: [config.srcPath(), config.tmpPath()]}))
 
         // scripts
-        .pipe(jsFilter)
-        .pipe(jsFilterVendor)
-        .pipe($.if(config.minify, $.ngmin()))
-        .pipe(jsFilterVendor.restore())
+        .pipe(jsFiles)
+        .pipe(jsNoVendorFiles)
+        .pipe($.if(config.minify, $.ngAnnotate()))
+        .pipe(jsNoVendorFiles.restore())
         .pipe($.if(config.minify, $.uglify()))
-        .pipe(jsFilter.restore())
+        .pipe(jsFiles.restore())
 
         // styles
-        .pipe(cssFilter)
+        .pipe(cssFiles)
         .pipe($.if(config.minify, $.csso()))
-        .pipe(cssFilter.restore())
+        .pipe(cssFiles.restore())
 
         .pipe($.useref.restore())
         .pipe($.useref())
 
         // config.indexFile
-        .pipe(indexFileFilter)
+        .pipe(indexFile)
         .pipe($.if(config.minify, $.htmlmin(config.pluginOptions.htmlmin)))
-        .pipe(indexFileFilter.restore())
+        .pipe(indexFile.restore())
 
         .pipe(gulp.dest(config.destPath()))
         .pipe($.size());

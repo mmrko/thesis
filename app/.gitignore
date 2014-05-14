@@ -6,7 +6,7 @@
 .sass-cache
 
 # NPM
-/node_modules
+
 
 # Bower
 /bower_components
@@ -19,3 +19,9 @@
 /.tmp
 src/styles/*.css
 src/scripts/templates.js
+/node_modules/*
+!/node_modules/cordova
+/node_modules/cordova/*
+!/node_modules/cordova/src
+/node_modules/cordova/src/*
+!/node_modules/cordova/src/util.js
