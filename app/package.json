@@ -5,8 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "bower update",
-    "init": "npm install && git apply ripple.patch && npm run cordova-init && gulp",
-    "cordova-init": "mkdir -p platforms && gulp cordova-create"
+    "init": "npm install && npm run patch-ripple && npm run cordova-init && gulp",
+    "cordova-init": "mkdir -p platforms && gulp cordova-create",
+    "patch-ripple": "patch -p1 --directory=./node_modules/ripple-emulator < ripple.patch"
   },
   "repository": {
     "type": "git",
