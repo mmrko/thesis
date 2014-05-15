@@ -1,7 +1,7 @@
-diff --git a/doc/cli/emulate.md b/doc/cli/emulate.md
+diff --git b/app/node_modules/ripple-emulator/doc/cli/emulate.md a/app/node_modules/ripple-emulator/doc/cli/emulate.md
 index fd86743..da0a15d 100644
---- a/doc/cli/emulate.md
-+++ b/doc/cli/emulate.md
+--- a/app/node_modules/ripple-emulator/doc/cli/emulate.md
++++ b/app/node_modules/ripple-emulator/doc/cli/emulate.md
 @@ -14,9 +14,25 @@
  * --path    app path to statically serve for testing (if omitted, the current working directory will be used)
  * --remote  instead of a (local) --path, you can specify a remote website to load (via proxy) and emulate
@@ -28,10 +28,10 @@ index fd86743..da0a15d 100644
 +        module.exports = function (app, options) {
 +            app.use(lr());
 +        }
-diff --git a/lib/server/emulate.js b/lib/server/emulate.js
+diff --git b/app/node_modules/ripple-emulator/lib/server/emulate.js a/app/node_modules/ripple-emulator/lib/server/emulate.js
 index 53f1742..7631525 100644
---- a/lib/server/emulate.js
-+++ b/lib/server/emulate.js
+--- a/app/node_modules/ripple-emulator/lib/server/emulate.js
++++ b/app/node_modules/ripple-emulator/lib/server/emulate.js
 @@ -24,15 +24,17 @@ var proxy = require('./proxy'),
      express = require('express'),
      cordovaProject = require('./emulate/cordovaProject'),
