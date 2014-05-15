@@ -11,23 +11,23 @@ var spawn = require('child_process').spawn,
  */
 var execute = function (args, cb) {
 
-        args = _.compact(args);
+    args = _.compact(args);
 
-        var cmd = path.resolve('./node_modules/cordova/bin', process.platform === 'win32' ? 'cordova.cmd' : 'cordova');
+    var cmd = path.resolve('./node_modules/cordova/bin', process.platform === 'win32' ? 'cordova.cmd' : 'cordova');
 
-        var child = spawn(cmd, args);
+    var child = spawn(cmd, args);
 
-        child.stdout.on('data', function (data) {
-            console.log(data.toString());
-        });
+    child.stdout.on('data', function (data) {
+        console.log(data.toString());
+    });
 
-        child.stderr.on('data', function (data) {
-            console.error(data.toString());
-        });
+    child.stderr.on('data', function (data) {
+        console.error(data.toString());
+    });
 
-        child.on('close', function (code) {
-            cb && cb();
-        })
+    child.on('close', function (code) {
+        cb && cb();
+    });
 };
 
 // Add platforms to project
