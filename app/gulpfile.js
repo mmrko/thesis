@@ -121,8 +121,9 @@ gulp.task('connect', function () {
 });
 
 gulp.task('serve', ['connect'], function () {
+    var url = 'http://localhost:' + config.serverPort + '/';
     if (config.ripple) {
-        var url = 'http://localhost:' + config.serverPort + '/' + config.indexFile + config.pluginOptions.ripple.queryString;
+        url += config.indexFile + config.pluginOptions.ripple.queryString;
         $.util.log('Running Ripple Emulator at ' + chalk.cyan(url));
     }
     if (config.open) { require('opn')(url); }
