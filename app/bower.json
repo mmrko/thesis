@@ -21,5 +21,6 @@
   ],
   "dependencies": {
     "ionic": "driftyco/ionic#master"
-  }
+  },
+  "devDependencies": {}
 }
