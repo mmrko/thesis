@@ -6,7 +6,7 @@ var path = require('path'),
 
 require('./gulpfile.cordova')(gulp, config);
 
-gulp.task('jshint', function () {
+gulp.task('scripts', function () {
     return gulp.src(config.srcPath('scripts/**/*.js'))
         .pipe($.cached('scripts'))
         .pipe($.jshint())
@@ -173,7 +173,7 @@ gulp.task('watch', ['symlink', 'serve'], function () {
     gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('build', ['useref', 'images', 'fonts', 'jshint']);
+gulp.task('build', ['useref', 'images', 'fonts', 'scripts']);
 
 gulp.task('default', ['clean'], function () {
     return gulp.start('build');

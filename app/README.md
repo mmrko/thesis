@@ -1,4 +1,3 @@
-* install [cordova-cli](https://github.com/apache/cordova-cli): `npm install -g cordova`
 * run `npm run init` to scaffold the project
 * optionally, if you wish to simulate/deploy the app on iOS install [ios-sim](https://github.com/phonegap/ios-sim) and [ios-deploy](https://github.com/phonegap/ios-deploy).
 
@@ -11,6 +10,11 @@
     * `--ripple`: emulate the app using [Ripple](https://www.npmjs.org/package/ripple-emulator)
     * `--open`: open the app in the browser window
 
-To emulate the app using SDK emulator run `cordova emulate <platform>` replacing `<platform>` with the platform of your choice (ios / android / wp8).
+* `gulp cordova-emulate <platform>`: emulate the app using platform SDK
+    * replace `<platform>` with `ios`, `android` or `wp8`
+
+* `gulp cordova-deploy <platform>`: deploy the app
+    * default flags: `--debug`, `--emulator`
+    * available flags: `--release`, `--device`
 
 For platform specific issues refer to Apache Cordova's [Gettings Started Guides](http://cordova.apache.org/docs/en/2.5.0/guide_getting-started_index.md.html#Getting%20Started%20Guides).

@@ -1,4 +1,4 @@
-diff --git b/app/node_modules/ripple-emulator/doc/cli/emulate.md a/app/node_modules/ripple-emulator/doc/cli/emulate.md
+diff --git a/app/node_modules/ripple-emulator/doc/cli/emulate.md b/app/node_modules/ripple-emulator/doc/cli/emulate.md
 index fd86743..da0a15d 100644
 --- a/app/node_modules/ripple-emulator/doc/cli/emulate.md
 +++ b/app/node_modules/ripple-emulator/doc/cli/emulate.md
@@ -7,11 +7,11 @@ index fd86743..da0a15d 100644
  * --remote  instead of a (local) --path, you can specify a remote website to load (via proxy) and emulate
  * --route   specify the URL path on which ripple services will run (defaults to '/ripple') example: http://localhost:1234/ripple/xhr_proxy
 +* --middleware   the file path of custom middleware to inject
- 
+
  # Example usage
- 
+
      ripple emulate --port 1234 --path path/to/my/application/root
- 
+
      ripple emulate --remote http://google.com
 +
 +## Injecting middleware
@@ -28,7 +28,7 @@ index fd86743..da0a15d 100644
 +        module.exports = function (app, options) {
 +            app.use(lr());
 +        }
-diff --git b/app/node_modules/ripple-emulator/lib/server/emulate.js a/app/node_modules/ripple-emulator/lib/server/emulate.js
+diff --git a/app/node_modules/ripple-emulator/lib/server/emulate.js b/app/node_modules/ripple-emulator/lib/server/emulate.js
 index 53f1742..7631525 100644
 --- a/app/node_modules/ripple-emulator/lib/server/emulate.js
 +++ b/app/node_modules/ripple-emulator/lib/server/emulate.js
@@ -38,28 +38,28 @@ index 53f1742..7631525 100644
      hosted = require('./emulate/hosted'),
 +    path = require('path'),
      static = require('./emulate/static');
- 
+
  colors.mode = "console";
- 
+
  module.exports = {
      start: function (options) {
 -        var app = server.start(options);
 +        var app = server.start(options),
 +            cwd = process.cwd();
- 
+
 -        if (!options.path) { options.path = [process.cwd()]; }
 +        if (!options.path) { options.path = [cwd]; }
- 
+
          if (!options.route) {
              options.route = "/ripple";
 @@ -40,6 +42,10 @@ module.exports = {
              options.route = "/" + options.route;
          }
- 
+
 +        if (!!options.middleware) {
 +            require(path.join(cwd, options.middleware))(app, options);
 +        }
 +
          app = proxy.start({route: options.route}, app);
- 
+
          // TODO does not work with custom route (since ripple does not dynamically know custom ones, yet, if set)

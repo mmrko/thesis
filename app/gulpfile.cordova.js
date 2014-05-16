@@ -73,6 +73,7 @@ var cordovaTasks = function (gulp, config) {
     gulp.task('cordova-merge-platforms', mergePlatforms);
 
     gulp.task('cordova-create', ['cordova-install-plugins'], function () {
+        // TODO: Avoid callback hell and replace this with a promise-based implementation
         if (process.platform === 'win32') {
             addPlatforms (['android', 'wp8'], mergePlatforms);
         } else if (process.platform === 'darwin') {
