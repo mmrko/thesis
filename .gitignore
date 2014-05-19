@@ -52,9 +52,5 @@ SublimeREPLHistory/command
 SublimeREPLHistory/external_id
 SublimeREPLHistory/ts
 
-# WebStorm
-.idea/
-
 # Custom
-app/
 thesis.pdf
