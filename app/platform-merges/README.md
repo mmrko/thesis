@@ -1,1 +1,0 @@
-Place platform specific code in their respective directories. The contents will be copied to `platforms/<platform>` when `gulp cordova-emulate` or `gulp cordova-deploy` is run. Inspired by [https://gist.github.com/dixonj16/7418730](https://gist.github.com/dixonj16/7418730).
