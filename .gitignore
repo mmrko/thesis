@@ -57,3 +57,6 @@ SublimeREPLHistory/ts
 
 # WebStorm
 .idea/
+
+# Custom
+app/
