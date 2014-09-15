@@ -33,7 +33,7 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 \univdegree{MSc}
 \author{Marko Raatikka}
 
-\thesistitle{LuminoTrace: a novel approach for identifying objects for the Web of Things}{}
+\thesistitle{LuminoTrace: a mobile approach to photoluminescence-based verification}{}
 
 \place{Espoo}
 
@@ -48,7 +48,7 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 
 \makecoverpage
 
-\keywords{LuminoTrace, JavaScript, hybrid, mobile, application, WWW, Web}
+\keywords{LuminoTrace, JavaScript, hybrid, mobile, application}
 \begin{abstractpage}[english]
  % Your abstract in English. Try to keep the abstract short, approximately
  % 100 words should be enough. Abstract explains your research topic,
@@ -60,7 +60,7 @@ linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 \newpage
 
 %% Finnish abstract
-\keywords{LuminoTrace, JavaScript, hybridi, mobiili, applikaatio, WWW, Web}
+\keywords{LuminoTrace, JavaScript, hybridi, mobiili, sovellus}
 \begin{abstractpage}[finnish]
 \end{abstractpage}
 
@@ -128,6 +128,7 @@ TEM        & transverse eletromagnetic
 
 \section{Introduction}
 \subsection{Research questions}
+\subsection{Outline}
 
 \thispagestyle{empty}
 The focus of this thesis is the design and implementation of a scalable hybrid mobile application. The application will be developed as a part of the LuminoTrace project at Aalto CHEM for the purposes material verification. The functionality of the application can be briefly described as follows:
@@ -194,14 +195,20 @@ Object identification/verification
 Web of Things (passive and active objects)
 
 \subsection{Hybrid Applications}
-\subsubsection{W3C Device APIs}
-\subsubsection{Apache Cordova}
 
-\subsection{Mobile Platforms}
+\subsubsection{Platforms}
 
-\subsection{Web Workers}
+\subsubsection{Tools and Frameworks}
 
-\subsection{Offline Web Applications}
+\subsection{Photoluminescence}
+
+\subsection{Related color theory}
+\subsubsection{Visible spectrum}
+\subsubsection{RGB and HSV color spaces}
+
+\subsection{Mobile Camera Optics}
+
+\subsection{Related Work}
 
 \subsection*{Structure}
 
@@ -566,7 +573,7 @@ ISSN-numeroita vaadita.
 
 \clearpage
 
-\section{Design and implementation}
+\section{Design and Implementation}
 
 Tässä osassa kuvataan käytetty tutkimusaineisto ja
 tutkimuksen metodologiset valinnat, sekä
@@ -574,25 +581,30 @@ kerrotaan tutkimuksen toteutustapa ja käytetyt menetelmät.
 
 \subsection{Requirements}
 
-\subsection{Development environment}
+R1, R2, R3... (mitattavia suureita)
 
-\subsection{Client-side architecture}
-
-\subsubsection{Camera setup}
-
-\subsubsection{Device interface}
+\subsection{Application architecture}
 
 \subsubsection{User Interface}
 
-\subsection{Server-side architecture}
+\subsubsection{Camera Module and Setup}
+
+\subsubsection{Server Backend and Storage}
+
+\subsection{Verification Process}
+
+\subsubsection{Peak Finding}
+
+\subsubsection{Similarity Matching}
 
 \clearpage
 
 \clearpage
 
 \section{Evaluation and discussion}
-\subsection{Offline performance}
-\subsection{Security considerations}
+\subsection{Algorithmic Robustness}
+\subsection{Performance Analysis}
+\subsection{Problem Space and Challenges}
 
 Tässä osassa esitetään tulokset ja vastataan tutkielman alussa
 esitettyihin tutkimuskysymyksiin. Tieteellisen kirjoitelman
@@ -622,7 +634,7 @@ ja opinnäytteen tekemistä käsittelevillä luennoilla sekä
 harjoituksissa annettujen ohjeiden mukainen muotoseikoiltaan,
 rakenteeltaan ja ulkoasultaan.
 
-
+Future work (isot kokonaisuudet!)
 
 \clearpage
 
@@ -832,3 +844,7 @@ n_i    &=& n u_i + v_i.                        \label{liitekaava4}
 \end{eqnarray}
 
 \end{document}
+
+
+No offical API, no fine grained control over the camera (ISO, shutter speed)
+JavaCPP
