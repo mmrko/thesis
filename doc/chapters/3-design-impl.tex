@@ -1,0 +1,43 @@
+% !TEX root = ../thesis.tex
+
+\documentclass[thesis.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Design and Implementation}
+\label{chapter:design-implementation}
+
+Tässä osassa kuvataan käytetty tutkimusaineisto ja tutkimuksen metodologiset valinnat, sekä kerrotaan tutkimuksen toteutustapa ja käytetyt menetelmät.
+
+\section{Requirements}
+
+R1, R2, R3... (mitattavia suureita)
+
+\section{Application architecture}
+
+\section{User Interface}
+
+\section{Camera Module and Setup}
+
+\section{Server Backend and Storage}
+
+The underlying server back end will consist of a web server and a database to hold the fingerprint data. Optionally, a reverse proxy can be set up in front of the web server to allow static assets to be served to the client without hitting the web server. However, since the application will most likely not include many static assets (images, JS, CSS...) the benefit of this is somewhat minimal. The back end will be implemented using Node.js due to its convenience (author's previous experience and the possibility to re-use the ported spectrum algorithm both in the front and back end). The database will be implemented with MongoDB as it couples well with Node.js and has cross-platform support and an active community.
+
+Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html)
+Schema flexibility
+
+\section{Authenticity Verification Process}
+
+\subsection{Color calibration}
+There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
+
+% color calibration/matching
+% http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf
+% http://www.cs.unc.edu/techreports/04-012.pdf
+
+\subsection{Peak Finding}
+
+\subsection{Similarity Matching}
+
+
+\end{document}
