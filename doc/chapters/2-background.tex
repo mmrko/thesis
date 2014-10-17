@@ -7,11 +7,11 @@
 \chapter{Background}
 \label{chapter:background}
 
-T‰ss‰ osassa selvitet‰‰n, mit‰ tutkimuksen kohteena olevasta aiheesta tiedet‰‰n entuudestaan. Selvityksen tulee kattaa tasapainoisesti koko tutkimuskentt‰.
+T√§ss√§ osassa selvitet√§√§n, mit√§ tutkimuksen kohteena olevasta aiheesta tiedet√§√§n entuudestaan. Selvityksen tulee kattaa tasapainoisesti koko tutkimuskentt√§.
 
 \section{Existing solutions}
 
-There is a wide spectrum of technologies available for product authentication. Applications range from the use of inexpensive seals and electronic labels to carefully crafted watermarks and even DNA. These technologies can be categorized in many ways, for example, by their level of security, cost and portability. The focus of this chapter is on commercial smartphone-based product authentication technologies that often trade high precision (or reliability) for better cost-efficiency and portability. Most of these technologies can be considered as competing solutions for the technology developed in this thesis. Due to the nature of the topic the amount of detailed information on most of the technologies discussed here is limited. An in-depth coverage of different product authentication technologies and their history is given in \cite{kuosmanen}.
+There is a wide spectrum of technologies available for product authentication. Applications range from the use of inexpensive seals and electronic labels to carefully crafted watermarks and even DNA. These technologies can be categorized in many ways, for example, by their level of security, cost and portability. The focus of this chapter is on commercial smartphone-based product authentication technologies that often trade high precision (or reliability) for better cost-efficiency and portability. The technologies discussed can be considered as competing solutions for the technology developed in this thesis. Due to the nature of the topic the information on most of the technologies is limited in detail. An in-depth overview of product authentication technologies and their background is given in \cite{kuosmanen}.
 
 \begin{figure}[ht]
 \centering \includegraphics[width=13.25cm]{images/existing_solutions/smartsure}
@@ -29,7 +29,7 @@ AlpVision offers a technology called CryptoGlyph\textregistered, which uses a ps
 
 The ever growing number of NFC-enabled phones (estimated to reach 53\% of the overall market in 2015 according to \cite{frost-sullivan}) has motivated companies to utilize NFC-based technologies for product authentication. Secure and specialized NFC tags have been manufactured by a number of companies since the technology first hit the market in 2006. However, only few companies have developed the software and services around NFC tags in order to provide end-to-end product authentication. A couple of active players in the field are FinnCode\footnote{\url{http://www.finncode.com/}} and Selinko\footnote{\url{http://selinko.com/}}, which both offer a SaaS-based solution for product authentication and manufacture secure NFC tags.
 
-Other notable technologies built around the capabilities of a smartphone include scryptoTRACE\textregistered{} by U-NICA\footnote{\url{http://www.u-nica.com/1320.html}}, CertiEye by Infotoo Ltd.\footnote{\url{http://www.certieye.com/}} and AuthentiGuard by DSS Inc.\footnote{\url{http://www.authentiguard.com/products.html\#tab_authentiguard}}. A summary of the aforementioned technologies is provided in Table \ref{table:existing-solutions}. Next, Chapter \ref{section:photoluminescence} discusses the theory behind photoluminescence and how it can be applied in product authentication.
+Other notable technologies built around the capabilities of a smartphone include scryptoTRACE\textregistered{} by U-NICA\footnote{\url{http://www.u-nica.com/1320.html}}, CertiEye by Infotoo Ltd.\footnote{\url{http://www.certieye.com/}} and AuthentiGuard by DSS Inc.\footnote{\url{http://www.authentiguard.com/products.html\#tab_authentiguard}}. A summary of the aforementioned technologies is provided in Table \ref{table:existing-solutions}. Next, Chapter \ref{section:photoluminescence} discusses photoluminescence and its applications.
 
 \begin{table}[hb]
 	\caption{Existing solutions for smartphone-based product authentication.} \label{table:existing-solutions}
@@ -38,31 +38,48 @@ Other notable technologies built around the capabilities of a smartphone include
 	\begin{tabular}{| m{2cm} | m{3.25cm} | m{3cm} | m{3.75cm} |}
 
 		\hline
-		\textbf{Company}				&	\textbf{Product name}			&	\textbf{Platforms}		&	\textbf{Technologies} \\ \hline
-		InkSure\newline (American)		&	SmartSure						&	iPhone					&	- chemical taggant\newline- hologram \\ \hline
-		U-NICA\newline (Swiss)			&	scryptoTRACE\textregistered		&	iPhone, Android			&	- micro-printing\newline- edge detection \\ \hline
-		AlpVision\newline (Swiss)		&	CryptoGlyph\textregistered		&	Customized*				&	- micro-printing\newline- pattern recognition \\ \hline
-		DSS\newline (American)			&	AuthentiGuard					&	Customized*				&	 \\ \hline
-		Infotoo\newline (Chinese)		&	CertiEye						&	iPhone, Android			&	 \\ \hline
-		FinnCode\newline (Finnish)		&									&	iPhone, Android			&	- NFC \\ \hline
-		Selinko\newline (Belgian)		&									&	Android					&	- NFC \\
+		\textbf{Company}				&	\textbf{Product name}			&	\textbf{Platforms}			&	\textbf{Technologies} \\ \hline
+		InkSure\newline (American)		&	SmartSure						&	iPhone						&	- chemical taggant\newline- hologram \\ \hline
+		U-NICA\newline (Swiss)			&	scryptoTRACE\textregistered		&	iPhone, Android				&	- micro-printing\newline- edge detection \\ \hline
+		AlpVision\newline (Swiss)		&	CryptoGlyph\textregistered		&	Customized\footnotesize{*}	&	- micro-printing\newline- pattern recognition \\ \hline
+		DSS\newline (American)			&	AuthentiGuard					&	Customized\footnotesize{*}	&	 \\ \hline
+		Infotoo\newline (Chinese)		&	CertiEye						&	iPhone, Android				&	 \\ \hline
+		FinnCode\newline (Finnish)		&									&	iPhone, Android				&	- NFC \\ \hline
+		Selinko\newline (Belgian)		&									&	Android						&	- NFC \\
 		\hline
 	\end{tabular}
 	\end{center}
-	\small{* privately distributed, the application is developed according to the client's needs.}
+	\scriptsize{*} \small{privately distributed, the application is developed according to the client's needs.}
 \end{table}
 
 \section{Photoluminescence}
 \label{section:photoluminescence}
 
+Photoluminescence, one of the many forms of luminescence (light emission), is a process where a substance absorbs photons (light) and emits back a certain wavelength of light. Photoluminescence can be formally divided into two categories, \emph{fluorescence} and \emph{phosphorescence}, depending on the lifetime of the emission (decay time). Fluorescence typically occurs within a few nanoseconds whereas phosphorescence can last from a few milliseconds to seconds or even hours \cite{luminescence_basics}. Materials that have photoluminescent properties are typically referred to as luminophores (fluorophores and phosphors).
 
+Figure \ref{figure:photoluminescence} illustrates the process of photoluminescence. Photoluminescence is initiated by \emph{photoexcitation}, the absorption of photons causing an electron to move to a higher energy state ($S_0 \rightarrow S_2$). The absorption is followed by internal conversion (IC), where the electron transitions within picoseconds from a higher to a lower energy state. After the electron has reached the lowest excited energy state ($S_1$) it relaxes to the ground state ($S_0$) and emits light (fluorescence), or an intersystem crossing occurs ($S_1 \rightarrow T_1$). The transition from the lowest triplet state to the ground state ($T_1 \rightarrow S_0$) eventually results to the emission of light (phosphorescence).
 
-\section{Mobile Platforms, Tools and Frameworks}
-- jni, c++/cx, ios with c++?
+\begin{figure}[hb]
+\centering \includegraphics[width=13.25cm]{images/photoluminescence.pdf}
+\caption{A simplified Jablonski diagram of photoluminescence. \label{figure:photoluminescence}}
+\end{figure}
 
-\section{Hybrid Applications}
+\noindent Since the energy of the electron at the triplet state is lower than at the singlet state phosphorescence occurs at longer wavelengths of light than fluorescence. Furthermore, the intersystem crossing from the singlet to the triplet state also alters the spin of the electron causing it to decay at a significantly slower pace. Thus, due to the longer excited state lifetime phosphors typically emit light long after the initial absorption of photons. \cite{CEJ}
 
-Hybrid applications are essentially small websites running in a browser shell in an application that have access to the native platform layer. Hybrid applications have many benefits over pure native applications, specifically in terms of platform support, speed of development, and access to 3rd party code.
+Luminophores always emit longer wavelengths than they absorb. This is due to the loss of energy within the emission pathway. For example, during IC and ISC transitions some of the excitation energy gets transformed into heat. The difference between the absorption and emission wavelength is known as the Stokes shift. The magnitude of Stokes shift depends on the chemical properties of the luminophore. For fluorophores it is typically in the range of 30-50 nanometers while for phosphors, such as Lanthanide Chelates, it can range up to 200 nanometers. Luminophores are also subject to different environmental effects. \cite{hemmila}. Changes in temperature, pH, concentration or the amount of dissolved oxygen in the solution affect the intensity of the luminophore and can even shift its emission wavelength \cite{luminescence_basics}.
+
+Photoluminescence can be used for detecting impurities \cite{photoluminescence_use_case_1}, tracing \cite{photoluminescence_use_case_2} and for studying the structure of a system \cite{photoluminescence_use_case_3}. The advantage of luminescence spectroscopy is that it allows for a non-destructive and non-invasive analysis. In commercial products luminescence is used, e.g. to illuminate the face of a watch under poor lighting conditions (Figure \ref{figure:photoluminescence_example}). The illumination is created by exciting the phosphor-coated elements of the watch face with ionizing radiation. The radiation is induced by a radioactive substance enclosed in the phosphor coating. This form of luminescence is known as radioluminescence. Some inexpensive watches mimic this effect by means of phosphorescence: phosphors exposed to bright light continue glowing in the dark for a short time.
+
+When a wavelength of light emitted by a luminophore falls in the visible spectrum of human eye (\mytilde390-700 nm) it creates a perception of a certain color. Chapter \ref{section:rgbhsv} discusses three different color spaces that are used to model, encode and represent a color in a medium.
+
+\begin{figure}[hb]
+\centering \includegraphics[width=12.9cm]{images/photoluminescence_example}
+\caption{Watches use a radioactive substance (typically tritium) to illuminate their elements under poor lighting conditions.\label{figure:photoluminescence_example}}
+\end{figure}
+
+\section{RGB, HSV and YCbCr color spaces}
+\label{section:rgbhsv}
+
 
 \section{Mobile Camera Technology}
 
@@ -70,6 +87,11 @@ Hybrid applications are essentially small websites running in a browser shell in
 \subsection{Pixel Formats}
 \subsection{Camera Flash}
 
-\section{RGB and HSV color spaces}
+\section{Mobile Platforms, Tools and Frameworks}
+- jni, c++/cx, ios with c++?
+
+\section{Hybrid Applications}
+
+Hybrid applications are essentially small websites running in a browser shell in an application that have access to the native platform layer. Hybrid applications have many benefits over pure native applications, specifically in terms of platform support, speed of development, and access to 3rd party code.
 
 \end{document}

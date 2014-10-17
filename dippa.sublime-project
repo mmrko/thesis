@@ -33,7 +33,6 @@
 				"*.synctex.gz",
 				"*.fdb_latexmk",
 				"*.pdf",
-				"*.sty",
 				".DS_Store",
 				".AppleDouble",
 				".LSOverride",

@@ -1,5 +1,5 @@
 \documentclass[12pt,a4paper,oneside,pdftex]{report}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[OT1]{fontenc}
 \usepackage[finnish,swedish,english]{babel}
 \usepackage[square,sort&compress,numbers]{natbib}
@@ -12,6 +12,7 @@
 % Custom
 \usepackage{subfiles}
 \usepackage[bottom]{footmisc}
+\newcommand{\mytilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
 
 % The aalto-thesis package provides typesetting instructions for the
 % standard master's thesis parts (abstracts, front page, and so on)
@@ -35,7 +36,7 @@
 
 % ------------------------------------------------------------------
 \newcommand{\TITLE}{LuminoTrace: photoluminescence based product authentication for smartphones}
-\newcommand{\FTITLE}{LuminoTrace: fotoluminesenssiin perustuva aitouden tunnistaminen ‰lypuhelimille}
+\newcommand{\FTITLE}{LuminoTrace: fotoluminesenssiin perustuva aitouden tunnistaminen √§lypuhelimissa}
 
 \newcommand{\SUBTITLE}{}
 \newcommand{\FSUBTITLE}{}
@@ -57,13 +58,13 @@ Jouni Paltakari Professori (tek.), Aalto CHEM}
 % Other stuff
 % ------------------------------------------------------------------
 \newcommand{\PROFESSORSHIP}{Media Technology}
-\newcommand{\FPROFESSORSHIP}{Viestint‰tekniikka}
+\newcommand{\FPROFESSORSHIP}{Viestint√§tekniikka}
 
 % Professorship code is the same in all languages
 \newcommand{\PROFCODE}{AS-75}
 
 \newcommand{\KEYWORDS}{photoluminescence, smartphone, web application, authenticity}
-\newcommand{\FKEYWORDS}{fotoluminesenssi, ‰lypuhelin, web-sovellus, aitouden tunnistaminen}
+\newcommand{\FKEYWORDS}{fotoluminesenssi, √§lypuhelin, web-sovellus, aitouden tunnistaminen}
 
 \newcommand{\LANGUAGE}{English}
 \newcommand{\FLANGUAGE}{Englanti}
