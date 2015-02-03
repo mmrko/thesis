@@ -17,9 +17,9 @@ R1, R2, R3... (mitattavia suureita)
 
 \subsection{User Interface}
 
-\subsection{Camera Module and Setup}
+\subsection{Camera Module}
 
-\subsection{Server Backend and Storage}
+\subsection{Offline Storage}
 
 The underlying server back end will consist of a web server and a database to hold the fingerprint data. Optionally, a reverse proxy can be set up in front of the web server to allow static assets to be served to the client without hitting the web server. However, since the application will most likely not include many static assets (images, JS, CSS...) the benefit of this is somewhat minimal. The back end will be implemented using Node.js due to its convenience (author's previous experience and the possibility to re-use the ported spectrum algorithm both in the front and back end). The database will be implemented with MongoDB as it couples well with Node.js and has cross-platform support and an active community.
 
@@ -28,7 +28,9 @@ Schema flexibility
 
 \section{Authenticity Verification}
 
+\begin{comment}
 \subsection{Color calibration}
+\end{comment}
 There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
 
 RGB is a device-dependent color model: different devices detect or reproduce a given RGB value differently, since the color elements (such as phosphors or dyes) and their response to the individual R, G, and B levels vary from manufacturer to manufacturer, or even in the same device over time. Thus an RGB value does not define the same color across devices without some kind of color management.

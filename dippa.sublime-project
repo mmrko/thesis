@@ -4,7 +4,10 @@
 		{
 			"folder_exclude_patterns":
 			[
-				".idea"
+				".idea",
+				"luminotrace/libs",
+				"app/plugins-luminotrace",
+				".tmp"
 			],
 			"file_exclude_patterns":
 			[
@@ -44,5 +47,17 @@
 			"follow_symlinks": true,
 			"path": "."
 		}
-	]
+	],
+	"SublimeLinter":
+    {
+        "linters":
+        {
+            "jscs": {
+                "excludes": [
+                    "*/test/**"
+                ],
+                "ignore": "W"
+            }
+        }
+    }
 }
