@@ -66,23 +66,79 @@ Figure \ref{figure:photoluminescence} illustrates the process of photoluminescen
 
 \noindent Since the energy of the electron at the triplet state is lower than at the singlet state phosphorescence occurs at longer wavelengths of light than fluorescence. Furthermore, the intersystem crossing from the singlet to the triplet state also alters the spin of the electron causing it to decay at a significantly slower pace. Thus, due to the longer excited state lifetime phosphors typically emit light long after the initial absorption of photons. \cite{CEJ}
 
-Luminophores always emit longer wavelengths than they absorb. This is due to the loss of energy within the emission pathway. For example, during IC and ISC transitions some of the excitation energy gets transformed into heat. The difference between the absorption and emission wavelength is known as the Stokes shift. The magnitude of Stokes shift depends on the chemical properties of the luminophore. For fluorophores it is typically in the range of 30-50 nanometers while for phosphors, such as Lanthanide Chelates, it can range up to 200 nanometers. Luminophores are also subject to different environmental effects. \cite{hemmila}. Changes in temperature, pH, concentration or the amount of dissolved oxygen in the solution affect the intensity of the luminophore and can even shift its emission wavelength \cite{luminescence_basics}.
+Luminophores always emit longer wavelengths than they absorb. This is due to the loss of energy within the emission pathway. For example, during IC and ISC transitions some of the excitation energy gets transformed into heat. The difference between the absorption and emission wavelength is known as the Stokes shift. The magnitude of Stokes shift depends on the chemical properties of the luminophore. For fluorophores it is typically in the range of 30-50 nanometers while for phosphors, such as Lanthanide Chelates, it can range up to 200 nanometers. Luminophores are also subject to environmental effects \cite{hemmila}. Changes in temperature, pH, concentration or the amount of dissolved oxygen in the solution affect the intensity of the luminophore and can even shift its emission wavelength \cite{luminescence_basics}.
 
-Photoluminescence can be used for detecting impurities \cite{photoluminescence_use_case_1}, tracing \cite{photoluminescence_use_case_2} and for studying the structure of a system \cite{photoluminescence_use_case_3}. The advantage of luminescence spectroscopy is that it allows for a non-destructive and non-invasive analysis. In commercial products luminescence is used, e.g. to illuminate the face of a watch under poor lighting conditions (Figure \ref{figure:photoluminescence_example}). The illumination is created by exciting the phosphor-coated elements of the watch face with ionizing radiation. The radiation is induced by a radioactive substance enclosed in the phosphor coating. This form of luminescence is known as radioluminescence. Some inexpensive watches mimic this effect by means of phosphorescence: phosphors exposed to bright light continue glowing in the dark for a short time.
-
-When a wavelength of light emitted by a luminophore falls in the visible spectrum of human eye (\mytilde390-700 nm) it creates a perception of a certain color. Chapter \ref{section:rgbhsv} discusses three different color spaces that are used to model, encode and represent a color in a medium.
+Photoluminescence can be used for detecting impurities \cite{photoluminescence_use_case_1}, tracing \cite{photoluminescence_use_case_2} and for studying the structure of a system \cite{photoluminescence_use_case_3}. The advantage of luminescence spectroscopy is that it allows analysing materials in a non-destructive and non-invasive manner. Commercially luminescence is used in illuminating watch faces under poor lighting conditions (Figure \ref{figure:photoluminescence_example}). The watch face gets illuminated when its phosphor-coated elements are excited by ionizing radiation. The radiation is induced by a radioactive substance enclosed in the phosphor coating. This form of luminescence is known as radioluminescence. Some less expensive watches use phosphorescence to achieve a similar effect: phosphors exposed to bright light continue glowing in the dark for a short time.
 
 \begin{figure}[hb]
-\centering \includegraphics[width=12.9cm]{images/photoluminescence_example}
+\centering \includegraphics[width=10cm]{images/photoluminescence_example}
 \caption{Watches use a radioactive substance (typically tritium) to illuminate their elements under poor lighting conditions.\label{figure:photoluminescence_example}}
 \end{figure}
 
-\section{RGB, HSV and YCbCr color spaces}
+When a wavelength of light emitted by a luminophore falls in the visible spectrum of human eye (\mytilde390-700 nm) it creates a perception of a color. Color models are used to encode and represent this information in a medium. Chapter \ref{section:rgbhsv} provides an overview of three commonly used color models and their application areas.
+
+\section{Color models}
 \label{section:rgbhsv}
+
+Color models provide an abstract mathematical model for describring colors numerically, typically as a vector of three or four dimensions. A color model alone is only sufficient for relative comparison of colors within that particular model. It is not until the model is given a \textit{context} that it forms a \textit{color space} and the relative colorimetric values get mapped to their absolute counterparts. Here context denotes a set of external (standardized) viewing conditions, in which the colors are expected to be rendered. For example, the standard sRGB color space is based on the RGB color model and assumes an ambient illuminance of 64 lux as per \cite{iec}. The term color model is sometimes referred to as \textit{non-absolute color space} or \textit{relative color space} even if it were less confusing to only speak about color models (relative) and color spaces (absolute).
+
+The next sub-chapters provide a brief overview of a few widely adopted color models: RGB, HSV and YCbCr.
+
+\subsection{RGB}
+RGB is the most common color model found in today's computer displays and monitors. It is largely influenced by the historical research on human color vision: the Young–Helmholtz theory of trichromatic color vision, formulized in the 18th century, proposed that color vision is the result of three different photoreceptor cells (cone cells). Later, in 1956 this theory was backed by psychological evidence, which showed that the human retina is particularly sensitive to three groups of wavelengths in the areas of blue, green and red \cite{svaetichin}.
+
+RGB is an \textit{additive} color model meaning that colors are produced by adding together two or more primary colors (red, green or blue). Adding all the primary colors together yields white. All RGB colors are defined relative to the primary colors, as the RGB color model itself does not specify what is meant by red, green and blue colorimetrically. For example, the color of pure yellow would contain all the red and green but no blue: RGB(100\%, 100\%, 0\%). The purpose of color spaces, such as sRGB, is to define the exact values (chromaticities) for the primaries, typically in terms of so called \textit{tristimulus values} (X, Y and Z). The tristimulus values map to a color in the \textit{CIE x-y chromaticity diagram}, which has been established through empirical research to represent all of the chromaticities visible to average human eye \cite{cie}. As seen in Figure \ref{figure:srgb}, a given color space can only produce the colors that fall within its \textit{gamut}, the triangle defined by the chromaticities of its primaries.
+
+\begin{figure}[ht]
+\centering \includegraphics[width=10cm]{images/srgb}
+\caption{The CIE x-y chromaticity diagram and sRGB gamut (triangle). A color space can only render the subset of colors that are within its gamut.\label{figure:srgb}}
+\end{figure}
+
+As evidenced by the wide adoptance of sRGB in digital consumer products, RGB is able to model the human color vision with reasonable accuracy. However, for some use cases there exists better alternatives as covered next in more detail.
+
+\subsection{HSV}
+
+HSV (hue-saturation-value) was developed in the late 1970s originally for computer graphics applications in an attempt to create a more intuitive and perceptually relevant color model. HSV rearranges the cartesian geometry of RGB to a cylindrical coordinate system separating the color information (chroma) from the brightness/intensity information (luma). These geometrical representations of RGB and HSV are depicted in Figure \ref{figure:rgb_hsv}. The ability to decouple luma from chroma brings many benefits in image processing applications. Many basic computer vision algorithms designed for grayscale images, such histogram equalization, canny edge detection or binary thresholding, become trivial in HSV space, since the processing can be done on the luma component (V) alone \cite{color_segmentation}. HSV is also the defacto choice for color pickers as hue, saturation and brightness are both conceptually and perceptually easier to reason about than red, green and blue.
+
+\begin{figure}[ht]
+\centering \includegraphics[width=13.25cm]{images/rgb_hsv}
+\caption{RGB colors are typically displayed in cartesian coordinates, whereas HSV colors use cylinder coordinates \cite{hsv_cylinder} \cite{rgb_cube}.\label{figure:rgb_hsv}}
+\end{figure}
+
+RGB values can be converted into HSV using a simple linear transformation. The formal definition of the transformation can be given as follows:
+
+\begin{align*}
+C_{max}&=max(R, G, B),	&	C_{min}&=min(R, G, B),	&	C_{delta}&=C_{max}-C_{min}
+\end{align*}
+\begin{align*}
+V &\leftarrow C_{max}	&
+S &\leftarrow
+	\begin{cases}
+		\frac{C_{delta}}{C_{max}}, & \text{if $V\neq0$}\\
+		0, & \text{otherwise}
+	\end{cases}			&
+H &\leftarrow
+	\begin{cases}
+		\frac{60(G-B)}{C_{delta}}, & \text{if $V=R$}\vspace{2mm}\\
+		\frac{120+60(B-R)}{C_{delta}}, & \text{if $V=G$}\vspace{2mm}\\
+		\frac{240+60(R-G)}{C_{delta}}, & \text{if $V=B$}
+	\end{cases},
+\end{align*}
+
+\noindent where $R, G, B = \{\ x\ \vert\ x \in \mathbb R\ \wedge\ 0 \leq x \leq 1\ \}$.
+
+
+\subsection{YCbCr}
+YCbCr (or YCC) is a family of color spaces used as a part of the color image pipeline of video and digital imaging systems. YCbCr was primarily developed to enable a way of storing and transmitting color information with minimal redundancy. Much like HSV it separates luma (Y) from chroma (Cb and Cr) but also compresses the chroma components for improved storage and tranmission capabilities. Because the human visual system is has lower acuity (sensitivity) for color than luminance, the signal can be optimized by compressing the color components. At normal viewing distances this incurs no perceptible loss of quality. Each YCbCr format uses different subsampling scheme for the compression. The most common YCbCr subsampling (or chroma subsampling) ratios are 4:2:2, 4:1:1 and 4:2:0. The last two digits of the ratio denote how the compressed chrominance information is compressed and encoded as visualized in Figure \ref{figure:ycbcr}. For example, in the 4:2:0 format both the horizontal and vertical resolution of the Cb and Cr chroma components are halved and stored in adjacent columns.
+
+\begin{figure}[ht]
+\centering \includegraphics[width=13.25cm]{images/ycbcr}
+\caption{ .\label{figure:ycbcr}}
+\end{figure}
 
 
 \section{Mobile Camera Technology}
-
+device-dependency
 \subsection{Sensors}
 \subsection{Pixel Formats}
 \subsection{Camera Flash}
@@ -90,6 +146,7 @@ When a wavelength of light emitted by a luminophore falls in the visible spectru
 \section{Hybrid Mobile Applications}
 - jni, c++/cx, ios with c++?
 - crosswalk project
+- react native, reapp
 
 Hybrid applications are essentially small websites running in a browser shell in an application that have access to the native platform layer. Hybrid applications have many benefits over pure native applications, specifically in terms of platform support, speed of development, and access to 3rd party code.
 
