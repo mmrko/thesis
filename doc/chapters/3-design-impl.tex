@@ -9,6 +9,9 @@
 
 Tässä osassa kuvataan käytetty tutkimusaineisto ja tutkimuksen metodologiset valinnat, sekä kerrotaan tutkimuksen toteutustapa ja käytetyt menetelmät.
 
+% http://en.wikipedia.org/wiki/YUV#Y.27UV420p_.28and_Y.27V12_or_YV12.29_to_RGB888_conversion
+% https://msdn.microsoft.com/en-us/library/windows/hardware/ff538197%28v=vs.85%29.aspx
+
 \section{Requirements}
 
 R1, R2, R3... (mitattavia suureita)
@@ -35,9 +38,9 @@ There are mainly two modules responsible for the color-rendering accuracy of a d
 
 RGB is a device-dependent color model: different devices detect or reproduce a given RGB value differently, since the color elements (such as phosphors or dyes) and their response to the individual R, G, and B levels vary from manufacturer to manufacturer, or even in the same device over time. Thus an RGB value does not define the same color across devices without some kind of color management.
 
-% color calibration/matching
-% http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf
-% http://www.cs.unc.edu/techreports/04-012.pdf
+\url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
+
+\url{http://www.cs.unc.edu/techreports/04-012.pdf}
 
 \subsection{Peak Finding}
 
