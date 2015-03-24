@@ -6,7 +6,6 @@
 			[
 				".idea",
 				"luminotrace/libs",
-				"app/plugins-luminotrace",
 				".tmp"
 			],
 			"file_exclude_patterns":
