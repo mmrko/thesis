@@ -20,7 +20,7 @@ There is a wide spectrum of technologies available for product authentication. A
 
 InkSure's SmartSure technology authenticates products by using a chemical marker (taggant) embedded into a hologram. Upon scanning the hologram, the application verifies it based on the presence of the taggant. The taggant is authenticated via a cloud-based platform that also offers track-and-trace reporting services. The application uses a QR scanner and visual aids to help the user position the smartphone's viewfinder properly over the hologram. \cite{inksure} An image of SmartSure's user interface can be seen in Figure \ref{figure:inksure}.
 
-AlpVision offers a technology called CryptoGlyph\textregistered, which uses a pseudo-random pattern of tiny dots (40-80 microns) printed on the coating of the material to authenticate products. The color and size of the dots are customized based on the packaging color. The authenticity of the product is verified by matching the pattern on the product to one stored in a remote database. As of this writing AlpVision's iOS and Android applications are not publicly available in their respective application stores, but instead distributed as tailored applications \textit{``to meet the client's unique authentication needs''}. \cite{alpvision} Figure \ref{figure:alpvision} illustrates how differently sized and color dots affect their visibility and how they are applied to the coating of a material.
+AlpVision offers a technology called CryptoGlyph\textregistered, which uses a pseudo-random pattern of tiny dots (40-80 microns) printed on the coating of the material to authenticate products. The color and size of the dots are customized based on the packaging color. The authenticity of the product is verified by matching the pattern on the product to one stored in a remote database. As of this writing AlpVision's iOS and Android applications are not publicly available in their respective application stores, but instead distributed as tailored applications ``to meet the client's unique authentication needs''. \cite{alpvision} Figure \ref{figure:alpvision} illustrates how differently sized and color dots affect their visibility and how they are applied to the coating of a material.
 
 \begin{figure}[hb]
 \centering \includegraphics[width=\textwidth]{images/existing_solutions/cryptoglyph}
@@ -39,12 +39,12 @@ Other notable technologies built around the capabilities of a smartphone include
 
 		\hline
 		\textbf{Company}				&	\textbf{Product name}			&	\textbf{Platforms}			&	\textbf{Technologies} \\ \hline
-		InkSure\newline (American)		&	SmartSure						&	iPhone						&	- chemical taggant\newline- hologram \\ \hline
-		U-NICA\newline (Swiss)			&	scryptoTRACE\textregistered		&	iPhone, Android				&	- micro-printing\newline- edge detection \\ \hline
+		InkSure\newline (American)		&	SmartSure						&	iOS						&	- chemical taggant\newline- hologram \\ \hline
+		U-NICA\newline (Swiss)			&	scryptoTRACE\textregistered		&	iOS, Android				&	- micro-printing\newline- edge detection \\ \hline
 		AlpVision\newline (Swiss)		&	CryptoGlyph\textregistered		&	Customized\footnotesize{*}	&	- micro-printing\newline- pattern recognition \\ \hline
 		DSS\newline (American)			&	AuthentiGuard					&	Customized\footnotesize{*}	&	 \\ \hline
-		Infotoo\newline (Chinese)		&	CertiEye						&	iPhone, Android				&	 \\ \hline
-		FinnCode\newline (Finnish)		&									&	iPhone, Android				&	- NFC \\ \hline
+		Infotoo\newline (Chinese)		&	CertiEye						&	iOS, Android				&	 \\ \hline
+		FinnCode\newline (Finnish)		&									&	iOS, Android				&	- NFC \\ \hline
 		Selinko\newline (Belgian)		&									&	Android						&	- NFC \\
 		\hline
 	\end{tabular}
@@ -195,52 +195,71 @@ In early 2014 HTC released HTC One M8 featuring a dual camera system (Duo Camera
 
 Advancements in mobile camera technology have not only taken place in hardware but in software as well. In 2014 Apple, Android and Microsoft released new versions of their operating systems (iOS 8, Android 5.0 Lollipop and Windows Phone 8.1 respectively) all featuring, for the first time, APIs for manual camera control. As features like manual control, RAW shooting and OIS are becoming increasingly common in smartphones it is evident that the technological gap between mobile cameras and high-end DSCs is shrinking. Convergence of media and the innovations it introduces will help push these technological boundaries further.
 
-\section{Hybrid Mobile Applications}
+\section{Hybrid Mobile Landscape}
 
-- cordova, phonegap
-- trigger.io, Sencha Touch, PhoneGap Build, Telerik AppBuilder, AppGyver Steroids, Appery.io, Monaca, Intel XDK
-- xamarin, Appcelerator Titanium, NativeScript
-- crosswalk project
-- famo.us ionic... kendo, chocolatechip, onsen, jQuery Mobile
-- react native, reapp
+Mobile applications can be generally developed as native, hybrid or web applications. A native implementation offers the highest perfomance (least overhead) and the widest access to device APIs (sensors, storage, contacts). However, building a mobile web application allows better portability and code re-use across platforms and devices, which reduces development time and costs. Hybrid mobile applications (or, hybrid apps) combine the best of both worlds by leveraging web technologies to deploy native-like mobile applications to a broad range of smartphones. Hybrid apps can be further divided into \textit{WebView apps} and \textit{Compiled Hybrid apps}. WebView apps use web technologies (HTML, CSS and JavaScript) and the platform's native browser component (commonly known as the web view) to communicate with the platform's native layer. Compiled Hybrid apps on the other hand allow code written in one programming language to target multiple platforms by compiling it to platform-specific native code. The following will focus on WebView apps with a brief overview on different Compiled Hybrid app solutions towards the end of the chapter.
 
-Hybrid applications are essentially small websites running in a browser shell in an application that have access to the native platform layer. Hybrid applications have many benefits over pure native applications, specifically in terms of platform support, speed of development, and access to 3rd party code.
+A widely popular tool for building \textit{WebView apps} is Apache Cordova, an open-source cross-platform mobile development framework originally known as PhoneGap and developed by Nitobi. After Adobe's acquisition of Nitobi in 2011 the PhoneGap codebase was contributed to the Apache Software Foundation to start the Apache Cordova project. Nowadays Adobe PhoneGap exists as a distribution of Apache Cordova including additional services such as Adobe PhoneGap Build and Adobe PhoneGap Enterprise. Since the release of Cordova in 2012 numerous commercial \textit{hybrid mobile development platforms} have emerged alongside Adobe's PhoneGap product line. Most notabe of these include products such as Telerik Platform, Ionic Platform, AppGyver Steroids, Sencha Touch, Trigger.io, Appery.io, Monaca and Intel XDK. They provide additional tooling (CLI programs, IDE plugins), generic UI components and SaaS/BaaS solutions (storage, analytics, notifications) to both streamline and address the challenges of developing and deploying hybrid mobile applications for various platforms.
 
-+ease of development
+Unlike its commercial counterparts Cordova does not provide any readily available UI components or a client-side MVC framework. To meet this need several UI frameworks optimized for hybrid mobile applications have been developed. These frameworks minimize development overhead by addressing common platform-specific quirks and by providing platform-specific styles and performance optimizations (e.g. removing the 300ms click delay designed for desktop browsers \cite{click_delay}). The most popular of these cross-platform mobile UI frameworks, the JavaScript libraries they depend on and platforms they support are listed in Table \ref{table:cross-platform-mobile-ui-frameworks}.
 
-+maintenance burden,IDEs, APIs
+\begin{table}[ht]
+	\caption{Popular cross-platform mobile UI frameworks.} \label{table:cross-platform-mobile-ui-frameworks}
 
--tooling, performance
+	\begin{center}
+	\begin{tabular}{| m{3.5cm} | m{3.5cm} | m{4.75cm} |}
 
-ripple, weinre
+		\hline
+		\textbf{Framework}	&	\textbf{Dependencies}		&	\textbf{Supported platforms}		\\ \hline
 
-"Although getting more frequent updates is something developers generally consider a positive, there’s also a flip side. Hybrid developers, who are used to testing their apps with the big yearly releases — Android 5.0, iOS 8, and so forth — will now have apps that behave more like websites, in that they can potentially update (and break) at any time. "
+		Ionic				&	AngularJS					&	iOS, Android						\\ \hline
+		Kendo UI			&	jQuery						&	iOS, Android, WP8					\\ \hline
+		Onsen UI			&	AngularJS					&	iOS, Android						\\ \hline
+		Reapp				&	React						&	iOS 								\\ \hline
+		ChocolateChipUI 	&	jQuery \footnotesize{*}		&	iOS, Android, WP8					\\ \hline
+		jQuery Mobile 		&	jQuery						&	iOS, Android, WP8 \footnotesize{**}	\\ \hline
 
-If you want to know what Android web development is like, imagine a parallel
-universe where instead of IE being the non-evergreen browser everyone hated,
-it was Chrome. And every user had a different version of Chrome, so you had
-to worry about bugs in Chrome 37 that didn't appear in Chrome 36, or you had to
-worry about bugs introduced by Samsung and HTC that only appeared on their phones.
-That's Android.
-These are the HTML5 test scores for the WebView in each of the recent
-major Android version. If you test your desktop browser (Firefox or Chrome), it'll
-score around 500. Only Android 5.0 Lollipop actually scores that well, because
-it's actually, finally, an evergreen WebView. That's the one you want, and it's less
-than 0.1% of all users.
+	\end{tabular}
+	\end{center}
+	\scriptsize{*} \small{replaceable with ChocolateChipJS, a JS library tailored for ChocolateChipUI}\\
+	\scriptsize{**} \small{platform-specific themes available as 3rd party extensions}
+\end{table}
 
-(index):805
-Luckily, we finally have a solution to this problem. Intel has put out
-a free, open-source library called Crosswalk that allows you to basically
-bundle the latest version of Chromium with your app. Then you can use
-that instead of the WebView. It gives you a consistent target to code to,
-and it works back to Android 4.0.
-Oh, and did I mention performance?
+Figure \ref{fig:web-view-app} provides a high-level overview of the architecture of a Web\-View application. The example is based on Cordova's architecture, and as such, it is not fully representative of how related frameworks structure their applications. The general concepts are however similar as majority of them use Cordova as the underlying framework.
 
-What about the native part? Your mobile web app (plain HTML, CSS and JavaScript) will be loaded in a WebView, which is an internal browser engine that renders an app the way a default browser on the device would render it (there might be slight differences — your mileage may vary). Additionally, native “bridges” are used to expose features of the device and operating system through an API to make them accessible with JavaScript. This usually includes access to the device’s camera, address book, geolocation, file system and native events (for example, via one of the hardware buttons on Android), to name just a few features.
-A few cross-platform development tools provide that native bridge and simplify the whole process of wrapping it. Let’s dive into some options.
-PHONEGAP AND APACHE CORDOVA
+\begin{figure}[ht]
+\centering \includegraphics[width=\textwidth]{images/web-view-app-structure}
+\caption{WebView app architecture: the application communicates with the native platform APIs via a plugin interface.\label{fig:web-view-app}}
+\end{figure}
 
+WebView apps wrap a web application in a native web view component, which in turn is hosted by a native wrapper (a native application). The web application can hook into the native APIs by means of plugins (referred to as modules by some frameworks). The plugins consist of a non-native part written in JavaScript and a native part implemented in one or more platform-specific languages. Data between these two parts is passed as serialized JSON via a native bridge, a JavaScript-to-native interface defined by the framework. Most of the inherent overhead in WebView apps is caused by the message passing through the native bridge as a result of data serialization/deserialization and the extra layers of abstraction. In this regard WebView app plugins share similar characteristics to that of application servers that query remote APIs for data. They both act as data providers that include a measurable query overhead (latency).
 
+In addition to the inferior performance compared to native applications, one of the culprits of hybrid application development has been the lack of support for proper tooling --- a factor that lead companies such as Facebook and LinkedIn to pick native over HTML5 for their mobile applications \cite{html_vs_native_facebook}\cite{html_vs_native_linkedin} in 2012 and 2013, respectively. In the past, due to the lack of support for remote debugging, hybrid app developers had to resort to slow and brittle methods of littering code with print statements to debug their applications. This created a slow feedback loop that canceled out the productivity benefit of ``write once, run everywhere'' and made hybrid app development generally painful. It was not until 2011 when the first 3rd party hybrid app development tools, namely \textit{weinre} (WEb INspector REmote) and \textit{Apache Ripple}, emerged to address these issues. Powered by a feature-limited version of WebKit's (WK) Web Inspector, weinre allowed developers to remotely debug a web view like any other web application. Apache Ripple introduced a browser-based cross-platform emulator allowing developers to preview and debug their WebView apps and avoid slow deployments to an emulator or a device.
+
+Support for hybrid app development tooling has seen significant improvement in the recent years. As browsers and mobile SDKs continue to mature, tools like weinre and Ripple are becoming legacy software. As of iOS 6.0 (released in late 2012) and Android 4.4 (released in late 2013) both iOS and Android smartphones ship with native support for remote debugging. As of this writing, weinre is still however the only viable option on some platforms (most notably, Windows Phone). Most of Ripple's core functionality has been superseded by newer browsers that have built-in support for various mobile device profiles and network simulation capabilities. Furthermore, emulators have become more efficient and are ever more suitable option for quick debugging. Ripple might still however prove itself useful in legacy setups that run outdated SDKs or older browser. Progress has also been made elsewhere in the industry as popular IDEs, such as Microsoft's Visual Studio and JetBrains' WebStorm, have recently integrated support for hybrid app development tools, and many hybrid mobile development platforms have developed new utilities to boost developer productivity. For example, hybrid app are nowadays able to sync and preview changes live on a device without a separate deployment using tools like \textit{PhoneGap Developer App} or \textit{Telerik AppBuilder Companion App}.
+
+While the improved tooling has tackled many of the early challenges of developing WebView apps, the pitfalls of the underlying web view technology remain an issue. Even if web view performance is rarely an issue for less resource intensive WebView apps, developers still need to account for \textit{device fragmentation}. Device fragmentation is a real issue on Android, which as an open platform, allows vendors to introduce their own modifications to different versions of the software. Typically smarthpone vendors ship updates to the stock web view component on every major release. On Android however, as vendors are free to dictate which updates to apply, even phones running identical major versions are not guaranteed to have the exact same web view component. This causes issues for WebView app developers as the same target version might have different levels of support for certain web APIs and features.
+
+Android addressed the fragmentation issue in its recent major release (Android 5.0) by decoupling the internal web view component into an \textit{updateable WebView}. This is good news for hybrid application development as phones running Android 5.0 or newer are now guaranteed to have an evergreen WebView that no longer depends on the OS update cycle. However, this implies that developers used to testing their applications against yearly major releases will now need to develop their WebView apps more like traditional web applications, in that their behaviour can potentially change (or break) at any time. To achieve a more consistent target to code to Android developers can leverage Intel's Crosswalk. Crosswalk is open-source runtime that bundles a modified version of Chromium (an open-source project behind the Google Chrome browser) with a given Android application to replace the stock WebView. It not only gives the developer a consistent web view (browser) to target, but also allows older Android phones (down until version 4.0) to benefit from the performance, security and feature updates of the newer Chromium. Hybrid development platforms like AppGyver Steroids, Ionic Platform and Intel XDK have already integrated support for Crosswalk.
+
+have to remain concerned, however, is the increased size of the application caused by the bundled Chromium runtime.
+- new chromium: crosswalk project / app size
+
+new incarnation
+- cross-platform native frameworks (xamarin, corona SDK, Appcelerator Titanium, react native, NativeScript)
+	- tita, rn, ns: uses Javascript as the runtime to drive Native UI controls
+	- uses a platform JS engine to talk to native APIs.
+
+http://www.stevesouders.com/blog/2014/10/09/do-u-webview/
+- new webviews (ios8, lollipop 5.0): wkvwebview (ios), chromium (android)
+are brought almost on par with modern desktop browsers.
++ ease of development
++ platform support,
++ maintenance burden,IDEs, APIs
 service worker, will-change property, push notifications
+PhoneGap Build additionally includes Hydration, which checks for updates every time you open an app.
+remain a very valid option for simple apps
+
+
 
 \end{document}
