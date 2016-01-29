@@ -21,6 +21,8 @@
 *.mtc
 *.mtc1
 *.out
+*.fls
+*.tdo
 *.synctex.gz
 *.fdb_latexmk
 
