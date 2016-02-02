@@ -1,5 +1,12 @@
 % !TEX root = ../thesis.tex
 
+% Tässä osassa kuvataan käytetty tutkimusaineisto ja tutkimuksen metodologiset valinnat, sekä kerrotaan tutkimuksen toteutustapa ja käytetyt menetelmät.
+
+% http://en.wikipedia.org/wiki/YUV#Y.27UV420p_.28and_Y.27V12_or_YV12.29_to_RGB888_conversion
+% https://msdn.microsoft.com/en-us/library/windows/hardware/ff538197%28v=vs.85%29.aspx
+
+% MITATTAVIA SUUREITA!
+
 \documentclass[thesis.tex]{subfiles}
 
 \begin{document}
@@ -7,43 +14,44 @@
 \chapter{Design and Implementation}
 \label{chapter:design-implementation}
 
-Tässä osassa kuvataan käytetty tutkimusaineisto ja tutkimuksen metodologiset valinnat, sekä kerrotaan tutkimuksen toteutustapa ja käytetyt menetelmät.
-
-% http://en.wikipedia.org/wiki/YUV#Y.27UV420p_.28and_Y.27V12_or_YV12.29_to_RGB888_conversion
-% https://msdn.microsoft.com/en-us/library/windows/hardware/ff538197%28v=vs.85%29.aspx
 
 \section{Requirements}
 
-% MITATTAVIA SUUREITA!
+The goal was to implement a smartphone application that would satisfy the following functional requirements:
 
-\noindent The requirements were to implement a \emph{cross-platform, offline-first mobile application} that would support the following functionality:
-
-\begin{itemize}
-    \item [\textbf{R1}] Capture the emission of a luminophore as a sequence of images
-    \item [\textbf{R2}] Characterize the sequence of images as a fingerprint
-    \item [\textbf{R3}] Compare and match fingerprints
-    \item [\textbf{R4}] Use a fingerprint as the query to a remote database
+\begin{itemize}[leftmargin=0.74in]
+	\item [\textbf{R1.1}:] support the Windows Phone platform (preferably cross-platform)\\
+	- powerful smartphone camera, ability to compare data from different phones (cameras)
+	\item [\textbf{R1.2}:] support (secure) offline usage\\
+	- feasibility of storing data client-side (data structure, security)
+    \item [\textbf{R2.1}:] capture the emission of a luminophore as a function of time\\
+    - in relation to Q1
+    \item [\textbf{R2.2}:] use the capture data (\emph{fingerprint}) to query a remote product database\\
+    - use case / business angle
 \end{itemize}
- kuva + kuva + kuva + kuva $=>$ fingerprint
-(function of time)
+
+\noindent The \textbf{R1} requirements are application specific, whereas the \textbf{R2} requirements relate to the actual product authentication process.
+
+[\textbf{R2.2}:] characterize the captured data as a \emph{fingerprint}
+[\textbf{R2.3}:] compare and match fingerprints
+
 a sequence of images at an interval no longer than 1000ms
 
 \section{Application Architecture}
+
+kuva vs. video
 
 capture $->$ analyze $->$ match
 
 \subsection{User Interface}
 
+error handling pages omitted for brevity
+
 \subsection{Camera Module}
 - jni, c++/cx, ios with c++?
  On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.
 
-\subsection{Offline Storage}
-
-The underlying server back end will consist of a web server and a database to hold the fingerprint data. Optionally, a reverse proxy can be set up in front of the web server to allow static assets to be served to the client without hitting the web server. However, since the application will most likely not include many static assets (images, JS, CSS...) the benefit of this is somewhat minimal. The back end will be implemented using Node.js due to its convenience (author's previous experience and the possibility to re-use the ported spectrum algorithm both in the front and back end). The database will be implemented with MongoDB as it couples well with Node.js and has cross-platform support and an active community.
-
-Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html)
-Schema flexibility
+kuva + kuva + kuva + kuva $=>$ fingerprint
 
 \section{Authenticity Verification}
 
@@ -62,5 +70,13 @@ RGB is a device-dependent color model: different devices detect or reproduce a g
 
 \subsection{Similarity Matching}
 
+\section{Storage and Security}
+
+The underlying server back end will consist of a web server and a database to hold the fingerprint data. Optionally, a reverse proxy can be set up in front of the web server to allow static assets to be served to the client without hitting the web server. However, since the application will most likely not include many static assets (images, JS, CSS...) the benefit of this is somewhat minimal. The back end will be implemented using Node.js due to its convenience (author's previous experience and the possibility to re-use the ported spectrum algorithm both in the front and back end). The database will be implemented with MongoDB as it couples well with Node.js and has cross-platform support and an active community.
+
+Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html)
+Schema flexibility
+
+user management brute force
 
 \end{document}
