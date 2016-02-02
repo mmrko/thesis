@@ -16,24 +16,24 @@
 
 \section{Requirements}
 
-The goal was to implement a smartphone application that would satisfy the functional requirements listed below. Requirements \ref{R2} and \ref{R3} refer to the actual product authentication process, whereas requirements \ref{R1} and \ref{R4} are additional feature requirements:
+The goal was to implement a smartphone application that would satisfy the requirements listed below. Requirements \ref{R2} and \ref{R3} refer to the actual product authentication process, whereas requirements \ref{R1} and \ref{R4} are additional feature requirements:
 
 \begin{enumerate}[leftmargin=0.55in, label=\textbf{R\arabic*}]
 	\item \label{R1} Support the Windows Phone platform (preferably cross-platform)\\ \\
 	Windows Phone was chosen as the target platform based on the Lumia 1020 smartphone, which was allocated for the project and featured one of the best smartphone cameras on the market (at the time). An additional goal was set for supporting other major platforms (Android and iOS) in the hopes of being able to compare the data across vendors.
 
     \item \label{R2} Capture the emission of a luminophore as a function of time\\ \\
-    It was outlined that the application should be capable of capturing the emission as a sequence of images at a pre-defined interval that is no longer than 1000ms. The sequence of captured images would work as a unique \emph{fingerprint}. Implementation details, such as the capture method (video vs. images), capture properties (e.g. ISO) or properties of the light source (e.g. wavelength, luminance) were not separately specified.
+    It was outlined that the application should be capable of capturing the emission as a sequence of images at a pre-defined interval that should not be longer than 1000ms. The sequence of captured images would work as a unique \emph{fingerprint}. Implementation details, such as the capture method (video vs. images), capture properties (e.g. ISO) or properties of the light source (e.g. wavelength, luminance) were not separately specified.
     % - in relation to Q1
 
     \item \label{R3} Use the capture data (fingerprint) to query a remote product database\\ \\
-    The use case (product authentication) required that the fingerprint could be linked to a product. The requirement here was twofold: (1) characterize the capture data as a fingerprint and (2) compare it to other fingerprints to find the matching product from a remote product catalog.
+    The use case (product authentication) required that the fingerprint could be linked to a product. The requirement here was twofold: given a pre-defined database of fingerprints and products (1) characterize the capture data as a fingerprint and (2) match it against the existing fingerprints to find the linked product in remote product catalog.
 
 	\item \label{R4} Support (secure) offline usage\\ \\
 	Implementing support for offline usage was seen as an attractive feature that would differentiate the application from the competition. It would also allow investigating the feasibility of storing data client-side from a security and storage strategy perspective.
 \end{enumerate}
 
-\noindent The following chapters discuss these requirements further and present the related implementation details. Implementation for \ref{R1} and \ref{R2} is presented in Chapter \ref{chapter:application-architecture}. Requirements \ref{R3} and \ref{R4} discussed in Chapters \ref{chapter:authenticity-verification} and \ref{chapter:storage-security}, respectively.
+\noindent The following chapters discuss these requirements further and present the related implementation details. Implementation for \ref{R1} and \ref{R2} is presented in Chapter \ref{chapter:application-architecture}. Requirements \ref{R3} and \ref{R4} are discussed in Chapters \ref{chapter:authenticity-verification} and \ref{chapter:storage-security}, respectively.
 
 \section{Application Architecture}
 \label{chapter:application-architecture}
