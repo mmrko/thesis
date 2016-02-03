@@ -57,3 +57,4 @@ SublimeREPLHistory/ts
 # Custom
 thesis.pdf
 .idea
+doc/images/*.pdf
