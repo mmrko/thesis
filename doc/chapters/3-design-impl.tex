@@ -20,7 +20,7 @@ The goal was to implement a smartphone application that would satisfy the requir
 
 \begin{enumerate}[leftmargin=0.55in, label=\textbf{R\arabic*}]
 	\item \label{R1} Support the Windows Phone platform (preferably cross-platform)\\ \\
-	Windows Phone was chosen as the target platform based on the Lumia 1020 smartphone, which was allocated for the project and featured one of the best smartphone cameras on the market (at the time). An additional goal was set for supporting other major platforms (Android and iOS) in the hopes of being able to compare the data across vendors.
+	Windows Phone was chosen as the target platform based on the Lumia 1020 smartphone, which was allocated for the project and featured one of the best smartphone cameras on the market (at the time). An additional goal was set for supporting other major platforms (Android and iOS) in the hopes of being able to compare the results across vendors.
 
     \item \label{R2} Capture the emission of a luminophore as a function of time\\ \\
     It was outlined that the application should be capable of capturing the emission as a sequence of images at a pre-defined interval that should not be longer than 1000ms. The sequence of captured images would work as a unique \emph{fingerprint}. Implementation details, such as the capture method (video vs. images), capture properties (e.g. ISO) or properties of the light source (e.g. wavelength, luminance) were not separately specified.
@@ -33,30 +33,41 @@ The goal was to implement a smartphone application that would satisfy the requir
 	Implementing support for offline usage was seen as an attractive feature that would differentiate the application from the competition. It would also allow investigating the feasibility of storing data client-side from a security and storage strategy perspective.
 \end{enumerate}
 
-\noindent The following chapters discuss these requirements further and present the related implementation details. Implementation for \ref{R1} and \ref{R2} is presented in Chapter \ref{chapter:application-architecture}. Requirements \ref{R3} and \ref{R4} are discussed in Chapters \ref{chapter:authenticity-verification} and \ref{chapter:storage-security}, respectively.
+\noindent The following chapters discuss these requirements further and present the related implementation details. Implementation for \ref{R1} and \ref{R2} is presented in Chapter \ref{chapter:application-architecture}. Requirements \ref{R3} and \ref{R4} are discussed in Chapters \ref{chapter:taggant-analysis} and \ref{chapter:storage-security}, respectively.
 
 \section{Application Architecture}
 \label{chapter:application-architecture}
+
+The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant (luminophore) to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is offline the application will fallback to querying a local, filtered copy of the database. Finally, the result of the search (match, no match or error) is renderer in the UI.
+
+\begin{figure}[ht]
+\centering \includegraphics[width=13.5cm]{images/design_implementation/architecture}
+\caption{An overview of the general architecture of the LuminoTrace application. \cite{inksure} \label{figure:architecture}}
+\end{figure}
+
+The next chapter will discuss the implementation of camera application in more detail. The other relevant parts of the architecture, namely the camera module, product authentication process
+
+\subsection{Camera Application}
+\label{chapter:camera-application}
+ionic & cordova
+
+error handling pages omitted for brevity
 
 kuva vs. video
 
 capture $->$ analyze $->$ match
 
-\subsection{User Interface}
-error handling pages omitted for brevity
-
-\subsection{Camera Module}
-ARDUINOOO
-phosphorescence vs. fluorescence (infeasible coz time)
-
-\subsection{Camera Application}
 - jni, c++/cx, ios with c++?
 On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.
 
 kuva + kuva + kuva + kuva $=>$ fingerprint
 
-\section{Authenticity Verification}
-\label{chapter:authenticity-verification}
+\subsection{Camera Module}
+ARDUINOOO
+phosphorescence vs. fluorescence (infeasible coz time)
+
+\section{Taggant Analysis}
+\label{chapter:taggant-analysis}
 
 \begin{comment}
 \subsection{Color calibration}
