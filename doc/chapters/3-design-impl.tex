@@ -40,27 +40,25 @@ The goal was to implement a smartphone application that would satisfy the requir
 
 The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant (luminophore) to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is offline the application will fallback to querying a local, filtered copy of the database. Finally, the result of the search (match, no match or error) is renderer in the UI.
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \centering \includegraphics[width=13.5cm]{images/design_implementation/architecture}
-\caption{An overview of the general architecture of the LuminoTrace application. \cite{inksure} \label{figure:architecture}}
+\caption{The general architecture of the LuminoTrace application. \label{figure:architecture}}
 \end{figure}
-
-The next chapter will discuss the implementation of camera application in more detail. The other relevant parts of the architecture, namely the camera module, product authentication process
 
 \subsection{Camera Application}
 \label{chapter:camera-application}
-ionic & cordova
+ionic \& cordova
 
 error handling pages omitted for brevity
 
 kuva vs. video
-
-capture $->$ analyze $->$ match
-
+- act as the remote controller for the camera module
 - jni, c++/cx, ios with c++?
 On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.
 
 kuva + kuva + kuva + kuva $=>$ fingerprint
+
+capture $->$ analyze $->$ match
 
 \subsection{Camera Module}
 ARDUINOOO
