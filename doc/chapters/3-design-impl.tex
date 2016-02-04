@@ -38,7 +38,7 @@ The goal was to implement a smartphone application that would satisfy the requir
 \section{Application Architecture}
 \label{chapter:application-architecture}
 
-The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant (luminophore) to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is offline the application will fallback to querying a local, filtered copy of the database. Finally, the result of the search (match, no match or error) is renderer in the UI.
+The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant (luminophore) to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is offline the application will fallback to querying a local, filtered copy of the database. Finally, the result of the search (a match, no match or an error) is renderer in the UI.
 
 \begin{figure}[h]
 \centering \includegraphics[width=13.5cm]{images/design_implementation/architecture}
@@ -47,12 +47,17 @@ The general architecture of the LuminoTrace application is depicted in Figure \r
 
 \subsection{Camera Application}
 \label{chapter:camera-application}
+
+The camera application was built as a WebView application using Apache Cordova and Ionic. This allowed supporting multiple platforms with minimal effort as the UI and parts of the application logic could be re-used across platforms. Furthermore, no platform-specific knowledge was required to implement the UI allowing focus to be kept on the application logic. Android and Windows Phone were chosen as the target platforms. The application was implemented for Android due to the author's previous experience of the platform and the better debugging tools, which both allowed building the first prototype faster.
+
+
+
 ionic \& cordova
 
 error handling pages omitted for brevity
 
 kuva vs. video
-- act as the remote controller for the camera module
+- acts as the remote controller for the camera module
 - jni, c++/cx, ios with c++?
 On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.
 
