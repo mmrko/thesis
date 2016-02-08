@@ -20,57 +20,76 @@ The goal was to implement a smartphone application that would satisfy the requir
 
 \begin{enumerate}[leftmargin=0.55in, label=\textbf{R\arabic*}]
 	\item \label{R1} Support the Windows Phone platform (preferably cross-platform)\\ \\
-	Windows Phone was chosen as the target platform based on the Lumia 1020 smartphone, which was allocated for the project and featured one of the best smartphone cameras on the market (at the time). An additional goal was set for supporting other major platforms (Android and iOS) in the hopes of being able to compare the results across vendors.
+	Windows Phone was originally chosen as the target platform based on the Lumia 1020 smartphone, which was allocated for the project and featured one of the best smartphone cameras on the market (at the time). An additional goal was set for supporting other major platforms (Android and iOS) in the hopes of being able to compare the results across vendors.
 
     \item \label{R2} Capture the emission of a luminophore as a function of time\\ \\
     It was outlined that the application should be capable of capturing the emission as a sequence of images at a pre-defined interval that should not be longer than 1000ms. The sequence of captured images would work as a unique \emph{fingerprint}. Implementation details, such as the capture method (video vs. images), capture properties (e.g. ISO) or properties of the light source (e.g. wavelength, luminance) were not separately specified.
     % - in relation to Q1
 
     \item \label{R3} Use the capture data (fingerprint) to query a remote product database\\ \\
-    The use case (product authentication) required that the fingerprint could be linked to a product. The requirement here was twofold: given a pre-defined database of fingerprints and products (1) characterize the capture data as a fingerprint and (2) match it against the existing fingerprints to find the linked product in remote product catalog.
+    The use case (product authentication) required that the fingerprint could be linked to a product. The requirement here was twofold: given a pre-defined database of fingerprints and products (1) characterize the capture data as a fingerprint and (2) match it against the existing fingerprints to find the correct product in the remote product catalog. In case of a match, the user's geolocation should also be stored for further verification and analytics purposes.
 
 	\item \label{R4} Support (secure) offline usage\\ \\
 	Implementing support for offline usage was seen as an attractive feature that would differentiate the application from the competition. It would also allow investigating the feasibility of storing data client-side from a security and storage strategy perspective.
 \end{enumerate}
 
-\noindent The following chapters discuss these requirements further and present the related implementation details. Implementation for \ref{R1} and \ref{R2} is presented in Chapter \ref{chapter:application-architecture}. Requirements \ref{R3} and \ref{R4} are discussed in Chapters \ref{chapter:taggant-analysis} and \ref{chapter:storage-security}, respectively.
+\noindent The following chapters discuss these requirements further and present the related implementation details. The implementation for \ref{R1} and \ref{R2} is presented in Chapter \ref{chapter:application-architecture}. Requirements \ref{R3} and \ref{R4} are discussed in Chapters \ref{chapter:fingerprint-pipeline} and \ref{chapter:storage-security}, respectively.
 
 \section{Application Architecture}
 \label{chapter:application-architecture}
 
-The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant (luminophore) to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is offline the application will fallback to querying a local, filtered copy of the database. Finally, the result of the search (a match, no match or an error) is renderer in the UI.
+The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant (luminophore), and to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is unavailable the application will fallback to querying a local, filtered copy of the database. Finally, the result of the search is renderer in the UI.
 
 \begin{figure}[h]
-\centering \includegraphics[width=13.5cm]{images/design_implementation/architecture}
+\centering \includegraphics[width=13.5cm]{images/design_implementation/architecture.pdf}
 \caption{The general architecture of the LuminoTrace application. \label{figure:architecture}}
 \end{figure}
 
 \subsection{Camera Application}
 \label{chapter:camera-application}
 
-The camera application was built as a WebView application using Apache Cordova and Ionic. This allowed supporting multiple platforms with minimal effort as the UI and parts of the application logic could be re-used across platforms. Furthermore, no platform-specific knowledge was required to implement the UI allowing focus to be kept on the application logic. Android and Windows Phone were chosen as the target platforms. The application was implemented for Android due to the author's previous experience of the platform and the better debugging tools, which both allowed building the first prototype faster.
+The camera application was built as a WebView application using Apache Cordova (4.2.0) and Ionic (1.0.0-beta.14). This allowed supporting multiple platforms with minimal effort as the UI and parts of the application logic could be easily re-used across platforms. Furthermore, no platform-specific knowledge was required to implement the UI allowing focus to be kept on the application logic. Android and Windows Phone were chosen as the target platforms. The application was implemented for Android due to the author's previous experience of the platform and the better debugging tools, which both allowed implementing the first prototype faster.
 
+Figure \ref{figure:user_interface} presents the user interface. For brevity, the landing page and the two sidebar views (\emph{Past traces} and \emph{Settings}) are combined into a single image and other views, such as success and error pages, are omitted.
 
+\begin{figure}[h]
+\centering \includegraphics[width=13.5cm]{images/design_implementation/user_interface}
+\caption{The user interface of the LuminoTrace application. \label{figure:user_interface}}
+\end{figure}
 
-ionic \& cordova
+The \emph{Past traces} view simply displays a history of successfully matched products and allows the user to view the relevant product information (e.g. product description and link to the online marketplace). The \emph{Settings} sidebar mainly consists of parameters for configuring the underlying algorithms and the smartphone's camera. These settings were only exposed for research and development purposes and would not be displayed to the end-user in the actual application. The main interaction endpoint for the user is the red, circle capture button, which initiates the process of capturing a fingerprint. This process is discussed in detail in Chapter \ref{chapter:fingerprint-pipeline}.
 
-error handling pages omitted for brevity
-
-kuva vs. video
-- acts as the remote controller for the camera module
-- jni, c++/cx, ios with c++?
-On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.
-
-kuva + kuva + kuva + kuva $=>$ fingerprint
-
-capture $->$ analyze $->$ match
+In addition to capturing and analysing the data the application acts as a remote controller for the external camera module. The purpose of the external camera module was to provide a more fine grained control of the light source. The communication between the application and the external camera module was achieved by using light signals. The implementation of the camera module is dicussed further in the next chapter.
 
 \subsection{Camera Module}
 ARDUINOOO
-phosphorescence vs. fluorescence (infeasible coz time)
 
-\section{Taggant Analysis}
-\label{chapter:taggant-analysis}
+\begin{figure}[h]
+\centering \includegraphics[width=13.5cm]{images/design_implementation/camera_module.pdf}
+\caption{The user interface of the LuminoTrace application. \label{figure:camera_module}}
+\end{figure}
+
+\section{Fingerprint Pipeline}
+\label{chapter:fingerprint-pipeline}
+
+A custom Cordova plugin was implemented to interact with native Android and Window Phone camera APIs.
+- capture $->$ analyze $->$ match
+
+\subsection{Taggant Capture}
+
+configurable parameters
+
+preview frame
+
+kuva + kuva + kuva + kuva $=>$ fingerprint
+
+- jni, c++/cx, ios with c++? On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.
+
+\subsection{Peak Finding}
+
+opencv
+
+\subsection{Similarity Matching}
 
 \begin{comment}
 \subsection{Color calibration}
@@ -82,10 +101,6 @@ RGB is a device-dependent color model: different devices detect or reproduce a g
 \url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
 
 \url{http://www.cs.unc.edu/techreports/04-012.pdf}
-
-\subsection{Peak Finding}
-
-\subsection{Similarity Matching}
 
 \section{Storage and Security}
 \label{chapter:storage-security}
