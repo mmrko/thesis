@@ -4,8 +4,19 @@
 
 \begin{document}
 
-\chapter{Arduino Schematics}
-\label{chapter:appendix-a}
+\chapter{Camera Module Schematics}
+\label{appendix:camera-module-schematics}
 
+\begin{figure}[h]
+\centering \includegraphics[width=11.75cm]{images/design_implementation/arduino_schematics.pdf}
+\caption{The schematics for the external camera module featuring a Arduino Mega 2560 microcontroller.}
+\end{figure}
+
+\chapter{Microcontroller Program (Arduino)}
+\label{appendix:microcontroller-program}
+
+\lstinputlisting[language=C++,caption={main.ino}]{../app/camera-module/arduino/code/code.ino}
+
+\lstinputlisting[language=C++,caption={is\_focused.ino}]{../app/camera-module/arduino/code/is_focused.ino}
 
 \end{document}
