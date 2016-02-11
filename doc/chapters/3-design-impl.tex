@@ -16,18 +16,18 @@
 
 \section{Requirements}
 
-The goal was to implement a smartphone application that would satisfy the requirements listed below. Requirements \ref{R2} and \ref{R3} refer to the actual product authentication process, whereas requirements \ref{R1} and \ref{R4} are additional feature requirements:
+The goal of the thesis was to investigate whether or not it would feasible to utilize smartphone technology to analyze photoluminescent material for product authentication purposes. This required implementing a smartphone application, for which the following requirements were specified (requirements \ref{R2} and \ref{R3} refer to the actual product authentication process, whereas requirements \ref{R1} and \ref{R4} are additional feature requirements):
 
 \begin{enumerate}[leftmargin=0.55in, label=\textbf{R\arabic*}]
 	\item \label{R1} Support the Windows Phone platform (preferably cross-platform)\\ \\
-	Windows Phone was originally chosen as the target platform based on the Lumia 1020 smartphone, which was allocated for the project and featured one of the best smartphone cameras on the market. An additional goal was set for supporting other major platforms (Android and iOS) in the hopes of being able to compare the results across vendors.
+	Windows Phone was chosen as the initial target platform based on the Lumia 1020 smartphone, which was allocated for the project and featured one of the best smartphone cameras on the market. An additional goal was set for supporting other major platforms (Android and iOS) in the hopes of being able to compare the results across vendors.
 
     \item \label{R2} Capture the emission of a luminophore as a function of time\\ \\
-    It was outlined that the application should be capable of capturing the emission as a sequence of images at pre-defined intervals that should not exceed 1000ms. The sequence of captured images would work as a unique \emph{fingerprint}. Implementation details, such as the capture method (video vs. images), capture properties (e.g. ISO) or properties of the light source (e.g. wavelength, luminance) were not separately specified.
+    It was outlined that the application should be capable of capturing the emission of a taggant (luminophore) as a sequence of images at pre-defined intervals that should not exceed 1000ms. The sequence of captured images would work as a unique \emph{fingerprint}. Implementation details, such as the capture method (video vs. images), capture properties (e.g. ISO) or properties of the light source (e.g. wavelength, luminance) were not separately specified.
     % - in relation to Q1
 
     \item \label{R3} Use the capture data (fingerprint) to query a remote product database\\ \\
-    The use case (product authentication) required that the fingerprint could be linked to a product. The requirement here was twofold: given a pre-defined database of fingerprints and products (1) characterize the capture data as a fingerprint and (2) match it against the existing fingerprints to find the correct product in the remote product catalog. In case of a match, the user's geolocation should also be stored for further verification and analytics purposes.
+    The use case (product authentication) required that the fingerprint could be linked to a physcial object, e.g. a product. The requirement here was twofold: given a pre-defined database of fingerprints and products (1) characterize the capture data as a fingerprint and (2) match it against the existing fingerprints to find the corresponding product in a remote product catalog. In case of a match, the user's geolocation should also be stored for further verification and analytics purposes.
 
 	\item \label{R4} Support (secure) offline usage\\ \\
 	Implementing support for offline usage was seen as an attractive feature that would differentiate the application from the competition. It would also allow investigating the feasibility of storing data client-side from a security and storage strategy perspective.
@@ -48,7 +48,7 @@ The general architecture of the LuminoTrace application is depicted in Figure \r
 \subsection{Camera Application}
 \label{chapter:camera-application}
 
-The camera application was built as a WebView application using Apache Cordova (4.2.0) and Ionic (1.0.0-beta.14). This allowed supporting multiple platforms with minimal effort as the UI and parts of the application logic could be easily re-used across platforms. Furthermore, no platform-specific knowledge was required to implement the UI allowing focus to be kept on the application logic. Android and Windows Phone were chosen as the target platforms. The application was implemented for Android due to the author's previous experience of the platform and the better debugging tools, which both allowed developing the first prototype faster.
+The camera application was built as a WebView application using Apache Cordova (4.2.0) and Ionic (1.0.0-beta.14). This allowed supporting multiple platforms with minimal effort as the UI and parts of the application logic could be easily re-used across platforms. Furthermore, no platform-specific knowledge was required to implement the UI allowing focus to be kept on the application logic. Android and Windows Phone were chosen as the target platforms. Support for Android was implemented due to the author's previous experience of the platform and the better debugging tools, which both allowed developing the first prototype faster.
 
 Figure \ref{figure:user_interface} presents the user interface. For brevity, the landing page and the two sidebar views (\emph{Past traces} and \emph{Settings}) are combined into a single image and other views, such as success and error pages, are omitted.
 
@@ -57,23 +57,51 @@ Figure \ref{figure:user_interface} presents the user interface. For brevity, the
 \caption{The user interface of the LuminoTrace application. \label{figure:user_interface}}
 \end{figure}
 
-The \emph{Past traces} view displays a history of successfully matched products and allows the user to navigate further to view the relevant product information (e.g. product description and link to an online marketplace). The \emph{Settings} sidebar mainly consists of parameters for configuring the underlying algorithms and the smartphone's camera. These settings were only exposed for research and development purposes and would not be displayed to the end-user in the actual application. The main interaction endpoint for the user is the red, circle capture button on the landing page, which once tapped on, initiates the fingerprint capture process. The fingerprint is analyzed by the application to determine whether or not the given taggant matches a record in the database. This process is discussed in detail in chapters \ref{chapter:fingerprint-pipeline} and \ref{chapter:storage-security}.
+The \emph{Past traces} view displays a history of successfully matched products and allows the user to navigate further to view the relevant product information (e.g. product description and link to an online marketplace). The \emph{Settings} sidebar mainly consists of parameters for configuring the underlying algorithms and the smartphone's camera. These settings were only exposed for research and development purposes and would not be displayed to the end-user in the actual application. The main interaction endpoint for the user is the red, circle capture button on the landing page, which once tapped on, initiates the fingerprint capture process. The fingerprint is analyzed by the application to determine whether or not the given taggant matches a record in the database. This process is discussed in more detail in Chapters \ref{chapter:fingerprint-pipeline} and \ref{chapter:storage-security}.
 
-To interact with the native Android and Window Phone camera APIs a custom Cordova plugin was implemented to interact. Existing Cordova camera plugins could not be utilized...
-configurable parameters
+To interact with the native Android and Window Phone camera APIs a custom Cordova plugin was implemented. Existing Cordova camera plugins or native camera libraries could not be utilized as a more granular control of the output image data was required. The parameters configured and passed to the underlying camera APIs are listed in Table \ref{table:camera-parameters}. Other relevant camera parameters were either disabled (exposure compensation and flash mode) or set to their logical default value (e.g. zoom level of 0). Shutter speed and lens aperture could not be configured due to the lack of support by the API and the hardware, respectively.
 
-As a part of the capture process the application utilizes an external camera module. The implementation of the camera module is dicussed in the next chapter.
+\begin{table}[ht]
+	\caption{Camera parameters supported by the LuminoTrace application.} \label{table:camera-parameters}
+
+	\begin{center}
+	\begin{tabular}{| m{2.75cm} | m{9.75cm} |}
+
+		\hline
+		\textbf{Parameter}	& \textbf{Description and Supported Values} \\ \hline
+		Delay				& Time to wait before starting capture (0-1500ms) \\
+		\hline
+		Interval 			& Time between subsequent frames (60-1500ms) \\
+		\hline
+		Frames 				& Number of frames to capture (1-7) \\
+		\hline
+		Resolution 			& Capture frame resolution (640x480, 1280x720 or max\footnotesize{*}) \\
+		\hline
+		ISO 				& ISO sensitivity (100, 200, 400, 800, 1600 or auto) \\
+		\hline
+		White Balance		& White balance preset to use (daylight or auto) \\
+		\hline
+		Focus Distance		& Distance to which to set the focus to (min or max) \\
+		\hline
+		Torch 				& Use the torch to trigger the camera module (on or off) \\
+		\hline
+	\end{tabular}
+	\end{center}
+	\scriptsize{*} \small{\emph{min} and \emph{max} refer to the minimum/maximum value supported by the platform}
+\end{table}
+
+As outlined above the application utilizes an external camera module in the capture process. The implementation of the camera module is dicussed in the next chapter.
 
 \subsection{Camera Module}
 \label{chapter:camera-module}
 
-The camera application is accompanied by an external camera module that consists of a microcontroller, a light source, and a photoresistor. The purpose of the camera module is to provide a fixed source of light for photoexcitation. The camera module  interacts with the camera application by light signals. The embedded microcontroller uses a Light Dependent Resistor (LDR) to detect light emitted by the smartphone. When the smartphone's camera flash blinks the microcontroller triggers the light source, which in turn emits the appropriate wavelength of light to activate the taggant (excite the luminophore). The architecture of the camera module is illustrated in Figure \ref{figure:camera_module}.
+The camera application is accompanied by an external camera module that consists of a microcontroller, a light source, and a Light-Dependent Resistor (LDR). The purpose of the camera module is to provide a fixed source of light for photoexcitation. The camera module reacts to the smartphone's torch: the embedded microcontroller uses the LDR to detect when the smartphone toggles its torch light. When the torch is toggled the microcontroller triggers the light source, which in turn emits the appropriate wavelength of light to activate the taggant (excite the luminophore). The architecture of the camera module is illustrated in Figure \ref{figure:camera_module}.
 
-
+Unlike in Figure \ref{figure:camera_module}, the actual camera module encloses the taggant fully to protect it from any external light during capture. Pictures of the camera module used in the experiments are included in Appendix \ref{appendix:camera-module}.
 
 \begin{figure}[h]
 \centering \includegraphics[width=13cm]{images/design_implementation/camera_module.pdf}
-\caption{The camera module consists of an external light source, photoresistor and a microcontroller encased in cardboard. \label{figure:camera_module}}
+\caption{The camera module consists of an external light source, an LDR, and a microcontroller encased in cardboard. \label{figure:camera_module}}
 \end{figure}
 
 \section{Fingerprint Pipeline}
