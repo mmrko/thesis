@@ -16,7 +16,7 @@
 
 \section{Requirements}
 
-The goal of the thesis was to investigate whether or not it would feasible to utilize smartphone technology to analyze photoluminescent material for product authentication purposes. This required implementing a smartphone application, for which the following requirements were specified (requirements \ref{R2} and \ref{R3} refer to the actual product authentication process, whereas requirements \ref{R1} and \ref{R4} are additional feature requirements):
+The goal of the thesis was to investigate if it were feasible to utilize smartphone technology to analyze photoluminescent material for product authentication purposes. This required implementing a smartphone application, for which the following requirements were specified (requirements \ref{R2} and \ref{R3} refer to the actual product authentication process, whereas \ref{R1} and \ref{R4} are additional feature requirements):
 
 \begin{enumerate}[leftmargin=0.55in, label=\textbf{R\arabic*}]
 	\item \label{R1} Support the Windows Phone platform (preferably cross-platform)\\ \\
@@ -27,7 +27,7 @@ The goal of the thesis was to investigate whether or not it would feasible to ut
     % - in relation to Q1
 
     \item \label{R3} Use the capture data (fingerprint) to query a remote product database\\ \\
-    The use case (product authentication) required that the fingerprint could be linked to a physcial object, e.g. a product. The requirement here was twofold: given a pre-defined database of fingerprints and products (1) characterize the capture data as a fingerprint and (2) match it against the existing fingerprints to find the corresponding product in a remote product catalog. In case of a match, the user's geolocation should also be stored for further verification and analytics purposes.
+    The use case (product authentication) required that the fingerprint could be linked to a physcial object, e.g. a product. The requirement here was twofold: given a pre-defined database of fingerprints and products (1) characterize the capture data as a fingerprint and (2) match it against the existing fingerprints to find the corresponding product in a remote product catalog. In the case of a match, the user's geolocation should also be stored for further verification and analytics purposes.
 
 	\item \label{R4} Support (secure) offline usage\\ \\
 	Implementing support for offline usage was seen as an attractive feature that would differentiate the application from the competition. It would also allow investigating the feasibility of storing data client-side from a security and storage strategy perspective.
@@ -38,7 +38,7 @@ The goal of the thesis was to investigate whether or not it would feasible to ut
 \section{Application Architecture}
 \label{chapter:application-architecture}
 
-The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant (luminophore), and to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is unavailable the application will fallback to querying a local, filtered copy of the database. Finally, the result of the search is rendered in the UI.
+The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant (luminophore) to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is unavailable the application will fallback to querying a local, filtered copy of the database. Finally, the result of the search is rendered in the UI.
 
 \begin{figure}[h]
 \centering \includegraphics[width=13.5cm]{images/design_implementation/architecture.pdf}
@@ -48,7 +48,7 @@ The general architecture of the LuminoTrace application is depicted in Figure \r
 \subsection{Camera Application}
 \label{chapter:camera-application}
 
-The camera application was built as a WebView application using Apache Cordova (4.2.0) and Ionic (1.0.0-beta.14). This allowed supporting multiple platforms with minimal effort as the UI and parts of the application logic could be easily re-used across platforms. Furthermore, no platform-specific knowledge was required to implement the UI allowing focus to be kept on the application logic. Android and Windows Phone were chosen as the target platforms. Support for Android was implemented due to the author's previous experience of the platform and the better debugging tools, which both allowed developing the first prototype faster.
+The camera application was built as a WebView application using Apache Cordova (4.2.0) and Ionic (1.0.0-beta.14). This allowed supporting multiple platforms with minimal effort as the UI and parts of the application logic could be easily re-used across platforms. Furthermore, no platform-specific knowledge was required to implement the UI allowing focus to be kept on the business logic. Android and Windows Phone were chosen as the target platforms. Support for Android was implemented due to the author's previous experience of the platform and the better debugging tools, which both allowed developing the first prototype faster.
 
 Figure \ref{figure:user_interface} presents the user interface. For brevity, the landing page and the two sidebar views (\emph{Past traces} and \emph{Settings}) are combined into a single image and other views, such as success and error pages, are omitted.
 
@@ -57,7 +57,7 @@ Figure \ref{figure:user_interface} presents the user interface. For brevity, the
 \caption{The user interface of the LuminoTrace application. \label{figure:user_interface}}
 \end{figure}
 
-The \emph{Past traces} view displays a history of successfully matched products and allows the user to navigate further to view the relevant product information (e.g. product description and link to an online marketplace). The \emph{Settings} sidebar mainly consists of parameters for configuring the underlying algorithms and the smartphone's camera. These settings were only exposed for research and development purposes and would not be displayed to the end-user in the actual application. The main interaction endpoint for the user is the red, circle capture button on the landing page, which once tapped on, initiates the fingerprint capture process. The fingerprint is analyzed by the application to determine whether or not the given taggant matches a record in the database. This process is discussed in more detail in Chapters \ref{chapter:fingerprint-pipeline} and \ref{chapter:storage-security}.
+The \emph{Past traces} view displays a history of successfully matched products and allows the user to navigate further to view the relevant product information (e.g. product description and link to an online marketplace). The \emph{Settings} sidebar mainly consists of parameters for configuring the underlying algorithms and the smartphone's camera. These settings were only exposed for research and development purposes and would not be displayed to the end-user in the actual application. The main interaction endpoint for the user is the red, circle capture button on the landing page, which once tapped on, initiates the fingerprint capture process. The captured fingerprint is then analyzed by the application to determine whether or not the given taggant matches a record in the database. This process is discussed in more detail in Chapters \ref{chapter:fingerprint-pipeline} and \ref{chapter:storage-security}.
 
 To interact with the native Android and Window Phone camera APIs a custom Cordova plugin was implemented. Existing Cordova camera plugins or native camera libraries could not be utilized as a more granular control of the output image data was required. The parameters configured and passed to the underlying camera APIs are listed in Table \ref{table:camera-parameters}. Other relevant camera parameters were either disabled (exposure compensation and flash mode) or set to their logical default value (e.g. zoom level of 0). Shutter speed and lens aperture could not be configured due to the lack of support by the API and the hardware, respectively.
 
@@ -90,19 +90,23 @@ To interact with the native Android and Window Phone camera APIs a custom Cordov
 	\scriptsize{*} \small{\emph{min} and \emph{max} refer to the minimum/maximum value supported by the platform}
 \end{table}
 
-As outlined above the application utilizes an external camera module in the capture process. The implementation of the camera module is dicussed in the next chapter.
+For capturing the fingerprint the application utilizes an external camera module. The implementation of the camera module is dicussed in the next chapter.
 
 \subsection{Camera Module}
 \label{chapter:camera-module}
 
 The camera application is accompanied by an external camera module that consists of a microcontroller, a light source, and a Light-Dependent Resistor (LDR). The purpose of the camera module is to provide a fixed source of light for photoexcitation. The camera module reacts to the smartphone's torch: the embedded microcontroller uses the LDR to detect when the smartphone toggles its torch light. When the torch is toggled the microcontroller triggers the light source, which in turn emits the appropriate wavelength of light to activate the taggant (excite the luminophore). The architecture of the camera module is illustrated in Figure \ref{figure:camera_module}.
 
-Unlike in Figure \ref{figure:camera_module}, the actual camera module encloses the taggant fully to protect it from any external light during capture. Pictures of the camera module used in the experiments are included in Appendix \ref{appendix:camera-module}.
-
 \begin{figure}[h]
 \centering \includegraphics[width=13cm]{images/design_implementation/camera_module.pdf}
 \caption{The camera module consists of an external light source, an LDR, and a microcontroller encased in cardboard. \label{figure:camera_module}}
 \end{figure}
+
+Unlike in Figure \ref{figure:camera_module}, which contains a simplified representation, the actual camera module encloses the taggant fully to protect it from any external light during capture. Pictures of the camera module used in the experiments are included in Appendix \ref{appendix:camera-module}.
+
+The architecture of the module embraces modularity to allow easier prototyping. For example, the light source can be detached from cardboard casing and the microcontroller allowing different kinds of light sources to be used for the photoexcitation. Moreover, the distance between the taggant and the smartphone can be adjusted by switching the detachable cardboard element (highlighted by the dashed line in Figure \ref{figure:camera_module}) to one of different height. This makes it easy to cater for the variety of different minimum focus distances (MFD) smartphone cameras have.
+
+The microcontroller runs a simple program to monitor the smartphone's torch light. It reads the resistance of the LDR: the more light the torch light outputs, the lower is the resistance of the LDR. When a sudden increase in the resistance of the LR is detected (that is, the torch light has turned off) the microcontroller will drive voltage into the circuit causing the light source to be triggered. For added safety the light source is isolated from the rest of the circuit by an optocoupler. The schematics of and the program running on the microcontroller are presented in Appendices \ref{appendix:camera-module-schematics} and \ref{appendix:microcontroller-program}, respectively.
 
 \section{Fingerprint Pipeline}
 \label{chapter:fingerprint-pipeline}
@@ -119,11 +123,11 @@ kuva + kuva + kuva + kuva $=>$ fingerprint
 
 - jni, c++/cx, ios with c++? On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.
 
-\subsection{Peak Finding}
+\subsection{Taggant Characterization}
 
-opencv
+opencv, analyze peaks
 
-\subsection{Similarity Matching}
+\subsection{Fingerprint Matching}
 
 \begin{comment}
 \subsection{Color calibration}
