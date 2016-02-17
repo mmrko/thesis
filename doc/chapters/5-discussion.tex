@@ -8,11 +8,13 @@
 \label{chapter:discussion}
 kuva vs. video
 
+- clipping (https://en.wikipedia.org/wiki/YCbCr)
 - idempotence of the luminphores (photobleach)
 - analogies to existing solutions (InkSure \& CryptoGlyph)
 - security: get hold of the device or man-in-the-middle (metadata works as a layer of indirection)
 - decay time Android 200-250ms because of led flash vs. WP's Xenon flash
 phosphorescence vs. fluorescence (infeasible coz time)
+- high res images could be used as camera APIs improve
 TODO:
 
 color calibration (requires use of RAW data)
@@ -46,6 +48,8 @@ https://publications.theseus.fi/bitstream/handle/10024/90986/Bing%20Dai-thesis.p
 % from the reconstruction of a full-resolution color image
 % from a half-resolution Bayer pattern image
 
+The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
+
 - alternative approach: colored dots form a discrete pattern, no grating necessary
 - camera parameter configuration to ensure scalability
 
@@ -59,5 +63,17 @@ Future work (isot kokonaisuudet!)
 NFC
 - availability of NFC-enabled smartphones (minor)
 - unit cost of tags
+
+\begin{comment}
+Color calibration
+
+There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
+
+RGB is a device-dependent color model: different devices detect or reproduce a given RGB value differently, since the color elements (such as phosphors or dyes) and their response to the individual R, G, and B levels vary from manufacturer to manufacturer, or even in the same device over time. Thus an RGB value does not define the same color across devices without some kind of color management.
+
+\url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
+
+\url{http://www.cs.unc.edu/techreports/04-012.pdf}
+\end{comment}
 
 \end{document}

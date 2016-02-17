@@ -111,7 +111,7 @@ The microcontroller runs a simple program to monitor the smartphone's torch ligh
 \section{Fingerprint Pipeline}
 \label{chapter:fingerprint-pipeline}
 
-The fingerprint pipeline comprises of three distinct steps: the capture of the taggant, analysis of the capture data and matching of the resulting fingerprint. A high level overview of the pipeline is provided in Figure \ref{figure:fingerprint-pipeline}. The following subchapters describe these processes in detail.
+The fingerprint pipeline comprises of three distinct steps: the capture of the taggant, analysis of the capture data and matching of the resulting fingerprint. A high level overview of the pipeline is provided in Figure \ref{figure:fingerprint-pipeline}. The following subchapters describe these steps in greater detail.
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/fingerprint_pipeline.pdf}
@@ -120,32 +120,32 @@ The fingerprint pipeline comprises of three distinct steps: the capture of the t
 
 \subsection{Taggant Capture}
 
+The taggant is captured as a sequence of images using the parameters introduced in Table \ref{table:camera-parameters}. As illustrated in Figure \ref{figure:camera_module} the smartphone is placed on top of the camera module, which guarantees that the taggant can be isolated from any ambient light, and that the camera will be at the appropriate distance from the taggant -- no closer than the minimum focus distance of the camera. When the user initiates the capture (that is, presses the red capture button as seen in Figure \ref{figure:user_interface}) the camera is first initialized. During initialization the appropriate platform-specific handlers are set and the camera parameters passed via the custom Cordova plugin are applied. After initialization the camera shutter is opened and the torch is toggled to trigger the light source on the camera module. The torch is toggled only after the camera shutter has fully opened to account for any shutter lag.
 
-sequence of images
+Once the light source has been triggered the camera application will wait a predefined amount of time (designated by the \emph{delay} parameter in Table \ref{table:camera-parameters}) before capturing the first frame. The duration of the delay is adjusted according to the light source: the longer the light decay of the light source, the longer the capture needs to be delayed to avoid artefacts caused by interference. To track the duration of the delay and to schedule the frames to be captured at a given interval a timer is started. As the first frame is ready to be captured the camera application locks the Auto Exposure (AE), Auto Focus (AF) and Auto White Balance (AWB) controls to guarantee that the camera will use the same exposure, focus and white balance settings for the subsequent frames. Finally, the captured frames are sent to an analyzer component for further processing. The taggant capture process is depicted in Figure \ref{figure:taggant-capture-process}.
 
-focus distance and delay
+\begin{figure}[h]
+\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/capture_process.pdf}
+\caption{The taggant capture process. \label{figure:taggant-capture-process}}
+\end{figure}
 
-preview frame (NV21 android, NV12 on WP)
-
-kuva + kuva + kuva + kuva $=>$ fingerprint
+The image sequence is not captured as individual frames, but instead, due to the lack of proper support by the respective APIs, data is captured from the camera's preview feed (refer to Chapter \ref{chapter:discussion} for further discussion). The output from the sensor is read in the YCbCr format. Android encodes the data in the NV21 format whereas Windows Phone uses the NV12 format. The difference between NV21 and NV12 is that the interleave order of Cr and Cb samples is the opposite. The subsampling ratio of these formats is 4:2:0. The rate at which new preview frames were created depended on the Frames Per Second (FPS) supported by the sensor. Higher rate of frames allowed shorter intervals to be used, and thus, the preview FPS was set to highest possible value supported by the platform.
 
 \subsection{Taggant Analysis}
 
+kuva + kuva + kuva + kuva $=>$ fingerprint
+
+STEPS
 - jni, c++/cx
+- conversion (CV_YUV420sp2BGRA & COLOR_YUV2BGRA_NV12)
+	- YCbCr => RGB => HSV
+- binary thresholding (threshold value 40)
+- calc hue histogram
+- find peaks
+	- normalize, Persistence1D (peak vallye delta 0.2)
 opencv, analyze peaks
 
 \subsection{Fingerprint Matching}
-
-\begin{comment}
-\subsection{Color calibration}
-\end{comment}
-There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
-
-RGB is a device-dependent color model: different devices detect or reproduce a given RGB value differently, since the color elements (such as phosphors or dyes) and their response to the individual R, G, and B levels vary from manufacturer to manufacturer, or even in the same device over time. Thus an RGB value does not define the same color across devices without some kind of color management.
-
-\url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
-
-\url{http://www.cs.unc.edu/techreports/04-012.pdf}
 
 \section{Storage and Security}
 \label{chapter:storage-security}

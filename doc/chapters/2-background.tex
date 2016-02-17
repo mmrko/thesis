@@ -122,10 +122,11 @@ H &\leftarrow
 	\end{cases}
 \end{align}
 \noindent where
-\begin{align*}
-C_{max}=max(R, G, B)	&			&
-R, G, B = \{\ x\ \vert\ x \in \mathbb R\ \wedge\ 0 \leq x \leq 1\ \}.
-\end{align*}
+\begin{flalign*}
+&C_{max}=max(R, G, B),\\
+&C_{delta}=max(R, G, B) - min(R, G, B),\\
+&R, G, B = \{\ x\ \vert\ x \in \mathbb R\ \wedge\ 0 \leq x \leq 1\ \}.
+\end{flalign*}
 
 \subsection{YCbCr}
 YCbCr (or YCC) is a family of color spaces used as a part of the color image pipeline of video and digital imaging systems. YCbCr was primarily developed as an intermediate format enabling a way of storing and transmitting color information with minimal redundancy. Much like HSV it separates luma (Y) from chroma (Cb and Cr) but also compresses the chroma components for improved storage and transmission capabilities. Because the human visual system has lower acuity (sensitivity) for changes in color than luminance, the signal can be optimized by compressing the color components resulting in no perceptible loss in quality. \cite{color_vision}
