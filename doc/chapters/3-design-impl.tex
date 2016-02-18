@@ -129,23 +129,37 @@ Once the light source has been triggered the camera application will wait a pred
 \caption{The taggant capture process. \label{figure:taggant-capture-process}}
 \end{figure}
 
-The image sequence is not captured as individual frames, but instead, due to the lack of proper support by the respective APIs, data is captured from the camera's preview feed (refer to Chapter \ref{chapter:discussion} for further discussion). The output from the sensor is read in the YCbCr format. Android encodes the data in the NV21 format whereas Windows Phone uses the NV12 format. The difference between NV21 and NV12 is that the interleave order of Cr and Cb samples is the opposite. The subsampling ratio of these formats is 4:2:0. The rate at which new preview frames were created depended on the Frames Per Second (FPS) supported by the sensor. Higher rate of frames allowed shorter intervals to be used, and thus, the preview FPS was set to highest possible value supported by the platform.
+The image sequence is not captured as individual frames, but instead, due to the lack of proper support by the respective APIs, data is captured from the camera's preview feed (refer to Chapter \ref{chapter:discussion} for further discussion). The output from the sensor is read in the YCbCr format. Android encodes the data in the NV21 format whereas Windows Phone uses the NV12 format. The difference between NV21 and NV12 is that the interleave order of Cr and Cb samples is the opposite. The subsampling ratio of these formats is 4:2:0. The rate at which new preview frames were created depended on the Frames Per Second (FPS) supported by the sensor. Higher rate of frames allowed shorter intervals to be used, and thus, the preview FPS was set to the highest possible value (or, range) supported by the platform.
 
 \subsection{Taggant Analysis}
 
-kuva + kuva + kuva + kuva $=>$ fingerprint
+The purpose of the taggant analysis step is to construct a unique fingerprint from the captured frames. The analysis process is illustrated in Figure \ref{figure:taggant-analysis-process}. To prevent blocking the main UI thread and affecting the capture performance each frame is processed (analysed) in its own thread.
 
-STEPS
-- jni, c++/cx
-- conversion (CV_YUV420sp2BGRA & COLOR_YUV2BGRA_NV12)
+\begin{figure}[h]
+\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/analysis_process.pdf}
+\caption{The taggant analysis process; each frame is processed in a separate thread \label{figure:taggant-analysis-process}}
+\end{figure}
+
+Each frame is processed using C++ to allow better portability as code written in C or C++ (e.g. the analysis algorithm) can be more easily reused across different platforms. On Android and Windows Phone, calls between the native code and the C/C++ libraries (henceforth referred to as C) are marshalled using the Java Native Interface (JNI) framework and the C++/CX component extensions, respectively. Another benefit of offloading the processing to C is that there are a number of robust libraries available for signal processing. Most of the computations done during the analysis utilize the OpenCV open source computer vision library\footnote{\url{http://opencv.org/}}.
+
+
+- conversion (CV\_YUV420sp2BGRA and COLOR\_YUV2BGRA\_NV12)
 	- YCbCr => RGB => HSV
+
 - binary thresholding (threshold value 40)
+
 - calc hue histogram
+
 - find peaks
 	- normalize, Persistence1D (peak vallye delta 0.2)
-opencv, analyze peaks
+
+- peak format: JSON { peaks: [] }
 
 \subsection{Fingerprint Matching}
+
+hungarian algorithm
+
+equations
 
 \section{Storage and Security}
 \label{chapter:storage-security}
