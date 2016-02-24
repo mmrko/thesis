@@ -8,6 +8,7 @@
 \label{chapter:discussion}
 kuva vs. video
 
+- structural similarity
 - clipping (https://en.wikipedia.org/wiki/YCbCr)
 - idempotence of the luminphores (photobleach)
 - analogies to existing solutions (InkSure \& CryptoGlyph)
@@ -15,12 +16,15 @@ kuva vs. video
 - decay time Android 200-250ms because of led flash vs. WP's Xenon flash
 phosphorescence vs. fluorescence (infeasible coz time)
 - high res images could be used as camera APIs improve
+- peak method performs poorly against the histogram approach for single coloured luminophors
+
+
 TODO:
 
 color calibration (requires use of RAW data)
 device detection (automatic configuration)
 iOS support (ios with c++? On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.)
-
+- binary thresholding (naive but simple and fits the context)
 - Algorithmic Robustness
 - Performance Analysis
 - Problem Space and Challenges

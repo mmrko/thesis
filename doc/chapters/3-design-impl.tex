@@ -16,7 +16,7 @@
 
 \section{Requirements}
 
-The goal of the thesis was to investigate if it were feasible to utilize smartphone technology to analyze photoluminescent material for product authentication purposes. This required implementing a smartphone application, for which the following requirements were specified (requirements \ref{R2} and \ref{R3} refer to the actual product authentication process, whereas \ref{R1} and \ref{R4} are additional feature requirements):
+The goal of the thesis was to investigate if it were feasible to utilize smartphone technology to analyze photoluminescent material for product authentication purposes. The example use case was to have a smartphone application that would be able to identify products tagged with a chemical marker (taggant) as being either fake or authentic. This required implementing a smartphone application that could satisfy the following requirements (requirements \ref{R2} and \ref{R3} refer to the actual product authentication process, whereas \ref{R1} and \ref{R4} are additional feature requirements):
 
 \begin{enumerate}[leftmargin=0.55in, label=\textbf{R\arabic*}]
 	\item \label{R1} Support the Windows Phone platform (preferably cross-platform)\\ \\
@@ -137,29 +137,60 @@ The purpose of the taggant analysis step is to construct a unique fingerprint fr
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/analysis_process.pdf}
-\caption{The taggant analysis process; each frame is processed in a separate thread \label{figure:taggant-analysis-process}}
+\caption{The taggant analysis process; each frame is processed in a separate thread to avoid blocking the UI.\label{figure:taggant-analysis-process}}
 \end{figure}
 
-Each frame is processed using C++ to allow better portability as code written in C or C++ (e.g. the analysis algorithm) can be more easily reused across different platforms. On Android and Windows Phone, calls between the native code and the C/C++ libraries (henceforth referred to as C) are marshalled using the Java Native Interface (JNI) framework and the C++/CX component extensions, respectively. Another benefit of offloading the processing to C is that there are a number of robust libraries available for signal processing. Most of the computations done during the analysis utilize the OpenCV open source computer vision library\footnote{\url{http://opencv.org/}}.
+Each frame is processed using C++ so that the functionality can be easily reused across platforms. On Android and Windows Phone, calls between the native code and the C/C++ libraries (henceforth referred to as C) are marshalled using the Java Native Interface (JNI) and the C++/CX component extensions, respectively. Another benefit of moving the frame processing to be done in C is the number of robust libraries available for signal processing. The analysis algorithm utilizes the OpenCV\footnote{\url{http://opencv.org/}} open source computer vision library for most of the computations.
 
+The algorithm uses the hue histogram of the captured frame as the basis for the analysis. For each frame the algorithm finds the most dominant hues (hue peaks). The array of peaks computed from the all the frames form a unique \emph{fingerprint}. The taggant analysis consists of multiple processing steps.
+Each frame first goes through a color space conversion, where the pixel data is converted from the native YCbCr format to RGB, and then to HSV as per Equation \ref{rgb-to-hsv} utilizing OpenCV's color conversion API. The data is then filtered for noise using binary thresholding, which uses the frame's grayscale information (V channel) to filter pixels that fall outside a certain intensity level (brightness threshold). The thresholding process is illustrated in Figure \ref{figure:binary-thresholding}.
 
-- conversion (CV\_YUV420sp2BGRA and COLOR\_YUV2BGRA\_NV12)
-	- YCbCr => RGB => HSV
+\begin{figure}[h]
+\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/binary_thresholding}
+\caption{The algorithm uses binary thresholding for noise reduction. The original frame is on the left and the threshold mask is in the middle. The image on the right shows the pixels that would fall outside the threshold.\label{figure:binary-thresholding}}
+\end{figure}
 
-- binary thresholding (threshold value 40)
+The hue histogram can be easily derived from the filtered HSV data using OpenCV's \emph{calcHist} function. The hue peaks are computed from the normalized hue histogram using an open source library called Persistence1D \cite{persistence1d}. The peaks (local maxima) are selected based on a persistence threshold (0-1), which denotes the minimum required delta between a local maxima and minima pair. For example, a persistance threshold of 0.20 would mean that a local minima/maxima pair would only be formed if the delta between the two points were greater than 20\%. Each peak is stored as a 2-dimensional point: $P(hue, intensity)$.
 
-- calc hue histogram
-
-- find peaks
-	- normalize, Persistence1D (peak vallye delta 0.2)
-
-- peak format: JSON { peaks: [] }
+Once all the frames have been captured and their peaks have been computed a fingerprint can be constructed. Given a sequence of \emph{n} frames and a number \emph{m} denoting the most peaks found for a single frame in the sequence the fingerprint can be described as a $n \times m$ matrix. The algorithm encodes the matrix as a JavaScript array and augments it with useful metadata (e.g the capture timestamp of each frame) before sending it to the fingerprint matching algorithm for further processing. An example of the fingerprint output format is provided in Appendix \ref{appendix:fingerprint}.
 
 \subsection{Fingerprint Matching}
 
-hungarian algorithm
+In the fingerprint matching step the fingerprint is matched against an existing set of fingerprints (corpus) to find a possible match. The query for fetching the relevant corpus is constructed based on the peak count and average hue of the fingerprint's first sample (frame). The average hue is calculated as a weighted arithmetic mean using the hue intensities as the weights. To allow more flexible queries the value for the peak count and average hue can also be provided as a range. The query format and the databases involded are discussed in more detail in Chapter \ref{chapter:storage-security}.
 
-equations
+The fingerprint and the retrieved corpus are given as input to a similarity algorithm. The algortihm ranks the fingerprints in the corpus (candidate fingerprints) against the captured fingerprint (subject fingerprint) based on two simple metrics:
+
+\begin{itemize}
+	\item Peak Hue Delta ($P_h$): the difference in peak hue
+	\item Peak Intensity Delta ($P_i$): the difference in peak hue intensity
+\end{itemize}
+
+The subject fingerprint and a candidate fingerprint are compared sample by sample (frame by frame). That is, the deltas are computed between each $n$th sample of the two fingerprints. The metrics $P_h$ and $P_i$ are given different weights. $P_h$ is given more weight as fingerprints that have dissimilar dominant hues are not likely to be a good match. $P_i$ is given a smaller weight since slight variations in hue intensities are expected due to noise in the pipeline. The formula used for computing the metrics is given as follows:
+
+\begin{equation}
+\label{equation:fingerprint-penalty}
+	P_x = \sum \limits_{n=0} { \max \{\Delta{x_n}-t_x,\ 0\} \cdot b_x \cdot d_x^n }
+\end{equation}
+
+Where:
+\begin{itemize}[label=]
+	\item $x$: peak property (e.g. hue or hue intensity)
+    \item $P_x$: metric for property $x$ (e.g. $P_h$)
+    \item $n$: number of samples in the fingerprint (zero-based)
+    \item $\Delta{x_n}$: delta between fingerprint samples $n$ for property $x$
+    \item $t_x$: delta threshold for property $x$
+    \item $b_x$: base coefficent for property $x$
+    \item $d_x$: damping coefficient for property $x$
+\end{itemize}
+
+In order to compute $P_h$ and $P_i$ the peaks of the subject and candidate fingerprints have to be paired with each other.
+
+hungarian algorithm (peak count to account for peakless fingerprints)
+
+\begin{figure}[h]
+\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
+\caption{The fingerprint matching process.\label{figure:matching-process}}
+\end{figure}
 
 \section{Storage and Security}
 \label{chapter:storage-security}
