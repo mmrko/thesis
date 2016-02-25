@@ -165,11 +165,11 @@ The fingerprint and the retrieved corpus are given as input to a similarity algo
 	\item Peak Intensity Delta ($P_i$): the difference in peak hue intensity
 \end{itemize}
 
-The subject fingerprint and a candidate fingerprint are compared sample by sample (frame by frame). That is, the deltas are computed between each $n$th sample of the two fingerprints. The metrics $P_h$ and $P_i$ are given different weights. $P_h$ is given more weight as fingerprints that have dissimilar dominant hues are not likely to be a good match. $P_i$ is given a smaller weight since slight variations in hue intensities are expected due to noise in the pipeline. The formula used for computing the metrics is given as follows:
+The subject fingerprint and a candidate fingerprint are compared frame by frame (sample by sample). That is, the deltas are computed between each $n$th sample of the two fingerprints. The metrics $P_h$ and $P_i$ are given different weights and thresholds. $P_h$ is given more weight and a lower threshold as fingerprints that have dissimilar dominant hues are not likely to be a good match. $P_i$ is given a smaller weight and a higher threshold since slight variations in hue intensities are expected due to noise in the pipeline. The formula used for computing the similarity metrics is given as follows:
 
 \begin{equation}
-\label{equation:fingerprint-penalty}
-	P_x = \sum \limits_{n=0} { \max \{\Delta{x_n}-t_x,\ 0\} \cdot b_x \cdot d_x^n }
+\label{equation:similarity-metric}
+	P_x = \sum \limits_{n=0} { w_x \cdot \max \{\Delta{x_n}-t_x,\ 0\} \cdot d_x^n }
 \end{equation}
 
 Where:
@@ -177,13 +177,20 @@ Where:
 	\item $x$: peak property (e.g. hue or hue intensity)
     \item $P_x$: metric for property $x$ (e.g. $P_h$)
     \item $n$: number of samples in the fingerprint (zero-based)
+    \item $w_x$: weight for property $x$
     \item $\Delta{x_n}$: delta between fingerprint samples $n$ for property $x$
     \item $t_x$: delta threshold for property $x$
-    \item $b_x$: base coefficent for property $x$
-    \item $d_x$: damping coefficient for property $x$
+    \item $d_x$: damping coefficient ($\leq 1$) for property $x$
 \end{itemize}
 
-In order to compute $P_h$ and $P_i$ the peaks of the subject and candidate fingerprints have to be paired with each other.
+\noindent The purpose of the damping coefficient $d_x$ is to put less emphasis on the latter samples of the fingerprint as it is expected that the first samples are more descriptive of the entire fingerprint.
+
+In order to compute $P_x$ the peaks of the subject and candidate fingerprints have to be paired with each other. The pairing of the peaks becomes an assignment problem where each peak in sample $A_n$ of fingerprint $A$ needs to be paired with a peak in sample $B_n$ of fingerprint $B$ with minimal cost (change in hue). One suitable algorithm for solving the assignment problem for small datasets is the Hungarian algorithm \cite{hungarian_algorithm}. The algorithm takes a $n \times n$ \emph{cost matrix} as input and outputs an $n$ number of $(i, j)$ coordinates (pairs) that represent the minimum cost.
+
+The cost matrix is formed by computing the peak hue deltas ($\Delta{h_n}$) between samples $A_n$ and $B_n$.
+
+
+The Hungarian algorithm does not, however, solve the \emph{unbalanced assignment problem} where the input is a non-square matrix $n \times m$ ($n \neq m$). This is an issue when samples $A_n$ and $B_n$ have a different number of peaks.
 
 hungarian algorithm (peak count to account for peakless fingerprints)
 
