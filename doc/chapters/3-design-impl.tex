@@ -169,30 +169,42 @@ The subject fingerprint and a candidate fingerprint are compared frame by frame 
 
 \begin{equation}
 \label{equation:similarity-metric}
-	P_x = \sum \limits_{n=0} { w_x \cdot \max \{\Delta{x_n}-t_x,\ 0\} \cdot d_x^n }
+	P_x = \sum \limits_{n=0} \sum \limits_{i=0} { { w_x \cdot \max (\Delta{x_i}-t_x,\ 0) \cdot d_x^n } }
 \end{equation}
 
 Where:
 \begin{itemize}[label=]
 	\item $x$: peak property (e.g. hue or hue intensity)
     \item $P_x$: metric for property $x$ (e.g. $P_h$)
-    \item $n$: number of samples in the fingerprint (zero-based)
+    \item $n$: sample of fingerprint
+    \item $i$: peak in sample
     \item $w_x$: weight for property $x$
-    \item $\Delta{x_n}$: delta between fingerprint samples $n$ for property $x$
+    \item $\Delta{x_i}$: delta between peak $i$ and its pair for property $x$
     \item $t_x$: delta threshold for property $x$
     \item $d_x$: damping coefficient ($\leq 1$) for property $x$
 \end{itemize}
 
 \noindent The purpose of the damping coefficient $d_x$ is to put less emphasis on the latter samples of the fingerprint as it is expected that the first samples are more descriptive of the entire fingerprint.
 
-In order to compute $P_x$ the peaks of the subject and candidate fingerprints have to be paired with each other. The pairing of the peaks becomes an assignment problem where each peak in sample $A_n$ of fingerprint $A$ needs to be paired with a peak in sample $B_n$ of fingerprint $B$ with minimal cost (change in hue). One suitable algorithm for solving the assignment problem for small datasets is the Hungarian algorithm \cite{hungarian_algorithm}. The algorithm takes a $n \times n$ \emph{cost matrix} as input and outputs an $n$ number of $(i, j)$ coordinates (pairs) that represent the minimum cost.
+In order to compute $P_x$ the peaks of the subject and candidate fingerprints have to be paired with each other. The pairing of the peaks boils down to an assignment problem where each peak in sample $A_n$ of fingerprint $A$ needs to be paired with a peak in sample $B_n$ of fingerprint $B$ with minimal cost (change in hue). One suitable algorithm for solving the assignment problem for small datasets is the Hungarian algorithm \cite{hungarian_algorithm}. The algorithm takes an $n \times m$ \emph{cost matrix} as input and outputs a $min (n,\ m)$ number of $(i, j)$ coordinates (pairs) that represent the minimum cost.
 
-The cost matrix is formed by computing the peak hue deltas ($\Delta{h_n}$) between samples $A_n$ and $B_n$.
+The cost matrix $C$ is formed by computing the peak hue deltas ($\Delta{h_i}$) between samples $A_n$ and $B_n$. Each matrix cell $a_{ij}$ represents the hue delta between the $i$th peak of $B_n$ and $j$th peak of $A_n$. Thus, the dimensions of the matrix are defined by the number of peaks in the samples. The cost matrix and the pairings made by the algorithm are illustrated in Figure \ref{figure:hungarian-algorithm}.
 
+\begin{figure}[h]
+\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/hungarian_algorithm}
+\caption{The Hungarian algorithm is used in the fingerprint matching process to find the lowest-cost way to pair peaks of two fingerprint samples. $A_n$ and $B_n$ denote the samples, for which the cost matrix $C$ is computed.\label{figure:hungarian-algorithm}}
+\end{figure}
 
-The Hungarian algorithm does not, however, solve the \emph{unbalanced assignment problem} where the input is a non-square matrix $n \times m$ ($n \neq m$). This is an issue when samples $A_n$ and $B_n$ have a different number of peaks.
+The Hungarian algorithm does not, however, provide a solution for the \emph{unbalanced assignment problem}: non-square cost matrices ($n \neq m$) are always left with unpaired rows/columns as the algorithm only returns $min (n,\ m)$ number of pairs. This becomes an issue in cases where samples $A_n$ and $B_n$ have a different number of peaks. To overcome this limitation the algorithm is extended by a custom implementation, which finds the lowest-cost pair for any unpaired rows/columns (peaks). The logic of the extended functionality supporting non-square cost matrices is illustrated in Figure \ref{figure:hungarian-algorithm-extended}.
 
-hungarian algorithm (peak count to account for peakless fingerprints)
+% This of course means that some peaks will in the end have more than one pair, which however is not an issue for the use case at hand
+
+\begin{figure}[h]
+\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/hungarian_algorithm_ext}
+\caption{The functionality of the Hungarian algorithm is extended by a custom implementation to handle non-square cost matrices.\label{figure:hungarian-algorithm-extended}}
+\end{figure}
+
+The code written for computing the peak pairs uses an open-source JavaScript implementation of the Hungarian algorithm underneath \cite{munkres-js}. Peakless samples were (for which the algorithm would return no pairs) were given a fixed penalty of (peak count to account for peakless fingerprints)
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
