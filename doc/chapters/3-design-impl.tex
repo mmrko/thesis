@@ -156,16 +156,16 @@ Once all the frames have been captured and their peaks have been computed a fing
 
 \subsection{Fingerprint Matching}
 
-In the fingerprint matching step the fingerprint is matched against an existing set of fingerprints (corpus) to find a possible match. The query for fetching the relevant corpus is constructed based on the peak count and average hue of the fingerprint's first sample (frame). The average hue is calculated as a weighted arithmetic mean using the hue intensities as the weights. To allow more flexible queries the value for the peak count and average hue can also be provided as a range. The query format and the databases involded are discussed in more detail in Chapter \ref{chapter:storage-security}.
+In the fingerprint matching step the fingerprint is matched against an existing set of fingerprints (corpus) to find the best match. The query for fetching the relevant corpus is constructed based on the peak count and average hue of the fingerprint's first sample (first row of the $n \times m$ fingerprint matrix). The average hue is calculated as a weighted arithmetic mean using the hue intensities as the weights. To allow more flexible queries the value for the peak count and average hue can also be provided as a range. The query format and the databases involded are discussed in more detail in Chapter \ref{chapter:storage-security}.
 
-The fingerprint and the retrieved corpus are given as input to a similarity algorithm. The algortihm ranks the fingerprints in the corpus (candidate fingerprints) against the captured fingerprint (subject fingerprint) based on two simple metrics:
+The fingerprint and the retrieved corpus are given as input to a similarity algorithm implemented in JavaScript. The algortihm ranks the captured fingerprint (subject fingerprint) against the fingerprints in the corpus (candidate fingerprints) based on two simple metrics:
 
 \begin{itemize}
-	\item Peak Hue Delta ($P_h$): the difference in peak hue
-	\item Peak Intensity Delta ($P_i$): the difference in peak hue intensity
+	\item Peak Hue Delta ($P_{hue}$): the difference in peak hue
+	\item Peak Intensity Delta ($P_{int}$): the difference in peak hue intensity
 \end{itemize}
 
-The subject fingerprint and a candidate fingerprint are compared frame by frame (sample by sample). That is, the deltas are computed between each $n$th sample of the two fingerprints. The metrics $P_h$ and $P_i$ are given different weights and thresholds. $P_h$ is given more weight and a lower threshold as fingerprints that have dissimilar dominant hues are not likely to be a good match. $P_i$ is given a smaller weight and a higher threshold since slight variations in hue intensities are expected due to noise in the pipeline. The formula used for computing the similarity metrics is given as follows:
+The subject fingerprint and a candidate fingerprint are compared frame by frame (sample by sample). That is, the deltas are computed between each $n$th sample of the two fingerprints. The metrics $P_{hue}$ and $P_{int}$ are given different weights and thresholds. $P_{hue}$ is given more weight and a lower threshold as fingerprints that have dissimilar dominant hues are not likely to be a good match. $P_{int}$ is given a smaller weight and a higher threshold since slight variations in hue intensities are expected due to noise in the pipeline. The formula used for computing the similarity metrics for a fingerprint is given as follows:
 
 \begin{equation}
 \label{equation:similarity-metric}
@@ -174,47 +174,72 @@ The subject fingerprint and a candidate fingerprint are compared frame by frame 
 
 Where:
 \begin{itemize}[label=]
-	\item $x$: peak property (e.g. hue or hue intensity)
-    \item $P_x$: metric for property $x$ (e.g. $P_h$)
-    \item $n$: sample of fingerprint
-    \item $i$: peak in sample
-    \item $w_x$: weight for property $x$
-    \item $\Delta{x_i}$: delta between peak $i$ and its pair for property $x$
-    \item $t_x$: delta threshold for property $x$
-    \item $d_x$: damping coefficient ($\leq 1$) for property $x$
+    \item $P_x$: metric for dimension $x$ (e.g. $P_{hue}$)
+    \item $n$: sample of the fingerprint
+    \item $i$: peak in the sample
+    \item $w_x$: weight for dimension $x$
+    \item $\Delta{x_i}$: delta in dimension $x$ between peak $i$ and its pair
+    \item $t_x$: delta threshold for dimension $x$
+    \item $d_x$: damping coefficient for dimension $x$
 \end{itemize}
 
-\noindent The purpose of the damping coefficient $d_x$ is to put less emphasis on the latter samples of the fingerprint as it is expected that the first samples are more descriptive of the entire fingerprint.
+\noindent The purpose of the damping coefficient $d_x$ ($\leq 1$) is to put less emphasis on the latter samples of the fingerprint as it is expected that the first samples are more descriptive of the entire fingerprint (include less noise). The metric $P_x$ is \emph{monotonically increasing} meaning that the more dissimilar the fingerprints are, the larger its value grows (hence also the notation $P$ as in penalty).
 
-In order to compute $P_x$ the peaks of the subject and candidate fingerprints have to be paired with each other. The pairing of the peaks boils down to an assignment problem where each peak in sample $A_n$ of fingerprint $A$ needs to be paired with a peak in sample $B_n$ of fingerprint $B$ with minimal cost (change in hue). One suitable algorithm for solving the assignment problem for small datasets is the Hungarian algorithm \cite{hungarian_algorithm}. The algorithm takes an $n \times m$ \emph{cost matrix} as input and outputs a $min (n,\ m)$ number of $(i, j)$ coordinates (pairs) that represent the minimum cost.
+In order to compute $P_x$ the peaks of the subject and candidate fingerprints have to be paired with each other. The pairing of the peaks can be expressed as an \emph{assignment problem} where each peak in sample $A_n$ of fingerprint $A$ needs to be paired with a peak in sample $B_n$ of fingerprint $B$ with minimal cost (change in hue). An algorithm suitable for solving the assignment problem for small datasets is the Hungarian algorithm \cite{hungarian_algorithm}, which takes an $n \times m$ \emph{cost matrix} as input and outputs a $min (n,\ m)$ number of $(i, j)$ coordinates (pairs) that represent the minimum cost.
 
-The cost matrix $C$ is formed by computing the peak hue deltas ($\Delta{h_i}$) between samples $A_n$ and $B_n$. Each matrix cell $a_{ij}$ represents the hue delta between the $i$th peak of $B_n$ and $j$th peak of $A_n$. Thus, the dimensions of the matrix are defined by the number of peaks in the samples. The cost matrix and the pairings made by the algorithm are illustrated in Figure \ref{figure:hungarian-algorithm}.
+Each cell $a_{ij}$ of the cost matrix $C$ represents the hue delta between the $i$th peak of $B_n$ and $j$th peak of $A_n$. Thus, the dimensions of the matrix are given by the number of peaks in $A_n$ and $B_n$. The cost matrix and the pairings computed by the algorithm are illustrated in Figure \ref{figure:hungarian-algorithm}.
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/hungarian_algorithm}
 \caption{The Hungarian algorithm is used in the fingerprint matching process to find the lowest-cost way to pair peaks of two fingerprint samples. $A_n$ and $B_n$ denote the samples, for which the cost matrix $C$ is computed.\label{figure:hungarian-algorithm}}
 \end{figure}
 
-The Hungarian algorithm does not, however, provide a solution for the \emph{unbalanced assignment problem}: non-square cost matrices ($n \neq m$) are always left with unpaired rows/columns as the algorithm only returns $min (n,\ m)$ number of pairs. This becomes an issue in cases where samples $A_n$ and $B_n$ have a different number of peaks. To overcome this limitation the algorithm is extended by a custom implementation, which finds the lowest-cost pair for any unpaired rows/columns (peaks). The logic of the extended functionality supporting non-square cost matrices is illustrated in Figure \ref{figure:hungarian-algorithm-extended}.
-
-% This of course means that some peaks will in the end have more than one pair, which however is not an issue for the use case at hand
+The Hungarian algorithm does not, however, provide a solution for the \emph{unbalanced assignment problem}: non-square cost matrices ($n \neq m$) are always left with unpaired rows/columns as the algorithm only returns $min (n,\ m)$ number of pairs. This becomes an issue in cases where samples $A_n$ and $B_n$ have a different number of peaks. To overcome this limitation the similarity algorithm extends the Hungarian algorithm by finding the lowest-cost pair for any unpaired rows/columns (peaks). The logic of the extended functionality supporting non-square cost matrices is illustrated in Figure \ref{figure:hungarian-algorithm-extended}.
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/hungarian_algorithm_ext}
 \caption{The functionality of the Hungarian algorithm is extended by a custom implementation to handle non-square cost matrices.\label{figure:hungarian-algorithm-extended}}
 \end{figure}
 
-The code written for computing the peak pairs uses an open-source JavaScript implementation of the Hungarian algorithm underneath \cite{munkres-js}. Peakless samples were (for which the algorithm would return no pairs) were given a fixed penalty of (peak count to account for peakless fingerprints)
+\noindent The Hungarian algorithm used in the similarity matching process is based on a 3rd party JavaScript implementation \cite{munkres-js}.
+
+To account for cases where a candidate fingerprint sample $n$ includes no peaks -- and thus, no peak pairs would be found to compute $P_{hue}$ and $P_{int}$ -- an additional penalty metric $P_c$ is applied:
+
+\begin{equation}
+\label{equation:similarity-metric-no-peaks}
+	P_c = w_c \cdot \Delta{c_n} \cdot d_c^n
+\end{equation}
+
+Where:
+\begin{itemize}[label=]
+    \item $P_c$: metric (or penalty) for peak count delta
+    \item $n$: sample of the fingerprint
+    \item $w_c$: weight for peak count delta
+    \item $\Delta{c_n}$: peak count delta between two fingerprints for sample $n$
+    \item $d_c$: damping coefficient for peak count delta
+\end{itemize}
+
+\noindent Given Equation \ref{equation:similarity-metric} for metrics $P_{hue}$ and $P_{int}$ and Equation \ref{equation:similarity-metric-no-peaks} for the additional penalty metric $P_c$ the total penalty for a candidate fingerprint can be calculated as follows:
+
+\begin{equation}
+	P =
+	\begin{cases}
+	P_{hue} + P_{int}, & \text{if } P_{hue} + P_{int} \neq 0 \\
+	P_{c}, & \text{otherwise}
+	\end{cases}
+\end{equation}
+
+Once the candidate fingerprints have been ranked the best matches are selected based on a naive criterion: candidate(s) with the lowest penalty $P$ as well as candidates within a 5\% margin of $P$ qualify. If a matching fingerprint is found the application displays the user the corresponding product. In case the result of the matching process is inconclusive and multiple matches are found, the user is displayed a list of products and asked to verify whether or not it includes the traced product. Links between fingerprints and products are stored in and fetched from a database. The storage architecture and related security is discussed in the next chapter. Figure \ref{figure:matching-process} summarizes the fingerprint matching process.
 
 \begin{figure}[h]
-\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
+\centering \includegraphics[width=0.7\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
 \caption{The fingerprint matching process.\label{figure:matching-process}}
 \end{figure}
 
 \section{Storage and Security}
 \label{chapter:storage-security}
 
-The underlying server back end will consist of a web server and a database to hold the fingerprint data. Optionally, a reverse proxy can be set up in front of the web server to allow static assets to be served to the client without hitting the web server. However, since the application will most likely not include many static assets (images, JS, CSS...) the benefit of this is somewhat minimal. The back end will be implemented using Node.js due to its convenience (author's previous experience and the possibility to re-use the ported spectrum algorithm both in the front and back end). The database will be implemented with MongoDB as it couples well with Node.js and has cross-platform support and an active community.
+The underlying server back end will consist of a web server and a database to hold the fingerprint data.
 
 Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html)
 Schema flexibility
