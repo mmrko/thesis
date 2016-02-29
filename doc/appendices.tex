@@ -35,7 +35,7 @@ The schematics for the external camera module featuring an Arduino Mega 2560 mic
 The code utilizes Simon Monk's Arduino Timer library (version 1.3) \cite{arduino_timer_library}.
 
 \lstinputlisting[language=C++,caption={main.ino}]{../app/camera-module/arduino/code/code.ino}
-
+\clearpage
 \lstinputlisting[language=C++,caption={is\_focused.ino}]{../app/camera-module/arduino/code/is_focused.ino}
 
 
@@ -53,29 +53,39 @@ M=
     P_{31} & 0 & 0
   \end{bmatrix}
 \]
-\vspace{0.5mm}
 \begin{lstlisting}[language=json,firstnumber=1]
-[{
-  timestamp: 252,
-  peaks: [
-    { hue: 76, intensity: 770 },
-    { hue: 90, intensity: 693 },
-    { hue: 60, intensity: 301 }
-  ]
-},{
-  timestamp: 844,
-  peaks: [
-    { hue: 74, intensity: 672 },
-    { hue: 60, intensity: 310 }
-  ]
-},{
-  timestamp: 1440,
-  peaks: [
-    { hue: 60, intensity: 466 },
-    { hue: 71, intensity: 466 }
-  ]
-}]
+[
+  {
+    timestamp: 252,
+    peaks: [
+      { hue: 76, intensity: 770 },
+      { hue: 90, intensity: 693 },
+      { hue: 60, intensity: 301 }
+    ]
+  },
+  {
+    timestamp: 844,
+    peaks: [
+      { hue: 74, intensity: 672 },
+      { hue: 60, intensity: 310 }
+    ]
+  },
+  {
+    timestamp: 1440,
+    peaks: [
+      { hue: 60, intensity: 466 },
+      { hue: 71, intensity: 466 }
+    ]
+  }
+]
 \end{lstlisting}
 
+
+\chapter{Fingerprint Design Document}
+\label{appendix:fingerprint-design-doc}
+A CouchDB design document used for creating an index keyed by the peak count and weighted hue average of the first sample of each fingerprint to allow fingerprints to be queried directly by peak count and hue.
+\vspace{5mm}
+
+\lstinputlisting[language=JavaScript]{./chapters/design_doc.js}
 
 \end{document}

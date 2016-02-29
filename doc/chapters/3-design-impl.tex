@@ -30,7 +30,7 @@ The goal of the thesis was to investigate if it were feasible to utilize smartph
     The use case (product authentication) required that the fingerprint could be linked to a physcial object, e.g. a product. The requirement here was twofold: given a pre-defined database of fingerprints and products (1) characterize the capture data as a fingerprint and (2) match it against the existing fingerprints to find the corresponding product in a remote product database. In case of a match, the user's geolocation should also be stored for further verification and analytics purposes.
 
 	\item \label{R4} Support (secure) offline usage\\ \\
-	Implementing support for offline usage was seen as an attractive feature that would differentiate the application from the competition. It would also allow investigating the feasibility of storing data client-side from a security and storage strategy perspective.
+	Implementing support for offline usage was seen as an attractive feature that would differentiate the application from the competition. It would also allow investigating the feasibility of storing data client-side from the perspective of security and storage strategy (size, format).
 \end{enumerate}
 
 \noindent The following chapters discuss these requirements further and present the related implementation details. The implementation for \ref{R2} and \ref{R3} is presented in Chapter \ref{chapter:fingerprint-pipeline}. Requirements \ref{R1} and \ref{R4} are discussed in Chapters \ref{chapter:application-architecture} and \ref{chapter:storage-security}, respectively.
@@ -155,6 +155,7 @@ The hue histogram can be easily derived from the filtered HSV data using OpenCV'
 Once all the frames have been captured and their peaks have been computed a fingerprint can be constructed. Given a sequence of \emph{n} frames and a number \emph{m} denoting the most peaks found for a single frame in the sequence the fingerprint can be described as a $n \times m$ matrix. The algorithm encodes the matrix as a JavaScript array and augments it with useful metadata (e.g the capture timestamp of each frame) before sending it to the fingerprint matching algorithm for further processing. An example of the fingerprint output format is provided in Appendix \ref{appendix:fingerprint}.
 
 \subsection{Fingerprint Matching}
+\label{chapter:fingerprint-matching}
 
 In the fingerprint matching step the fingerprint is matched against an existing set of fingerprints (corpus) to find the best match. The query for fetching the relevant corpus is constructed based on the peak count and average hue of the fingerprint's first sample (first row of the $n \times m$ fingerprint matrix). The average hue is calculated as a weighted arithmetic mean using the hue intensities as the weights. To allow more flexible queries the value for the peak count and average hue can also be provided as a range. The query format and the databases involded are discussed in more detail in Chapter \ref{chapter:storage-security}.
 
@@ -236,14 +237,60 @@ Once the candidate fingerprints have been ranked the best matches are selected b
 \caption{The fingerprint matching process.\label{figure:matching-process}}
 \end{figure}
 
-\section{Storage and Security}
+\section{Application Storage and Security}
 \label{chapter:storage-security}
 
-The underlying server back end will consist of a web server and a database to hold the fingerprint data.
+The application is backed by an application server and a remote Database Management System (DBMS). The application fetches data both directly through the DBMS as well as via the application server. Data is also persisted on the device to enable offline usage. The DBMS is implemented using a NoSQL database technology called CouchDB\footnote{\url{http://couchdb.apache.org/}} (version 1.6.1) while the application server runs on Node.js\footnote{\url{http://nodejs.org/en/}} (version 5.5.0). For the local device storage the application utilizes PouchDB\footnote{\url{http://pouchdb.com/}} (3.2.0) and Mozilla's localForage\footnote{\url{http://mozilla.github.io/localForage/}} (version 1.2.0) browser libraries, which wrap the browser's (web view's) storage APIs (IndexedDB, WebSQL and localStorage) in a more stable, asynchronous API.
 
-Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html)
-Schema flexibility
+The fingerprint corpus, products and the mappings between them as well as metadata about the capture configurations (ISO, delay...) and the taggants is persisted by the DBMS (a CouchDB instance). Each document in the products database consists of minimal product information (title, description, brand name...) and IDs that could -- in an actual business scenario -- be used as a reference to an item in a brand's internal product management system. The mapping information linking fingerprints to products is stored in a separate fingerprint metadata database. For brevity, the schema of a fingerprint metadata document is presented in Table \ref{table:fingerprint-metadata-schema}. The IDs \emph{cid}, \emph{tid} and the created timestamp are unique together: they can be used to uniquely identify a fingerprint as they tell when and how a specific taggant was analyzed for fingerprints.
 
-user management brute force
+\begin{table}[ht]
+	\caption{The structure of a fingerprint metadata document.} \label{table:fingerprint-metadata-schema}
+
+	\begin{center}
+	\begin{tabular}{| m{1.25cm} | m{11.5cm} |}
+
+		\hline
+		\textbf{Key}	& \textbf{Description} \\ \hline
+		\_id			& The unique ID of the metadata document assigned by CouchDB \\
+		\hline
+		\_rev 			& Document hash used by the CouchDB replicator to track changes \\
+		\hline
+		fid 			& ID of the fingerprint the metadata describes \\
+		\hline
+		pid 			& ID of the product the fingerprint is linked to \\
+		\hline
+		cid 			& ID of the configuration the fingerprint was captured with \\
+		\hline
+		tid 			& ID of the taggant the fingerprint is based on \\
+		\hline
+		created			& Timestamp to denote when the fingerprint was created \\
+		\hline
+	\end{tabular}
+	\end{center}
+\end{table}
+
+The application interacts with the application server and the DBMS during application initialization and the fingerprint matching process. When the application is launched the user is automatically logged in to the DBMS using a predefined username and password. The authentication can be performed directly against the DBMS as CouchDB provides a built-in authentication framework through a RESTful interface. However, as the application and the DBMS communicate via XHR but run in different domains, CORS needs to be enabled on the DBMS to allow cross-domain requests. Both the application server and the DBMS run over TLS to protect them from man-in-the-middle (MitM) and other transport layer attacks.
+
+Once the user has been successfully authenticated with the DBMS the fingerprints are synced to the user's device for offline use. The syncing functionality is implemented using PouchDB, which supports replication and synchronization of CouchDB databases into the browser utilizing CouchDB's revisioning features (the detailed description of the replication mechanisms between PouchDB and CouchDB is outside the scope of this thesis and the reader is thereby advised to refer to \cite{pouch-couch-replication} for further information). In the browser, the data is persisted by PouchDB using one of supported persistence backends (IndexedDB, WebSQL or localStorage). Persisting the fingerprints and the fingerprint metadata in different databases allows the fingerprints to be synced independently of the metadata. This has both performance and security implications as it ensures that only the minimum required data is synced to the user's device for offline use, and that no additional information about the fingerprint (e.g. capture conditions) is exposed to malicious parties.
+
+During the fingerprint matching process the fingerprint database is queried for a corpus -- either over network or locally depending on network availability. As discussed earlier in Chapter \ref{chapter:fingerprint-matching}, the query is specified in terms of peak count and weighted hue average of the fingerprint's first sample ($n=0$). Moreover, the values for the query can be provided as a range. To allow fingerprints to be queried this way directly a separate view of the data -- an index keyed by the peak count and the weighted hue average of the first sample -- needs to be constructed. With CouchDB this can be achieved using a \emph{design document}, which allows a database to be map-reduced into separate views. The custom design document used by the CouchDB instance to construct a new fingerprint view (named \emph{find\_by\_peak\_count}) is provided in Appendix \ref{appendix:fingerprint-design-doc} for reference.
+
+When the remote fingerprint database is queried over the network the parameters for the query are provided in the request URL. For example, a query to fetch a fingerprint corpus that consists of fingerprints whose first sample's peak count and weighted hue average range from 3 to 5 and 68 to 78, respectively, is formatted as follows (parts of the query path are omitted for brevity):
+
+\begin{itemize}[label=]
+	\item /.../\_view/find\_by\_peak\_count\_and\_hue?startkey=[3,68]\&endkey\=[5,78]
+\end{itemize}
+
+\noindent PouchDB also appends a pseudo-random number (\emph{nonce}) to the query string to protect the client from replay attacks.
+
+If the retrieved corpus includes a match, the ID of the matched fingerprint (\emph{fid}) is sent to the application server to fetch the corresponding product. The application server uses the \emph{fid} to query the fingerprint metadata database to get the correct product ID (\emph{pid}), which it then uses to retrieve the related product information from the products database. The product information of a successfully matched fingerprint is persisted locally as \emph{trace history} using localForage. If the application server is unavailable or the user is offline when a product is queried for, the application displays a dummy product and schedules a product sync to occur when the application is launched the next time.
+
+Figure \ref{figure:application-database-flow} provides a summary of the storage architecture and the communication flows between the application, the application server and the DBMS.
+
+\begin{figure}[h]
+\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/application_database_flow}
+\caption{The application interacts with a Node.js application server and a RESTful CouchDB instance during application initialization and the fingerprint matching process. Fingerprints are synced to the device storage for offline usage.\label{figure:application-database-flow}}
+\end{figure}
 
 \end{document}

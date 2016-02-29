@@ -19,6 +19,15 @@ phosphorescence vs. fluorescence (infeasible coz time)
 - peak method performs poorly against the histogram approach for single coloured luminophors
 - more novel selection criterion
 
+- change management / how to handle updates \& different devices?
+
+using a predefined username and password (easily extendable to a real user auth)
+
+Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html, http://pouchdb.com/guides/replication.html)
+Schema flexibility (NoSQL) SYNC!
+Traditional Cookie-Based Auth (could be extended to Modern Token-Based Auth such as JWT)
+CouchDB uses a traditional cookie based authentication scheme, and as such, applications can be vulnerable to CSRF attacks. However, the application has no CSRF attacks vectors as it only reads from the DBMS and the application server
+
 TODO:
 
 color calibration (requires use of RAW data)
