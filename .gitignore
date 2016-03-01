@@ -57,3 +57,4 @@ SublimeREPLHistory/ts
 # Custom
 .idea
 doc/images/*.pdf
+doc/*.pdf
