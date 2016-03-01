@@ -58,3 +58,4 @@ SublimeREPLHistory/ts
 .idea
 doc/images/*.pdf
 doc/*.pdf
+!doc/thesis.pdf
