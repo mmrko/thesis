@@ -170,6 +170,7 @@ The subject fingerprint and a candidate fingerprint are compared sample by sampl
 
 Where:
 \begin{itemize}[label=]
+	\setlength\itemsep{0.10em}
     \item $P_x$: metric for dimension $x$ (e.g. $P_{hue}$)
     \item $n$: sample of the fingerprint
     \item $i$: peak in the sample
@@ -197,7 +198,7 @@ The Hungarian algorithm does not, however, provide a solution for the \emph{unba
 \caption{The functionality of the Hungarian algorithm is extended by a custom implementation to handle non-square cost matrices.\label{figure:hungarian-algorithm-extended}}
 \end{figure}
 
-\noindent The Hungarian algorithm extended by the similarity matching algorithm is based on a 3rd party JavaScript implementation \cite{munkres-js}.
+\noindent The Hungarian algorithm used by the similarity matching algorithm is based on a 3rd party JavaScript implementation \cite{munkres-js}.
 
 To account for an edge case where a candidate fingerprint sample $n$ includes no peaks -- and thus, no peak pairs would be found to compute $P_{hue}$ and $P_{int}$ -- an additional penalty metric $P_c$ is applied:
 
@@ -208,6 +209,7 @@ To account for an edge case where a candidate fingerprint sample $n$ includes no
 
 Where:
 \begin{itemize}[label=]
+	\setlength\itemsep{0.10em}
     \item $P_c$: metric (or penalty) for peak count delta
     \item $n$: sample of the fingerprint
     \item $w_c$: weight for peak count delta
@@ -224,13 +226,13 @@ Where:
 	P_{c}, & \text{otherwise}
 	\end{cases}
 \end{equation}
-
+\\
 Once the candidate fingerprints have been ranked the best matches are selected based on a naive criterion: candidate(s) with the lowest penalty $P$ as well as candidates within a 5\% margin of $P$ qualify.
 
 If the algorithm finds a matching fingerprint the application fetches and displays the user the corresponding product. In case multiple matches are found and the result of the matching process is therefore inconclusive, the user is displayed a list of products and asked to verify whether or not it includes the traced product. If not, the product can be deemed fake. Links between fingerprints and products are stored in and retrieved from a database. The storage architecture and related security is discussed in the next chapter. The fingerprint matching process is summarized in Figure \ref{figure:matching-process}.
 
 \begin{figure}[h]
-\centering \includegraphics[width=0.5\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
+\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
 \caption{The fingerprint matching process.\label{figure:matching-process}}
 \end{figure}
 
@@ -273,19 +275,19 @@ The application interacts with the application server and the DBMS during applic
 
 Once the user has been successfully authenticated with the DBMS the fingerprints are synced to the user's device for offline use. The syncing functionality is implemented using PouchDB, which supports replication and synchronization of CouchDB databases into the browser utilizing CouchDB's revisioning features (the detailed description of the replication mechanisms between PouchDB and CouchDB is outside the scope of this thesis and the reader is thereby advised to refer to \cite{pouch-couch-replication} for further information). In the browser, the data is persisted by PouchDB using one of supported persistence backends (IndexedDB, WebSQL or localStorage). Persisting the fingerprints and the fingerprint metadata in different databases allows the fingerprints to be synced independently of the metadata. This has both performance and security implications as it ensures that only the minimum required data is synced to the user's device for offline use, and that no additional information about the fingerprint (e.g. capture conditions) is exposed to malicious parties.
 
-During the fingerprint matching process the fingerprint database is queried for a corpus -- either over network or locally depending on network availability. As discussed earlier in Chapter \ref{chapter:fingerprint-matching}, the query is specified in terms of peak count and weighted hue average of the fingerprint's first sample ($n=0$). Moreover, the values for the query can be provided as a range. To allow fingerprints to be queried this way directly a separate view of the data -- an index keyed by the peak count and the weighted hue average of the first sample -- needs to be constructed. With CouchDB this can be achieved using a \emph{design document}, which allows a database to be map-reduced into separate views. The custom design document used by the CouchDB instance to construct a new fingerprint view (named \emph{find\_by\_peak\_count}) is provided in Appendix \ref{appendix:fingerprint-design-doc} for reference.
+During the fingerprint matching process the fingerprint database is queried for a corpus -- either over network or locally depending on network availability. As discussed earlier in Chapter \ref{chapter:fingerprint-matching}, the query is specified in terms of peak count and weighted hue average of the fingerprint's first sample ($n=0$). Moreover, the values for the query can be provided as a range. To allow fingerprints to be queried this way directly a separate view of the data -- an index keyed by the peak count and the weighted hue average of the first sample -- needs to be constructed. With CouchDB this can be achieved using a \emph{design document}, which allows documents in a database to be map-reduced into a separate view. The custom design document used by the CouchDB instance to construct a new fingerprint view (named \emph{find\_by\_peak\_count}) is provided in Appendix \ref{appendix:fingerprint-design-doc} for reference.
 
-When the remote fingerprint database is queried over the network the parameters for the query are provided in the request URL. For example, a query to fetch a fingerprint corpus that consists of fingerprints whose first sample's peak count and weighted hue average range from 3 to 5 and 68 to 78, respectively, is formatted as follows (parts of the query path are omitted for brevity):
+When the remote fingerprint database is queried over the network the parameters for the fingerprint query are provided in the request URL's query parameters. For example, a query to fetch a fingerprint corpus that consists of fingerprints whose first sample's peak count and weighted hue average range from 3 to 5 and 68 to 78, respectively, is formatted as follows (parts of the request URL are omitted for brevity):
 
 \begin{itemize}[label=]
-	\item /.../\_view/find\_by\_peak\_count\_and\_hue?startkey=[3,68]\&endkey\=[5,78]
+	\item \small  /.../\_view/find\_by\_peak\_count\_and\_hue?startkey=[3,68]\&endkey\=[5,78]
 \end{itemize}
 
-\noindent PouchDB also appends a pseudo-random number (\emph{nonce}) to the request query string to protect the client from replay attacks.
+\noindent PouchDB also appends a pseudo-random number (\emph{nonce}) to the query string to protect the client from replay attacks.
 
-If the retrieved corpus includes a match, the ID of the matched fingerprint (\emph{fid}) is sent to the application server to fetch the corresponding product. The application server uses the \emph{fid} to query the fingerprint metadata database to get the correct product ID (\emph{pid}), which it then uses to retrieve the related product information from the products database. The product information of a successfully matched fingerprint is persisted locally as \emph{trace history} using localForage. If the application server is unavailable or the user is offline when a product is queried for, the application displays a dummy product and schedules a product sync to occur when the application is launched the next time.
+If the retrieved corpus includes a match, the ID of the matched fingerprint (\emph{fid}) is sent to the application server to fetch the corresponding product. The application server uses the \emph{fid} to query the fingerprint metadata database for the associated product ID (\emph{pid}), which it then uses to retrieve the correct product from the products database. The product information of a successfully matched fingerprint is persisted locally as \emph{trace history} using localForage. If the application server is unavailable or the user is offline when a product is queried for, the application displays a dummy product and schedules the product information to be synced when the application is launched the next time.
 
-Figure \ref{figure:application-database-flow} provides a summary of the storage architecture and the communication flows between the application, the application server and the DBMS.
+Figure \ref{figure:application-database-flow} provides a summary of the storage architecture and the communication scenarios between the application, the application server and the DBMS.
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/application_database_flow}
