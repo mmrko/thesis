@@ -200,39 +200,38 @@ The Hungarian algorithm does not, however, provide a solution for the \emph{unba
 
 \noindent The Hungarian algorithm used by the similarity matching algorithm is based on a 3rd party JavaScript implementation \cite{munkres-js}.
 
-To account for an edge case where a candidate fingerprint sample $n$ includes no peaks -- and thus, no peak pairs would be found to compute $P_{hue}$ and $P_{int}$ -- an additional penalty metric $P_c$ is applied:
+To account for an edge case where a (subject/candidate) fingerprint sample $n$ includes no peaks -- and thus, no peak pairs would be found to compute $P_{hue}$ and $P_{int}$ for that sample -- an additional penalty metric $P_c$ is applied:
 
 \begin{equation}
 \label{equation:similarity-metric-no-peaks}
-	P_c = w_c \cdot \Delta{c_n} \cdot d_c^n
+P_c = \sum \limits_{n=0} { w_c \cdot \Delta{c_n} \cdot d_c^n }, \qquad
+\Delta{c_n} = \begin{cases}
+|a_n - b_n| &\text{if $a_n \cdot b_n = 0$}\\
+0 &\text{otherwise}
+\end{cases}
 \end{equation}
 
 Where:
 \begin{itemize}[label=]
 	\setlength\itemsep{0.10em}
-    \item $P_c$: metric (or penalty) for peak count delta
     \item $n$: sample of the fingerprint
     \item $w_c$: weight for peak count delta
-    \item $\Delta{c_n}$: peak count delta between two fingerprints for sample $n$
+    \item $\Delta{c_n}$: peak count delta between fingerprints $a$ and $b$ for sample $n$
     \item $d_c$: damping coefficient for peak count delta
 \end{itemize}
 
 \noindent Given Equation \ref{equation:similarity-metric} for metrics $P_{hue}$ and $P_{int}$ and Equation \ref{equation:similarity-metric-no-peaks} for the additional penalty metric $P_c$ the total penalty $P$ for a candidate fingerprint can be expressed as follows:
 
 \begin{equation}
-	P =
-	\begin{cases}
-	P_{hue} + P_{int}, & \text{if } P_{hue} + P_{int} \neq 0 \\
-	P_{c}, & \text{otherwise}
-	\end{cases}
+	P = P_{hue} + P_{int} + P_{c}
 \end{equation}
 \\
 Once the candidate fingerprints have been ranked the best matches are selected based on a naive criterion: candidate(s) with the lowest penalty $P$ as well as candidates within a 5\% margin of $P$ qualify.
 
-If the algorithm finds a matching fingerprint the application fetches and displays the user the corresponding product. In case multiple matches are found and the result of the matching process is therefore inconclusive, the user is displayed a list of products and asked to verify whether or not it includes the traced product. If not, the product can be deemed fake. Links between fingerprints and products are stored in and retrieved from a database. The storage architecture and related security is discussed in the next chapter. The fingerprint matching process is summarized in Figure \ref{figure:matching-process}.
+If the algorithm finds a matching fingerprint the application fetches and displays the user the corresponding product. In case multiple matches are found and the result of the matching process is therefore inconclusive, the user is displayed a list of products and asked to verify whether or not it includes the traced product -- if not, the product is likely to be fake. Links between fingerprints and products are stored in and retrieved from a database. The storage architecture and related security is discussed in the next chapter. The fingerprint matching process is summarized in Figure \ref{figure:matching-process}.
 
 \begin{figure}[h]
-\centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
+\centering \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
 \caption{The fingerprint matching process.\label{figure:matching-process}}
 \end{figure}
 
