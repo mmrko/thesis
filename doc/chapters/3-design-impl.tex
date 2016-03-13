@@ -276,11 +276,12 @@ Once the user has been successfully authenticated with the DBMS the fingerprints
 
 During the fingerprint matching process the fingerprint database is queried for a corpus -- either over network or locally depending on network availability. As discussed earlier in Chapter \ref{chapter:fingerprint-matching}, the query is specified in terms of peak count and weighted hue average of the fingerprint's first sample ($n=0$). Moreover, the values for the query can be provided as a range. To allow fingerprints to be queried this way directly a separate view of the data -- an index keyed by the peak count and the weighted hue average of the first sample -- needs to be constructed. With CouchDB this can be achieved using a \emph{design document}, which allows documents in a database to be map-reduced into a separate view. The custom design document used by the CouchDB instance to construct a new fingerprint view (named \emph{find\_by\_peak\_count}) is provided in Appendix \ref{appendix:fingerprint-design-doc} for reference.
 
-When the remote fingerprint database is queried over the network the parameters for the fingerprint query are provided in the request URL's query parameters. For example, a query to fetch a fingerprint corpus that consists of fingerprints whose first sample's peak count and weighted hue average range from 3 to 5 and 68 to 78, respectively, is formatted as follows (parts of the request URL are omitted for brevity):
+When the remote fingerprint database is queried over the network the parameters for the fingerprint query are provided in the request URL's query parameters. For example, a query to fetch a fingerprint corpus that consists of fingerprints whose first sample's peak count and weighted hue average range from 3 to 5 and 68 to 78, respectively, is formatted as follows (the beginning of the request URL is omitted for brevity):\\
 
-\begin{itemize}[label=]
-	\item \small  /.../\_view/find\_by\_peak\_count\_and\_hue?startkey=[3,68]\&endkey\=[5,78]
-\end{itemize}
+% \begin{itemize}[label=]
+\colorbox{gray!10} {\quad \small .../\_view/find\_by\_peak\_count\_and\_hue?startkey=[3,68]\&endkey\=[5,78] \quad} \\
+% \end{itemize}
+
 
 \noindent PouchDB also appends a pseudo-random number (\emph{nonce}) to the query string to protect the client from replay attacks.
 
