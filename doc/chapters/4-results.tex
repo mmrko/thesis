@@ -24,39 +24,49 @@
 
 \begin{document}
 
-\chapter{Results}
-\label{chapter:results}
+\chapter{Experiment}
+\label{chapter:experiment}
 
-
-
-
-
-Run similarity matrix through affinity propagation (R's APCluster)
+\section{Setup}
 
 The development of LumiNova resulted from the demands placed upon Nemoto  Co. Ltd.,  by the Japanese watch and clock manufacturers which did not want to use radioactive luminous dials in their products
-Bhattacharyya distance
+
+capture presets
+
+MFD
+Samsung S4 (4.4.2, aPI level 19)
+Lumia 1020 (Windows Phone 8.1)
+Yongnuo YN565EX (5600K temp)
+
 - binary thresholding (threshold value 40 => brightness less than 15\%)
 - (peak vallye delta 0.2)
-Samsung S4 (4.4.2, API level 19)
-Lumia 1020
-Yongnuo YN565EX (5600K temp)
-MFD
-SP <-> O (similar)
-dimensionality reduction
+similarity parameters (damping...)
 
-Matches against xxx\_r vs the b sample points to the fact that the taggant creation process plays a big role...
+as show in Figure \ref{} Yleensa emittoituvan valon tie onkin 90:en kulmassa viritysvalon tuloreittiin verrattuna.120,121
 
-Fingerprint method: harsh misses (histogram method more stable)
+Erilaisilla hiloilla, suodattimilla, raoilla ja peileilla on ehdottoman tarkea tehtavansa riittavan resoluution aikaansaamiseksi ja jotta saadaan valituksi tarkka viritysaallonpituus ja saadaan minimoiduksi sironta ja taustaluminesenssi. aikaerotteisen maarityksen etuna on se, etta viritysvalo ehtii sammua kokonaan ja sirontailmioiden aiheuttaman taustan vaikutus poistuu. Pitka elinika mahdollistaa myos edullisen ja varsin yksinkertaisen laitteiston kayton.122,124
 
+\section{Results}
+
+Results storyline:
+
+- Clusters to indicate pipeline accuracy on a broad level (why aP clustering?)
+- Margin 10, 15, 25 \& 50\% to indicate histogram > fingerprint method (=> focus on histogram method)
+- Evaluate the effect of capture (/analysis) params
+  - ignore resolution, look at interval?
+  - find anomalies
+  - visualize which taggants perform the best?
+- present artefacts
+
+comparison vs. histogram approach
 Various possible configurations (permutations), vast amount of data. Thus, top down approach. Broad level results -> some peculiar cases
+Run similarity matrix through affinity propagation (R's aPCluster) / dimensionality reduction
+Bhattacharyya distance (why?)
 
 We want clusters that
 - dont include too many/few taggants (preferably 3-6)
 - are equal in value (y-axis)
 - are of the same/similar color
 
-\ref{equation:fingerprint-penalty}
-comparison vs. histogram approach
-similarity parameters (damping...)
 
 \end{document}
