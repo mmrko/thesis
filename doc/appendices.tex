@@ -7,7 +7,7 @@
 \chapter{Camera Module}
 \label{appendix:camera-module}
 
-The camera module photographed from the top and side. Cardboard is used to encase the taggant and cover it from ambient lighting. An additional piece of cardboard is used to set the smartphone to be at a fixed distance (of lens MFD) from the taggant allowing more accurate focus.
+The camera module photographed from the top and side. Cardboard is used to encase the taggant and cover it from ambient lighting. an additional piece of cardboard is used to set the smartphone to be at a fixed distance (of lens MFD) from the taggant allowing more accurate focus.
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/camera_module-actual.jpg}
@@ -19,7 +19,7 @@ The camera module photographed from the top and side. Cardboard is used to encas
 \chapter{Microcontroller Schematics}
 \label{appendix:camera-module-schematics}
 
-The schematics for the external camera module featuring an Arduino Mega 2560 microcontroller. An optocoupler (4N35) is used to safely isolate the external light source from the rest of the circuit.
+The schematics for the external camera module featuring an Arduino Mega 2560 microcontroller. an optocoupler (4N35) is used to safely isolate the external light source from the rest of the circuit.
 
 \begin{figure}[h]
 \centering \includegraphics[width=12cm]{images/design_implementation/arduino_schematics.pdf}
@@ -111,7 +111,7 @@ For each LumiNova\textregistered\ pigment (luminophore) a stock solution was cre
 \end{table}
 \vspace{-2.75em}
 \begin{table}[ht]
-  \caption{The pigment proportions for each taggant. The numbers indicate how many $50\mu l$ of the corresponding stock solution would be used in the intermediary solution used for creating the taggant.}
+  \caption{The pigment proportions for each taggant. The numbers indicate how many $50\mu l$ of the corresponding stock solution would be pipeted into the intermediary solution used for creating the taggant.}
 
   \begin{center}
   \begin{tabular}{| m{1.75cm} | c | c | c |}
@@ -132,6 +132,53 @@ For each LumiNova\textregistered\ pigment (luminophore) a stock solution was cre
     24VP  & 4 & 2 & -- \\
     \hline
     24SV & -- & 4 & 2 \\
+    \hline
+  \end{tabular}
+  \end{center}
+\end{table}
+
+\chapter{Capture Presets}
+\label{appendix:capture-presets}
+
+Nine different capture presets were used to capture the taggants. The number of frames, delay, White Balance and ISO were given a fixed value. For a description of the parameters listed below the reader is referred to Table \ref{table:camera-parameters}.
+
+\begin{table}[ht]
+  \caption{The capture presets and corresponding parameter values. Each row represents a preset.}
+
+  \begin{center}
+  \begin{tabular}{| c | c | c | c | c |}
+    \hline
+    \textbf{Preset} & \textbf{Focus Distance} & \textbf{Torch} & \textbf{Resolution (px)} & \textbf{Interval (ms)} \\ \hline
+    $an_{200}$ & Macro & No & $1280\times720$ & 200 \\
+    \hline
+    $an_{400}$ & Macro & No & $1280\times720$ & 400 \\
+    \hline
+    $an_{600}$ & Macro & No & $1280\times720$ & 600 \\
+    \hline
+    $an_{200}^r$ & Macro & No & $1920\times1080$ & 200 \\
+    \hline
+    $an_{400}^r$ & Macro & No & $1920\times1080$ & 400 \\
+    \hline
+    $an_{600}^r$ & Macro & No & $1920\times1080$ & 600 \\
+    \hline
+    $wp_{200}$ & Fixed minimum & Yes & $1280\times720$ & 200 \\
+    \hline
+    $wp_{400}$ & Fixed minimum & Yes & $1280\times720$ & 400 \\
+    \hline
+    $wp_{600}$ & Fixed minimum & Yes & $1280\times720$ & 600 \\
+    \hline
+  \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}[ht]
+  \caption{Fixed camera parameters}
+
+  \begin{center}
+  \begin{tabular}{| c | c | c | c |}
+    \hline
+    \textbf{Frames}  & \textbf{Delay (ms)} & \textbf{White Balance} & \textbf{ISO} \\ \hline
+    5 & 250 & Daylight & Auto \\
     \hline
   \end{tabular}
   \end{center}
