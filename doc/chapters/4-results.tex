@@ -27,26 +27,25 @@
 \chapter{Experiment}
 \label{chapter:experiment}
 
+The purpose of the experiment was to investigate the feasibility and performance (precision) of photoluminescence-based product authentication using the fingerprint method described in the previous chapter. Additionally, another set of results was gathered by replacing the fingerprint analysis and matching steps with a more computationally expensive histogram comparison approach (discussed briefly in more detail in Chapter \ref{chapter:results}). The following Chapter \ref{chapter:setup} introduces the luminophores, the hardware and the various capture, analysis and matching parameters used in the experiment. The results for both the fingerprint and the histogram method are summarized and compared in Chapter \ref{chapter:results}.
+
 \section{Setup}
+\label{chapter:setup}
 
-The development of LumiNova resulted from the demands placed upon Nemoto  Co. Ltd.,  by the Japanese watch and clock manufacturers which did not want to use radioactive luminous dials in their products
+The luminophores used in the experiment were LumiNova\textregistered\ red (O), green (G) and blue (DB) pigments, which were diluted into a stock solution and pipeted onto a blank white carton to form eight unique taggants. For each solution two samples (A and a replicate sample B) were pipeted, so a total of 16 different taggants were prepared for the expirment. The amount of phosphor used for creating each stock solution is listed in Appendix \ref{appendix:taggants}. For information about the chemical properties of the LumiNova\textregistered\ pigments the reader is referred to \cite{luminova}.
 
-capture presets
+Samsung S4 (version 4.4.2) and Lumia 1020 (version WP8.1) were used to capture the taggants. The MFD of the cameras were determined through empirical testing to be around 10cm and 15cm, respectively. The camera module was adjusted accordingly to ensure that no image blur would be introduced. As depicted in Figure \ref{figure:camera_module} the light source was positioned perpendicular to the taggant as per the common convention in fluorescense spectoscopy \cite{spectroscopy-principles}. Yongnuo YN565EX\footnote{Yongnuo YN565EX User Manual: \url{http://www.yongnuo.com.cn/usermanual/pdf/USER_MANUAL_YN565EX_EN.pdf}} external camera flash was used as the light source. The power and zoom level of the flash were set to 1/32 and 24mm, respectively. The zoom level was set based on what was the widest supported zoom level by the flash. It was assumed that the taggant would be more suspectible to uneven exposure on higher zoom levels due to a more concentrated burst of light. The power level of 1/32 was selected by observing which would be the highest level, at which the captured frames would no longer get overexposed.
 
-MFD
-Samsung S4 (4.4.2, aPI level 19)
-Lumia 1020 (Windows Phone 8.1)
-Yongnuo YN565EX (5600K temp)
+
+4 Capture presets (capture params)
+5 Analysis \& matching parameters
 
 - binary thresholding (threshold value 40 => brightness less than 15\%)
 - (peak vallye delta 0.2)
-similarity parameters (damping...)
-
-as show in Figure \ref{} Yleensa emittoituvan valon tie onkin 90:en kulmassa viritysvalon tuloreittiin verrattuna.120,121
-
-Erilaisilla hiloilla, suodattimilla, raoilla ja peileilla on ehdottoman tarkea tehtavansa riittavan resoluution aikaansaamiseksi ja jotta saadaan valituksi tarkka viritysaallonpituus ja saadaan minimoiduksi sironta ja taustaluminesenssi. aikaerotteisen maarityksen etuna on se, etta viritysvalo ehtii sammua kokonaan ja sirontailmioiden aiheuttaman taustan vaikutus poistuu. Pitka elinika mahdollistaa myos edullisen ja varsin yksinkertaisen laitteiston kayton.122,124
+- similarity parameters (damping...)
 
 \section{Results}
+\label{chapter:results}
 
 good match: an\_600/24SPa, an\_600\_r/24VPb
 
