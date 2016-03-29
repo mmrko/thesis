@@ -226,9 +226,9 @@ Where:
 	P = P_{hue} + P_{int} + P_{c}
 \end{equation}
 \\
-Once the candidate fingerprints have been ranked the best matches are selected based on a naive criterion: candidate(s) with the lowest penalty $P$ as well as candidates within a 10\% margin of $P$ qualify.
+Once the candidate fingerprints have been ranked the best matches are selected based on two boundary conditions: the top four candidates that are within a 75\% margin of the best candidate qualify. The values for the boundary conditions are derived from the experiment data analyzed in Chapter \ref{chapter:results}.
 
-If the algorithm finds a matching fingerprint the application fetches and displays the user the corresponding product. In case multiple matches are found and the result of the matching process is therefore inconclusive, the user is displayed a list of products and asked to verify whether or not it includes the traced product -- if not, the product is likely to be fake. Links between fingerprints and products are stored in and retrieved from a database. The storage architecture and related security is discussed in the next chapter. The fingerprint matching process is summarized in Figure \ref{figure:matching-process}.
+If the algorithm finds a matching fingerprint the application fetches the user the corresponding product for display. In case multiple matches are found and the result of the matching process is therefore \emph{inconclusive}, the user is displayed a list of products and asked to verify whether or not it includes the traced product -- if not, the product is deemed fake. Links between fingerprints and products are stored in and retrieved from a database. The storage architecture and related security is discussed in the next chapter. The fingerprint matching process is summarized in Figure \ref{figure:matching-process}.
 
 \begin{figure}[h]
 \centering \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/matching_process}
