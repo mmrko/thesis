@@ -185,4 +185,41 @@ Nine different capture presets were used to capture the taggants: six presets fo
   \end{center}
 \end{table}
 
+\chapter{Fingerprint and Histogram Method Parameters}
+\label{appendix:method-parameters}
+
+\begin{table}[ht]
+  \caption{Parameter values used for the fingerprint and histogram methods.} \label{table:method-parameters}
+  \vspace{-3mm}
+  \begin{center}
+  \begin{tabular}{| m{2.5cm} | >{\centering\arraybackslash}p{2.35cm} | m{8.35cm} |}
+    \multicolumn{3}{l}{\textbf{Fingerprint method}} \\
+    \hline
+    \textbf{Parameter}        & \textbf{Value} & \textbf{Description} \\
+    \hline
+    \small{Binary\newline threshold}          & 15\% & \small{Filter dark pixels (brightness $< 15\%$)} \\
+    \hline
+    \small{Hue histogram bin size}       & 180 & \small{No. of bins a frame's hues should be divided into when computing its histogram} \\
+    \hline
+    \small{Persistance threshold}     & 20\% & \small{Minimum delta (on y-axis) required between a peak-valley pair to consider peak a peak} \\
+    \hline
+    $w_{hue}$/$w_{int}$/$w_c$ & 1 / 0.25 / 20    & \small{Penalty weight (significance of the penalty)} \\
+    \hline
+    $d_{hue}$/$d_{int}$/$d_c$ & 75\%             & \small{Damping coefficient (significance per frame)} \\
+    \hline
+    $t_{hue}$/$t_{int}$         & 2 / 5\%          & \small{Delta threshold (after which penalty is applied)} \\
+    \hline
+    \multicolumn{3}{l}{\vspace{-3mm}} \\
+    \multicolumn{3}{l}{\textbf{Histogram method}} \\
+    \hline
+    \textbf{Parameter}        & \textbf{Value} & \textbf{Description} \\
+    \hline
+    \small{HS-histogram bin size}  & [180, 60]   & \small{No. of bins a frame's hues (H) \& values (V) should be divided into when computing its histogram} \\
+    \hline
+    \small{Comparison method} & \vspace{-6mm}\small{CV\_COMP\_ HELLINGER} & \small{Histogram comparison method to use (an OpenCV constant)} \\
+    \hline
+  \end{tabular}
+  \end{center}
+\end{table}
+
 \end{document}
