@@ -63,20 +63,37 @@ For both methods the computed similarity scores were consolidated into a $n\time
 
 The fingerprints were clustered using affinity propagation (AP) and its implementation in R\footnote{\url{http://cran.at.r-project.org/web/packages/apcluster}}. The benefit of AP clustering is that no apriori knowledge of the number of clusters to be computed is required. It is best suited for small to medium-sized datasets as it is computationally heavier than most other clustering algorithms. The similarity matrices were processed by the algorithm using the default values for all parameters except for the \emph{q} parameter (sample quantile threshold), which was set to $q=0.95$. The sample quantile threshold ($0-1$) can be used to adjust how aggressively the algorithm clusters the data -- the higher the value, the more clusters the algorithm tries to find. For further information about AP clustering and its R implementation the reader is referred to \cite{affinity_propagation}.
 
-To gain more insight into how well the methods rank the fingerprints -- that is, match fingerprints' with their respective siblings -- a pair of \emph{boundary conditions} needs to be established. Based on the boundary conditions candidate fingerprints are either qualified or disqualified. The first boundary condition is the maximum number of fingerprints to qualify, $B_{count}$. However, $B_{count}$ alone does not suffice. For example, the top five candidates for a fingerprint might well be very far apart of each other in terms of similarity (score). Therefore, to evaluate how similar the best candidates are they need to constrained by a margin, $B_{margin}$. For example, given a margin of 30\% only candidates whose similarity score is within 30\% of the score of the best candidate qualify. The two boundary conditions, $B_{count}$ and $B_{margin}$, provide an unambiguous way to determine, which candidate fingerprints should be considered a match.
+To gain more insight into how well the methods rank the fingerprints -- that is, match fingerprints' with their respective siblings -- a pair of \emph{boundary conditions} needs to be established. Based on the boundary conditions candidate fingerprints are either qualified or disqualified. The first boundary condition is the maximum number of candidate fingerprints to qualify, $B_{count}$. However, $B_{count}$ alone does not suffice. For example, the top five candidates for a fingerprint might well be very far apart of each other in terms of similarity (score). Therefore, to evaluate how similar the best candidates are, they need to be further constrained by a margin, $B_{margin}$. For example, given a margin of 30\% only candidates whose similarity score is within a 30\% margin of the score of the best candidate qualify. Together the two boundary conditions, $B_{count}$ and $B_{margin}$, provide an unambiguous way to determine, which candidate fingerprints should be considered a match.
 
-\clearpage
+Figures \ref{figure:match_precision_fingerprint} and \ref{figure:match_precision_histogram} present the \emph{success rate} and \emph{precision} of the fingerprint and histogram methods as a function of $B_{margin}$ for different $B_{count}$. Success rate describes the ratio of the corpus fingerprints, for which the matches found included at least one sibling fingerprint. The ratio of sibling fingerprints among the matches is given by precision. For example, when the top six candidates ($B_{count}=6$) that are within a 75\% margin ($B_{margin}=0.75$) of the best match are qualified, approximately $59\%$ of the cases included a valid match (a sibling fingerprint), and in each case approximately $53\%$ of the matches were relevant (siblings).
+
+- count 1
+- margin behaviour
+
+- Evaluate the effect of capture (/analysis) params
+  - ignore resolution, look at interval?
+  - find anomalies
+  - visualize which taggants perform the best, and why? (good match: an\_600/24SPa, an\_600\_r/24VPb)
+
+- present artefacts
 
 \begin{figure}[h]
 \centering \includegraphics[page=1,width=\textwidth,height=\textheight,keepaspectratio=true]{images/experiment/match_precision}
+\caption{}
+\label{figure:match_precision_fingerprint}
 \end{figure}
+
 \begin{figure}[h]
 \centering \includegraphics[page=2,width=\textwidth,height=\textheight,keepaspectratio=true]{images/experiment/match_precision}
+\caption{}
+\label{figure:match_precision_histogram}
 \end{figure}
 
+\clearpage
 
-\begin{table}[h]
+\begin{table}[b]
   \caption{Statistics per method when $B_{count} = 1$}
+  \label{table:match_precision_count1}
 
   \begin{center}
   \begin{tabular}{| c | c | c |}
@@ -97,20 +114,17 @@ To gain more insight into how well the methods rank the fingerprints -- that is,
   \end{center}
 \end{table}
 
-\begin{figure}[h]
-\centering \includegraphics[page=3,width=0.8\textwidth,height=\textheight,keepaspectratio=true]{images/experiment/match_precision}
+\begin{figure}[t]
+\centering \includegraphics[page=3,width=\textwidth,height=\textheight,keepaspectratio=true]{images/experiment/match_precision}
+\caption{}
+\label{figure:match_precision_margin}
 \end{figure}
+
 \begin{figure}[h]
-
-- Evaluate the effect of capture (/analysis) params
-  - ignore resolution, look at interval?
-  - find anomalies
-  - visualize which taggants perform the best, and why? (good match: an\_600/24SPa, an\_600\_r/24VPb)
-
 \centering \includegraphics[page=7,width=\textwidth,height=\textheight,keepaspectratio=true]{images/experiment/tags_configs}
+\caption{}
+\label{figure:tags_presets}
 \end{figure}
-
-- present artefacts
 
 
 \end{document}
