@@ -1,66 +1,5 @@
 % !TEX root = ../thesis.tex
 
-\documentclass[thesis.tex]{subfiles}
-
-\begin{document}
-
-\chapter{Discussion}
-\label{chapter:discussion}
-
-SP <-> O (similar)
-an\_400\_r/13SVa vs. an\_400\_r/13SVb
-
-Matches against xxx\_r vs the b sample points to the fact that the taggant creation process plays a big role...
-wp\_600/13VPb: matches everything with fingerprint method, only a few with histogram (=> anomaly)
-Increase of margin from 10\% to 15\% had minimal impact for both approaches
-
-Fingerprint method: harsh misses (histogram method more stable)
-
-Afterglow brightness is also proportional to the intensity of UV contained in the excitation light.
-
-CAPTURE PARAMS ... discuss!! (why macro, why fixed...)
-
-which taggants perform the best, and why? (good match: an\_600/24SPa, an\_600\_r/24VPb)
-
-The development of LumiNova resulted from the demands placed upon Nemoto  Co. Ltd.,  by the Japanese watch and clock manufacturers which did not want to use radioactive luminous dials in their products
-
-- structural similarity
-- clipping (https://en.wikipedia.org/wiki/YCbCr)
-- idempotence of the luminphores (photobleach)
-- analogies to existing solutions (InkSure \& CryptoGlyph)
-- security: get hold of the device or man-in-the-middle (metadata works as a layer of indirection)
-- decay time Android 200-250ms because of led flash vs. WP's Xenon flash
-phosphorescence vs. fluorescence (infeasible coz time)
-- high res images could be used as camera APIs improve
-- peak method performs poorly against the histogram approach for single coloured luminophors
-- more novel selection criterion
-
-Daylight WB because Yongnuo YN565EX (5600K temp) \& least compensation
-
-- change management / how to handle updates \& different devices?
-
-using a predefined username and password (easily extendable to a real user auth)
-
-Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html, http://pouchdb.com/guides/replication.html)
-Schema flexibility (NoSQL) SYNC!
-Traditional Cookie-Based Auth (could be extended to Modern Token-Based Auth such as JWT)
-CouchDB uses a traditional cookie based authentication scheme, and as such, applications can be vulnerable to CSRF attacks. However, the application has no CSRF attacks vectors as it only reads from the DBMS and the application server
-
-Erilaisilla hiloilla, suodattimilla, raoilla ja peileilla on ehdottoman tarkea tehtavansa riittavan resoluution aikaansaamiseksi ja jotta saadaan valituksi tarkka viritysaallonpituus ja saadaan minimoiduksi sironta ja taustaluminesenssi. aikaerotteisen maarityksen etuna on se, etta viritysvalo ehtii sammua kokonaan ja sirontailmioiden aiheuttaman taustan vaikutus poistuu. Pitka elinika mahdollistaa myos edullisen ja varsin yksinkertaisen laitteiston kayton.122,124
-
-Focus distance and torch were adjusted as per the platform: S4 does not support setting focus to a fixed minimum distance, and thus, macro focusing was used to guarantee the camera would be able to focus on the taggant. However this
-
-TODO:
-
-color calibration (requires use of RAW data)
-device detection (automatic configuration)
-iOS support (ios with c++? On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.)
-- binary thresholding (naive but simple and fits the context)
-- Algorithmic Robustness
-- Performance Analysis
-- Problem Space and Challenges
-https://publications.theseus.fi/bitstream/handle/10024/90986/Bing%20Dai-thesis.pdf
-
 % Tutkimustuloksien merkitystä on aina syytä arvioida ja tarkastella
 % kriittisesti. Tässä osassa on syytä myäs arvioida tutkimustulosten luotettavuutta.
 
@@ -69,6 +8,82 @@ https://publications.theseus.fi/bitstream/handle/10024/90986/Bing%20Dai-thesis.p
 % is a good place to discuss your thesis as a whole and to show your professor
 % that you have really understood some non-trivial aspects of the methods you
 % used. . .
+
+\documentclass[thesis.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Discussion}
+\label{chapter:discussion}
+
+CAPTURE PARAMS ... discuss!! (why macro, why fixed...)
+- decay time Android 200-250ms because of led flash vs. WP's Xenon flash
+phosphorescence vs. fluorescence (infeasible coz time)
+- Daylight WB because Yongnuo YN565EX (5600K temp) \& least compensation
+- Focus distance and torch were adjusted as per the platform: S4 does not support setting focus to a fixed minimum distance, and thus, macro focusing was used to guarantee the camera would be able to focus on the taggant. However this
+- The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
+- Poor API support, no fine grained control over the camera (ISO, shutter speed)
+
+which taggants perform the best, and why?
+findings
+SP <-> O (similar)
+an\_400\_r/13SVa vs. an\_400\_r/13SVb
+good match: an\_600/24SPa, an\_600\_r/24VPb
+wp\_600/13VPb: matches everything with fingerprint method, only a few with histogram (=> anomaly)
+
+
+
+Results:
+Matches against xxx\_r vs the b sample points to the fact that the taggant creation process plays a big role...
+Margin increase => minimal impact for both approaches
+Fingerprint method: more misses (histogram method more stable)
+- peak method performs poorly against the histogram approach for single coloured luminophors
+\ref{equation:fingerprint-penalty} - shortcoming of the fingerprint method?
+
+Challenges:
+- clipping (https://en.wikipedia.org/wiki/YCbCr)
+- idempotence of the luminphores (photobleach)
+
+Security
+- get hold of the device or man-in-the-middle (metadata works as a layer of indirection)
+using a predefined username and password (easily extendable to a real user auth)
+- CouchDB uses a traditional cookie based authentication scheme, and as such, applications can be vulnerable to CSRF attacks. However, the application has no CSRF attacks vectors as it the DBMS and the application server is read-only
+Traditional Cookie-Based Auth (could be extended to Modern Token-Based Auth such as JWT)
+
+Luminofori:
+- Afterglow brightness is also proportional to the intensity of UV contained in the excitation light.
+- The development of LumiNova resulted from the demands placed upon Nemoto  Co. Ltd.,  by the Japanese watch and clock manufacturers which did not want to use radioactive luminous dials in their products
+- Erilaisilla hiloilla, suodattimilla, raoilla ja peileilla on ehdottoman tarkea tehtavansa riittavan resoluution aikaansaamiseksi ja jotta saadaan valituksi tarkka viritysaallonpituus ja saadaan minimoiduksi sironta ja taustaluminesenssi. aikaerotteisen maarityksen etuna on se, etta viritysvalo ehtii sammua kokonaan ja sirontailmioiden aiheuttaman taustan vaikutus poistuu. Pitka elinika mahdollistaa myos edullisen ja varsin yksinkertaisen laitteiston kayton.122,124
+
+Web vs. Native:
+- advantage of webview based approach: change management / how to handle updates \& different devices?
+Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html, http://pouchdb.com/guides/replication.html)
+  - Schema flexibility (NoSQL) SYNC!
+
+Ways to improve:
+
+\begin{comment}
+Color calibration
+
+There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
+
+RGB is a device-dependent color model: different devices detect or reproduce a given RGB value differently, since the color elements (such as phosphors or dyes) and their response to the individual R, G, and B levels vary from manufacturer to manufacturer, or even in the same device over time. Thus an RGB value does not define the same color across devices without some kind of color management.
+
+\url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
+
+\url{http://www.cs.unc.edu/techreports/04-012.pdf}
+\end{comment}
+
+- thus it be better to add some structural \& spatial similarity semantics (- more novel selection criterion) - analogies to existing solutions (InkSure \& CryptoGlyph)
+  - alternative approach: colored dots form a discrete pattern, no grating necessary
+- high res images could be used as camera APIs improve
+- binary thresholding (naive but simple and fits the context)
+- color calibration (requires use of RAW data)
+  - CCD > CMOS koska parempi herkkyys
+- device detection (automatic configuration, database per phone model)
+- iOS support (ios with c++? On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.)
+- more efficient matching if done server-side (leverage histogram data directly?)
+  - easy to switch over because the offline-first approach taken
 
 % https://www.cs.unc.edu/~welch/media/pdf/Ilie2005_Calib.pdf
 % Unfortunately most cameras—even of the same type—
@@ -83,38 +98,5 @@ https://publications.theseus.fi/bitstream/handle/10024/90986/Bing%20Dai-thesis.p
 % from the reconstruction of a full-resolution color image
 % from a half-resolution Bayer pattern image
 
-The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
-
-- alternative approach: colored dots form a discrete pattern, no grating necessary
-- camera parameter configuration to ensure scalability
-
-- a fast background-independent retrieval strategy for color image databases
-- definitely feasible using sophisticated algorithms. Actual challenges: (integrated) normalized light source, luminophors
-- more efficient matching if done server-side (leverage histogram data directly?)
-No offical API, no fine grained control over the camera (ISO, shutter speed)
-JavaCPP, Xamarin
-Developer convenience
-Future work (isot kokonaisuudet!)
-NFC
-- availability of NFC-enabled smartphones (minor)
-- unit cost of tags
-
-\ref{equation:fingerprint-penalty} - shortcoming of the fingerprint method?
-
-CCD > CMOS koska parempi herkkyys
-
-kuva vs. video
-
-\begin{comment}
-Color calibration
-
-There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
-
-RGB is a device-dependent color model: different devices detect or reproduce a given RGB value differently, since the color elements (such as phosphors or dyes) and their response to the individual R, G, and B levels vary from manufacturer to manufacturer, or even in the same device over time. Thus an RGB value does not define the same color across devices without some kind of color management.
-
-\url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
-
-\url{http://www.cs.unc.edu/techreports/04-012.pdf}
-\end{comment}
 
 \end{document}
