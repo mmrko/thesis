@@ -289,6 +289,8 @@ If the retrieved corpus includes a match, the ID of the matched fingerprint (\em
 
 Figure \ref{figure:application-database-flow} provides a summary of the storage architecture and the communication scenarios between the application, the application server and the DBMS.
 
+\enlargethispage{10\baselineskip}
+
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/application_database_flow}
 \caption{The application interacts with a Node.js application server and a RESTful CouchDB instance during application initialization and the fingerprint matching process. Fingerprints are synced to the device storage for offline usage.\label{figure:application-database-flow}}
