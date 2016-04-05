@@ -16,7 +16,7 @@
 \chapter{Discussion}
 \label{chapter:discussion}
 
-This chapter discusses the design decisions taken during the implementation of the application and the findings made based on the the raw result data and the parts of it summarized in \ref{chapter:results}. Last, challenges faced during the project and an outline for future research work are presented. Motivation behind some of the design choices mentioned earlier in the writing are not reiterated here, and the interested reader is instead adviced to refer to Chapter \ref{chapter:design-implementation}.
+This chapter discusses the design decisions taken during the implementation of the application and the findings made based on the the raw result data and the parts of it summarized in \ref{chapter:results}. Last, challenges faced during the project and an outline for future research work are presented. Motivation behind some of the design choices mentioned earlier in the writing are not reiterated here, and the interested reader is instead advised to refer to Chapter \ref{chapter:design-implementation} and the related appendices \ref{appendix:camera-module} and \ref{appendix:capture-presets}.
 
 \section{Design Choices}
 
@@ -24,18 +24,23 @@ One of the challenges early on in the project was the capture of a taggant's pho
 
 The smartphone torch light in both the Samsung S4 and Lumia 1020 did not emit the right kind (wavelength) of light to be able to excite the taggants, and thus, an external light source was required. An external light source would also help in normalizing differences between smartphones and the various kinds of wavelengths their torch lights emit. Programmatic control of the light source required a connection to be established between the smartphone and the light source. Cross-modal communication by means of light signals proved to be a straightforward solution. Connecting the two devices via WiFi, Bluetooth or cable would have added unnecessary complexity in terms of the use case.
 
+As one of the goals of the project was to be able to compare results across different smartphones (as per \ref{R1}) differences in the capture method needed to be normalized. For this purpose a set capture presets were defined. The preset values for the \emph{interval} duration were configured based on the taggants. As described in \cite{luminova}, the Luminova\textregistered pigments have a fairly long emission duration. For the smartphone to be able to capture any significant change in the emission the interval also needs to be long. The appropriate intervals of 200, 400 and 600ms were eventually derived empirically.
+
+The number of frames (samples) to capture per fingerprint was fixed at five. It was empirically observed that additional frames would not provide much data due to decreasing Signal-to-noise ratio. Furthermore, capturing more frames would have led to worse experience for the user as the capture and processing times would have gotten longer. Capturing three or four frames could have provided similar results, but as emission peaks could still be detected even after 3000ms for some of the taggants, the frame count was not adjusted. Moreover, it would be trivial to retroactively compute results against four or less frames if necessary.
 
 
-The preset values for the interval duration was configured based on the taggants.
-
-
-CAPTURE PARAMS ... discuss!! (why macro, why fixed...)
-- decay time Android 200-250ms because of led flash vs. WP's Xenon flash
 - Daylight WB because Yongnuo YN565EX (5600K temp) \& least compensation
+
+could not set iso on Android, thus AUTO
+
+- decay time Android 200-250ms because of led flash vs. WP's Xenon flash decay
+
 - Focus distance and torch were adjusted as per the platform: S4 does not support setting focus to a fixed minimum distance, and thus, macro focusing was used to guarantee the camera would be able to focus on the taggant. However this
+
 - The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
-- Poor API support, no fine grained control over the camera (ISO, shutter speed)
+
 - values of analysis and matching param values?
+
 - normalized light source required, cant use builtin doesnt excite
 
 - Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html, http://pouchdb.com/guides/replication.html)
@@ -53,6 +58,8 @@ CAPTURE PARAMS ... discuss!! (why macro, why fixed...)
 
 - wp\_600/13VPb: matches everything with fingerprint method, only a few with histogram (=> anomaly)
 It was observed from the raw data that wp\_600/13VPb matched surprisingly poorly with rest of the corpus. This was due to (persistance threshold, residue afterglow?):
+
+- example of exposure lock behaviour on Android: [some pic]
 
 % /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_600/13VPb/2015-05-06-004852
 vs.
