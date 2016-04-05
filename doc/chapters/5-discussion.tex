@@ -16,7 +16,18 @@
 \chapter{Discussion}
 \label{chapter:discussion}
 
+This chapter discusses the design decisions taken during the implementation of the application and the findings made based on the the raw result data and the parts of it summarized in \ref{chapter:results}. Last, challenges faced during the project and an outline for future research work are presented. Motivation behind some of the design choices mentioned earlier in the writing are not reiterated here, and the interested reader is instead adviced to refer to Chapter \ref{chapter:design-implementation}.
+
 \section{Design Choices}
+
+One of the challenges early on in the project was the capture of a taggant's photoexcitation. A 3D printed version of the camera module had been developed prior the project for demonstration purposes. It provided good isolation from ambient light and even a built-in slot for different diffraction gratings. It however did not include an integrated light source, and taggants were instead excited manually by toggling a UV flashlight (Nightsearcher UV 365). A programmatic control over the light source was required for product authentication purposes. And, as integration of a smartphone and a light source with the existing 3D printed mold proved difficult, a cardboard prototype was implemented, as presented in \ref{chapter:camera-module}.
+
+The smartphone torch light in both the Samsung S4 and Lumia 1020 did not emit the right kind (wavelength) of light to be able to excite the taggants, and thus, an external light source was required. An external light source would also help in normalizing differences between smartphones and the various kinds of wavelengths their torch lights emit. Programmatic control of the light source required a connection to be established between the smartphone and the light source. Cross-modal communication by means of light signals proved to be a straightforward solution. Connecting the two devices via WiFi, Bluetooth or cable would have added unnecessary complexity in terms of the use case.
+
+
+
+The preset values for the interval duration was configured based on the taggants.
+
 
 CAPTURE PARAMS ... discuss!! (why macro, why fixed...)
 - decay time Android 200-250ms because of led flash vs. WP's Xenon flash
