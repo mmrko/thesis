@@ -28,24 +28,21 @@ As one of the goals of the project was to be able to compare results across diff
 
 The number of frames (samples) to capture per fingerprint was fixed at five. It was empirically observed that additional frames would not provide much data due to decreasing Signal-to-noise ratio. Furthermore, capturing more frames would have led to worse experience for the user as the capture and processing times would have gotten longer. Capturing three or four frames could have provided similar results, but as emission peaks could still be detected even after 3000ms for some of the taggants, the frame count was not adjusted. Moreover, it would be trivial to retroactively compute results against four or less frames if necessary.
 
+The camera white balance was set to the Daylight preset value as Android 4.4.2 does not support manual white balance adjustment. The Daylight preset was chosen over other available white balance presets as it typically applies the least compensation and corresponded well with the color temperature (5600K) of the experiment light source (Yongnuo YN565EX). The Daylight preset represents roughly a temperature of 5500-6500K depending on the vendor.
 
-- Daylight WB because Yongnuo YN565EX (5600K temp) \& least compensation
-
-could not set iso on Android, thus AUTO
-
-- decay time Android 200-250ms because of led flash vs. WP's Xenon flash decay
+Other capture parameters set to a fixed value were \emph{delay} and \emph{ISO}. The time to delay the capture of the first frame (after the light source has been triggered) was determined empirically by observing when the focus light of the Samsung S4 would no longer introduce artefacts. An example of the artefact caused by the interference from the focus light is presented Figure \ref{figure:artefacts}. The interference was believed to have been caused by the decay of the led light interfering with the preview feed signal. Lumia 1020 exhibited no such behaviour. The capture ISO was set to \emph{auto} as Android 4.4.2 was unable to lock exposure for the time of the capture when a manual ISO value was used. This was believed to be a bug in the Android camera API when capturing frames from the preview feed. Ideally, a low ISO value of ISO100 would have been used to avoid introducing any unwanted noise to the pipeline.
 
 - Focus distance and torch were adjusted as per the platform: S4 does not support setting focus to a fixed minimum distance, and thus, macro focusing was used to guarantee the camera would be able to focus on the taggant. However this
 
-- The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
-
 - values of analysis and matching param values?
-
-- normalized light source required, cant use builtin doesnt excite
 
 - Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html, http://pouchdb.com/guides/replication.html)
 - Schema flexibility (NoSQL) SYNC!
 
+
+HOW WOULD FINGERPRINT METHOD PERFORM IF
+- BIN SIZE < 180
+- FRAMES: 3 or 4
 
 \section{Findings}
 - which taggants perform the best, and why?
@@ -95,6 +92,8 @@ RGB is a device-dependent color model: different devices detect or reproduce a g
 - thus it be better to add some structural \& spatial similarity semantics (- more novel selection criterion) - analogies to existing solutions (InkSure \& CryptoGlyph)
   - alternative approach: colored dots form a discrete pattern, no grating necessary
 - high res images could be used as camera APIs improve
+% - The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
+
 - YCbCr suffers from clipping (https://en.wikipedia.org/wiki/YCbCr)
 - binary thresholding (naive but simple and fits the context)
 - color calibration (requires use of RAW data)
