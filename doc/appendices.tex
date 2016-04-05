@@ -7,7 +7,7 @@
 \chapter{Camera Module}
 \label{appendix:camera-module}
 
-The camera module photographed from the top and side. Cardboard is used to encase the taggant and cover it from ambient lighting. an additional piece of cardboard is used to set the smartphone to be at a fixed distance (of lens MFD) from the taggant allowing more accurate focus.
+The camera module photographed from the top and side. Cardboard is used to encase the taggant and cover it from ambient lighting. An additional piece of cardboard is used to set the smartphone to be at a fixed distance (of lens MFD) from the taggant allowing more accurate focus.
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/camera_module-actual.jpg}
@@ -19,7 +19,7 @@ The camera module photographed from the top and side. Cardboard is used to encas
 \chapter{Microcontroller Schematics}
 \label{appendix:camera-module-schematics}
 
-The schematics for the external camera module featuring an Arduino Mega 2560 microcontroller. an optocoupler (4N35) is used to safely isolate the external light source from the rest of the circuit.
+The schematics for the external camera module featuring an Arduino Mega 2560 microcontroller. An optocoupler (4N35) is used to safely isolate the external light source from the rest of the circuit.
 
 \begin{figure}[h]
 \centering \includegraphics[width=12cm]{images/design_implementation/arduino_schematics.pdf}
@@ -50,7 +50,7 @@ M=
   \begin{bmatrix}
     P_{11} & P_{12} & P_{13} \\
     P_{21} & P_{22} & 0 \\
-    P_{31} & 0 & 0
+    P_{31} & P_{32} & 0
   \end{bmatrix}
 \]
 \begin{lstlisting}[language=json,firstnumber=1]
@@ -173,7 +173,7 @@ Nine different capture presets were used to capture the taggants: six presets fo
 \end{table}
 
 \begin{table}[ht]
-  \caption{Camera parameters that were given a fixed value}
+  \caption{Fixed camera parameters and their values}
 
   \begin{center}
   \begin{tabular}{| c | c | c | c |}
