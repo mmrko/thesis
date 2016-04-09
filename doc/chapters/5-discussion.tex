@@ -34,20 +34,26 @@ The camera white balance was set to the \emph{Daylight} preset value as Android 
 
 Other capture parameters set to a fixed value were \emph{delay} and \emph{ISO}. The time to delay the capture of the first frame (after the light source has been triggered) was determined empirically by observing when the focus light of the Samsung S4 would no longer introduce artefacts. An example of the artefact caused by the interference from the S4's focus light is presented Figure \ref{figure:artefacts}. The interference was believed to have been caused by the decay of the smartphone's led light interfering with the preview feed signal. The Lumia 1020 exhibited no such behaviour. The capture ISO was set to \emph{auto} as Samsung S4 was unable to lock exposure for the time of the capture when a manual ISO value was used. This was believed to be a bug in the camera API of Android 4.4.2 when frames are captured from the preview feed. Ideally, a low ISO value of ISO100 would have been used to avoid introducing any unwanted noise to the pipeline.
 
+The motivation for using hue and hue-saturation histogram analysis as the basis of the fingerprint matching was largely inspired by how luminophores are studied in chemistry by means of spectroscopy. The idea of the histograms was to provide a rough estimate of the ``emission spectrum'' (color distribution) of the taggant. The capture of a proper emission spectrum would have required a way to diffract the incident light (e.g. via a diffraction grating) and apply proper color calibration for translating RGB values into wavelengths. The parameter values used for the fingerprint and histogram methods to analyze and match the capture data were largely based on apriori assumptions and observations how the results changed when a given parameter was adjusted.
 
-- Focus distance and torch were adjusted as per the platform: S4 does not support setting focus to a fixed minimum distance, and thus, macro focusing was used to guarantee the camera would be able to focus on the taggant. However this
+Binary thresholding was used as the primary filter due to its simplicity and fit for the context. As the frames consisted of small color blobs on a dark background the dark pixels on the background were easily singled out by a binary thresholding level of 15\%. The hue bin size was set to 180, which is also the maximum number of hue bins OpenCV supports (for 8-bit images). Internally OpenCV's \emph{calcHist()} function encodes the hue values from 360 down to 180 for better performance. The persistance threshold used by the fingerprint method for peak selection was set to 20\% purely based on what threshold would provide neither too many nor too few peaks in general. The implications of this are briefly discussed in Chapter \ref{chapter:findings}.
 
-- values of analysis and matching param values?
+- binary thresholding (naive but simple and fits the context)
+- bin size set to OpenCV max to avoid loss of information
+- persistance threshold: purely based on observations of the data
+- Penalty weight Damping coefficient Delta threshold
+- smaller saturation bin sizes would have most likely added more computation time while having a very low impact on the final score
 
 - Eventual consistency (CouchDB) (http://guide.couchdb.org/draft/consistency.html, http://pouchdb.com/guides/replication.html)
 - Schema flexibility (NoSQL) SYNC!
 
+\section{Findings}
+\label{chapter:findings}
 
 HOW WOULD FINGERPRINT METHOD PERFORM IF
 - BIN SIZE < 180
 - FRAMES: 3 or 4
 
-\section{Findings}
 - which taggants perform the best, and why?
 - SP <-> O (similar)
 
@@ -74,7 +80,11 @@ Artefacts!
 
 \section{Challenges and Future Work}
 \begin{comment}
+
+Ideally, the taggants would have been captured through a diffraction grating (or a prism)
 Color calibration
+
+analysis/match params are very static
 
 There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
 
@@ -98,7 +108,6 @@ RGB is a device-dependent color model: different devices detect or reproduce a g
 % - The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
 
 - YCbCr suffers from clipping (https://en.wikipedia.org/wiki/YCbCr)
-- binary thresholding (naive but simple and fits the context)
 - color calibration (requires use of RAW data)
   - CCD > CMOS koska parempi herkkyys
 - device detection (automatic configuration, database per phone model)
