@@ -51,43 +51,33 @@ While the tracing process is storage backend agnostic, a NoSQL database solution
   - 33 vs. 22 => 50\% more clusters
   - approx. 95\% vs. 67\% fingerprints are clustered
   - clusters are of better quality (similar size/color)
-  - perfrom well: 24VP
-
-HOW WOULD FINGERPRINT METHOD PERFORM IF
-- BIN SIZE < 180
-- FRAMES: 3 or 4
-
-- which taggants perform the best, and why?
-- SP <-> O (similar)
-
-- sample a and b not really siblings per se: an\_400\_r/13SVa vs. an\_400\_r/13SVb (taggant preparation)
-- Matches against xxx\_r vs the b sample points to the fact that the taggant creation process plays a big role...
-
-- good match: an\_600/24SPa, an\_600\_r/24VPb, wp\_600/24SPa, wp\_600/24SPb
-
-- wp\_600/13VPb: matches everything with fingerprint method, only a few with histogram (=> anomaly)
-It was observed from the raw data that wp\_600/13VPb matched surprisingly poorly with rest of the corpus. This was due to (persistance threshold, residue afterglow?):
-
-- example of exposure lock behaviour on Android: [some pic]
-
-% /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_600/13VPb/2015-05-06-004852
-vs.
-% /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_400/13VPb/2015-05-05-184418
-
-- Margin increase => minimal impact for both approaches
-- Fingerprint method: more misses (histogram method more stable)
-- peak method performs poorly against the histogram approach for single coloured luminophors
-- \ref{equation:similarity-metric-no-peaks} - shortcoming of the fingerprint method?
-
-Artefacts!
+  - perfrom well: 24VP, 24SP, perform poorly: SV
+4. Observations on graphs:
+  - margin increase => minimal impact for both approaches
+  - fingerprint method performs poorly against the histogram approach for single coloured luminophors?
+5. Observations on raw data:
+  - fingerprint method: more misses (histogram method more stable)
+4. Which taggants perform the best/worst, and why?
+  - good matches: an\_600/24SPa, an\_600\_r/24VPb, wp\_600/24SPa, wp\_600/24SPb
+  - sample a and b not really siblings per se: an\_400\_r/13SVa vs. an\_400\_r/13SVb (taggant preparation)
+5. Similarity between SP and P?
+6. Fingerprint method
+  - Equation \ref{equation:similarity-metric-no-peaks}: shortcoming of the fingerprint method?
+6. How would the fingerprint method perform if...
+  - bin count < 180
+  - frames: 3/4
+7. Anomalies
+  - wp\_600/13VPb: matches everything with fingerprint method, only a few with histogram
+  - it was observed from the raw data that wp\_600/13VPb matched surprisingly poorly with rest of the corpus. This was due to (persistance threshold, residue afterglow?):
+    % /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_600/13VPb/2015-05-06-004852
+    vs.
+    % /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_400/13VPb/2015-05-05-184418
+8. Artefacts
 
 \section{Challenges and Future Work}
 \begin{comment}
 
-Ideally, the taggants would have been captured through a diffraction grating (or a prism)
-Color calibration
-
-analysis/match params are very static
+Ideally, the taggants would have been captured through a diffraction grating (or a prism). Translate to wavelengths through proper color calibration.
 
 There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
 
@@ -105,6 +95,7 @@ RGB is a device-dependent color model: different devices detect or reproduce a g
 
 \end{comment}
 
+- analysis/match params are very static
 - thus it be better to add some structural \& spatial similarity semantics (- more novel selection criterion) - analogies to existing solutions (InkSure \& CryptoGlyph)
   - alternative approach: colored dots form a discrete pattern, no grating necessary
 - high res images could be used as camera APIs improve
