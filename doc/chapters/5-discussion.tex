@@ -43,10 +43,12 @@ While the tracing process is storage backend agnostic, a NoSQL database solution
 \section{Findings}
 \label{chapter:findings}
 
-1. Taggant samples (a \& b) different in structure
+1. Taggant samples (a \& b) different in shape and size
   - especially 13SV, 13VP, 24VP and S
 2. Taggant S barely visible on the Samsung S4
   - Lumia 1020 has better sensitivity for blue...
+3. It is obvious that taggants captured by the Samsung S4 and Lumia 1020 can not be unambiguously compared with another.
+  - the size difference is due to the difference in the lens MFD (10 vs 15cm)
 3. Based on clustering histogram seems to do better
   - 33 vs. 22 => 50\% more clusters
   - approx. 95\% vs. 67\% fingerprints are clustered
@@ -57,22 +59,22 @@ While the tracing process is storage backend agnostic, a NoSQL database solution
   - fingerprint method performs poorly against the histogram approach for single coloured luminophors?
 5. Observations on raw data:
   - fingerprint method: more misses (histogram method more stable)
-4. Which taggants perform the best/worst, and why?
+6. Which taggants perform the best/worst, and why?
   - good matches: an\_600/24SPa, an\_600\_r/24VPb, wp\_600/24SPa, wp\_600/24SPb
   - sample a and b not really siblings per se: an\_400\_r/13SVa vs. an\_400\_r/13SVb (taggant preparation)
-5. Similarity between SP and P?
-6. Fingerprint method
+7. Similarity between SP and P?
+8. Fingerprint method
   - Equation \ref{equation:similarity-metric-no-peaks}: shortcoming of the fingerprint method?
-6. How would the fingerprint method perform if...
+9. How would the fingerprint method perform if...
   - bin count < 180
   - frames: 3/4
-7. Anomalies
+10. Anomalies
   - wp\_600/13VPb: matches everything with fingerprint method, only a few with histogram
   - it was observed from the raw data that wp\_600/13VPb matched surprisingly poorly with rest of the corpus. This was due to (persistance threshold, residue afterglow?):
     % /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_600/13VPb/2015-05-06-004852
     vs.
     % /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_400/13VPb/2015-05-05-184418
-8. Artefacts
+11. Artefacts
 
 \section{Challenges and Future Work}
 \begin{comment}
@@ -101,6 +103,7 @@ RGB is a device-dependent color model: different devices detect or reproduce a g
 - high res images could be used as camera APIs improve
 % - The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
 
+- compensate for differences in the MFD by adjusting the zoom level (only if lossless zoom is available)
 - YCbCr suffers from clipping (https://en.wikipedia.org/wiki/YCbCr)
 - color calibration (requires use of RAW data)
   - CCD > CMOS koska parempi herkkyys

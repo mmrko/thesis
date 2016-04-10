@@ -219,14 +219,13 @@ Where:
     \item $\Delta{c_n}$: peak count delta between fingerprints $a$ and $b$ for sample $n$
     \item $d_c$: damping coefficient for peak count delta
 \end{itemize}
-
+\enlargethispage{5\baselineskip}
 \noindent Given Equation \ref{equation:similarity-metric} for metrics $P_{hue}$ and $P_{int}$ and Equation \ref{equation:similarity-metric-no-peaks} for the additional penalty metric $P_c$ the total penalty $P$ for a candidate fingerprint can be expressed as follows:
-
 \begin{equation}
 	P = P_{hue} + P_{int} + P_{c}
 \end{equation}
 \\
-Once the candidate fingerprints have been ranked the best matches are selected based on two boundary conditions: the top four candidates that are within a 75\% margin of the best candidate qualify. The values for the boundary conditions are derived from the experiment data presented in Chapter \ref{chapter:results}.
+Once the candidate fingerprints have been ranked the best matches are selected based on two boundary conditions: the top four candidates that are within a 75\% margin of the best candidate qualify. The boundary condition values are derived from the experiment data presented in Chapter \ref{chapter:results}.
 
 If the algorithm finds a matching fingerprint the application fetches the user the corresponding product for display. In case multiple matches are found and the result of the matching process is therefore \emph{inconclusive}, the user is displayed a list of products and asked to verify whether or not it includes the traced product -- if not, the product is deemed fake. Links between fingerprints and products are stored in and retrieved from a database. The storage architecture and related security is discussed in the next chapter. The fingerprint matching process is summarized in Figure \ref{figure:matching-process}.
 
