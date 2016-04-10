@@ -43,12 +43,9 @@ While the tracing process is storage backend agnostic, a NoSQL database solution
 \section{Findings}
 \label{chapter:findings}
 
-1. Taggant samples (a \& b) different in shape and size
-  - especially 13SV, 13VP, 24VP and S
-2. Taggant S barely visible on the Samsung S4
-  - Lumia 1020 has better sensitivity for blue...
-3. It is obvious that taggants captured by the Samsung S4 and Lumia 1020 can not be unambiguously compared with another.
-  - the size difference is due to the difference in the lens MFD (10 vs 15cm)
+Based on Figure \ref{figure:taggants} it is apparent that the shape and size of sibling fingerprints vary. This due to the fact that the luminophore was pipeted on the cartons by hand in an uncontrolled environment. Another side effect of the manual taggant creation can be seen in the non-uniform luminophore concentration of taggant \emph{13SVb} -- the highly concentrated areas of the taggant have gotten overexposed. The relative size difference between the taggants captured with the Samsung S4 and Lumia 1020 is due to the difference in the lens MFD (10cm and 15cm, respectively). Moreover, taggant \emph{S} is hardly visible (its visibility in the figure has been increased for demonstration purposes). This could be due to the light source not emitting the appropriate wavelength to excite the taggant or the smartphone's sensor low sensitivity for the blue pigment (\emph{DB} in Appendix \ref{appendix:taggants}). Differences in the visibility of the taggant between the Samsung S4 and Lumia 1020 indicates the latter. The poor visibility of the blue pigment is also highlighted by the similarity between the \emph{13SP} and \emph{P} taggants. Based on these discrepancies alone it is obvious that taggants captured by the Samsung S4 and Lumia 1020 can not be unambiguously compared with another.
+
+The fingerprint clusters visualized in Figure \ref{figure:clusters} suggest that histogram method outperforms the fingerprint method. It is able to find 50\% more clusters in the corpus with a coverage approximately 95\% (vs. the 67\% produced by the fingerprint method). Furthermore, the clusters are of better ``quality'': there are several groups of 2-4 sibling fingerprints -- clusters that have similar size and color.
 3. Based on clustering histogram seems to do better
   - 33 vs. 22 => 50\% more clusters
   - approx. 95\% vs. 67\% fingerprints are clustered
@@ -57,6 +54,7 @@ While the tracing process is storage backend agnostic, a NoSQL database solution
 4. Observations on graphs:
   - margin increase => minimal impact for both approaches
   - fingerprint method performs poorly against the histogram approach for single coloured luminophors?
+  - margin std. deviation
 5. Observations on raw data:
   - fingerprint method: more misses (histogram method more stable)
 6. Which taggants perform the best/worst, and why?
