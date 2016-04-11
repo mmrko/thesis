@@ -43,42 +43,84 @@ While the tracing process is storage backend agnostic, a NoSQL database solution
 \section{Findings}
 \label{chapter:findings}
 
-Based on Figure \ref{figure:taggants} it is apparent that the shape and size of sibling fingerprints vary. This due to the fact that the luminophore was pipeted on the cartons by hand in an uncontrolled environment. Another side effect of the manual taggant creation can be seen in the non-uniform luminophore concentration of taggant \emph{13SVb} -- the highly concentrated areas of the taggant have gotten overexposed. The relative size difference between the taggants captured with the Samsung S4 and Lumia 1020 is due to the difference in the lens MFD (10cm and 15cm, respectively). Moreover, taggant \emph{S} is hardly visible (its visibility in the figure has been increased for demonstration purposes). This could be due to the light source not emitting the appropriate wavelength to excite the taggant or the smartphone's sensor low sensitivity for the blue pigment (\emph{DB} in Appendix \ref{appendix:taggants}). Differences in the visibility of the taggant between the Samsung S4 and Lumia 1020 indicates the latter. The poor visibility of the blue pigment is also highlighted by the similarity between the \emph{13SP} and \emph{P} taggants. Based on these discrepancies alone it is obvious that taggants captured by the Samsung S4 and Lumia 1020 can not be unambiguously compared with another.
+Based on Figure \ref{figure:taggants} it is apparent that the shape and size of sibling fingerprints vary. This due to the fact that luminophore was pipeted on the cartons by hand in an uncontrolled environment. Another side effect of the manual taggant creation process can be seen in the non-uniform luminophore concentration of taggant \emph{13SVb} -- the highly concentrated areas of the taggant have gotten overexposed. The relative size difference between the taggants captured with the Samsung S4 and Lumia 1020 is due to the difference in the lens MFD (10cm and 15cm, respectively). Moreover, taggant \emph{S} is hardly visible (its visibility in the figure has been improved for demonstration purposes). This could be due to the light source not emitting the appropriate wavelength to excite the taggant or the sensor's low sensitivity to the blue pigment (\emph{DB} in Appendix \ref{appendix:taggants}). Differences in the visibility of the taggant between the Samsung S4 and Lumia 1020 indicates the latter. The poor sensibility of the blue pigment is also seen in the close similarity of the \emph{13SP} and \emph{P} taggants. Based on these discrepancies alone it is obvious that taggants captured by the Samsung S4 and Lumia 1020 can not be unambiguously compared with another.
 
-The fingerprint clusters visualized in Figure \ref{figure:clusters} suggest that histogram method outperforms the fingerprint method. It is able to find 50\% more clusters in the corpus as well as cover approximately 95\% of all the fingerprints (vs. 67\% of the fingerprint method). Furthermore, the clusters are of better ``quality'' as there are several groups of 2-4 sibling fingerprints -- clusters that have similar size and color. Solely based on the results of  the clustering taggants \emph{24VP} and \emph{24SP} perform the best while \emph{13SV} and \emph{24SV} provide mixed results.
+The fingerprint clusters visualized in Figure \ref{figure:clusters} suggest that histogram method outperforms the fingerprint method. It is able to find 50\% more clusters in the corpus as well as cover over 95\% (137/144) of all the fingerprints (vs. 66,67\% of the fingerprint method). Furthermore, the clusters are of better ``quality'' as there are several groups of 2-4 sibling fingerprints -- clusters that have similar size and color. Based on the results of the clustering taggants \emph{24VP} and \emph{24SP} perform the best while \emph{13SV} and \emph{24SV} provide mixed results.
 
-Figure \ref{figure:tags_presets} provides more insight into the performance of individual taggants and presets. Unsurprisingly, long intervals help distinguish the taggants, although no significant change in the performance between presets of 200ms and 400ms interval can be observed. The Windows Phone presets fare better, which is expected due to the higher quality camera in the Lumia 1020. The relatively poor performance of taggant \emph{13SV} can be explained by the overexposure artefact in its \emph{b} sample and the fact that it noticeably differs from its sibling sample as depicted in Figure \ref{figure:13SV}. In the case of taggant \emph{S} on the other hand, the drop in the number of matches can be attributed to the poor detectability of the blue pigment causing low SNR. Somewhat surprising is how relatively few times taggant \emph{13SP} is matched by the histogram method in comparison to taggant \emph{P}. The raw result data shows that a good number of \emph{13SP} taggants actually match closer to taggant \emph{P} than their siblings. That is, the pipeline is unable to efficiently differentiate between taggants \emph{13SP} and \emph{P}.
+Figure \ref{figure:tags_presets} provides more insight into the performance of individual taggants and presets. Unsurprisingly, long intervals help distinguish the taggants, although no significant change in the performance between presets of 200ms and 400ms interval can be observed. The Windows Phone presets (\emph{wp}) fare better, which is expected due to the higher quality camera in the Lumia 1020. The relatively poor performance of taggant \emph{13SV} can be explained by the overexposure artefact in its \emph{b} sample and the fact that it noticeably differs from its sibling sample as depicted in Figure \ref{figure:13SV}. In the case of taggant \emph{S} on the other hand, the drop in the number of matches can be attributed to the poor detectability of the blue pigment causing low SNR. Somewhat surprising is how relatively few times taggant \emph{13SP} is matched by the histogram method in comparison to taggant \emph{P}. The raw result data shows that a good number of \emph{13SP} taggants actually match closer to taggant \emph{P} than their siblings. The pipeline is unable to efficiently differentiate the similarity of taggants \emph{13SP} and \emph{P}.
 
 \begin{figure}[h!]
   \centering \includegraphics[page=1,width=\textwidth]{images/findings/13SV}
-  \caption{Due to an artefact the first two samples of taggant \emph{13SVb} and its sibling \emph{13SVa} were largely dissimiliar.}
+  \caption{Due to an artefact introduced during the taggant preparation the first two samples of taggant \emph{13SVb} were largely dissimiliar compared to its sibling \emph{13SVa}. The red horizontal line depicts the persistance threshold.}
   \label{figure:13SV}
 \end{figure}
 
-Increase of $B_{count}$ from three to six seems to have minimal effect on the number of matches found. The success rate and precision curves given in Figures \ref{figure:match_precision_fingerprint} and \ref{figure:match_precision_histogram} support this observation: after a certain level of $B_{margin}$ the success rate stagnates regardless of the $B_{count}$, while precision continues to decrease. Moreover, a high $B_{count}$ and $B_{margin}$ have an impact on the user experience as a larger number of potential matches (products) are retrived for the user to choose from. An ideal combination of $B_{margin}$ and $B_{count}$ seem to range from 50-80\% and 3-6 for the fingerprint method, and from 20-40\% and 3-8 for the histogram method. If anything, excessively increasing $B_{margin}$ will only lead to more false positives for the user to filter from.
+Based on Figure \ref{figure:tags_presets} increasing $B_{count}$ from three to six fingerprints seems to have minimal effect on the number of matches found. The success rate and precision curves given in Figures \ref{figure:match_precision_fingerprint} and \ref{figure:match_precision_histogram} support this observation: after a certain level of $B_{margin}$ the success rate stagnates regardless of the $B_{count}$, while precision continues to decrease. Moreover, a combination of a high $B_{count}$ and $B_{margin}$ degrades user experience as a larger number of matches (products) would be retrived for the user to choose from. An ideal combination of $B_{margin}$ and $B_{count}$ seem to range from 50-80\% and 3-6 for the fingerprint method, and from 20-40\% and 3-8 for the histogram method. If anything, excessively increasing $B_{margin}$ will only lead to more false positives for the user to filter. On the other hand, as seen in Table \ref{table:match_precision_count1}, if only the best match ($B_{count} = 1$) was processed, the user would be displayed the correct product in less than 50\% of the time.
 
+As indicated by the clustering in Figure \ref{figure:clusters} and the match distributions in Figure \ref{figure:tags_presets} taggants \emph{24VP} and \emph{24SP} provide good results, especially with presets of the 600ms interval. Higher pigment concentrations seem to improve the SNR. When the boundary conditions are set to $B_{count} = 4$ and $B_{margin} = 30\%$ the success rate and precision of \emph{24SP} is 100\% and 84,26\%, and respectively 94,44\% and 57,35\% for \emph{24VP} using the histogram method. Given this it is surprising that the performance of \emph{24SV} is significantly worse (success rate: 55\%, precision: 46\%). The raw data shows that \emph{24SV} comes very close to matching its siblings. In 16 out of the 18 tracings (9 presets $\times$ 2 samples) 50-100\% of the matches included the correct taggant (\emph{24SV}). Thus, the low the success rate of \emph{24SV} was largely due to the given method's inability to distinguish between presets.
 
+Both of the methods were indeed better at distinguishing the fingerprints by the taggant rather than the preset as shown in Table \ref{table:match_precision_count1}. In the case of \emph{24SV} the $50\mu l$ addition of the green and blue pigments (\emph{G} and \emph{DB}) was not enough to produce any significant change in the emission as illustrated by Figure \ref{figure:SV} -- pigment \emph{DB} relaxes too \emph{slowly} for the sensor to capture any change.
+
+\begin{figure}[h!]
+  \centering \includegraphics[page=1,width=\textwidth]{images/findings/SV}
+  \caption{Regardless of the increase in luminophore concentration and capture interval duration from 400ms to 600ms no significant changes could be observed between taggants \emph{13SV} and \emph{24SV}.}
+  \label{figure:SV}
+\end{figure}
+
+max success rate indicated by clustering
 fingerprint method: more misses (histogram method more stable)
-- margin std. deviation
+- margin std. deviation shows randomess/unstable feat
 
-6. Which taggants perform the best/worst, and why?
-  - good matches: an\_600/24SPa, an\_600\_r/24VPb, wp\_600/24SPa, wp\_600/24SPb
-  - sample a and b not really siblings per se: an\_400\_r/13SVa vs. an\_400\_r/13SVb (taggant preparation)
 10. Anomalies \& Artefacts
   - wp\_600/13VPb: matches everything with fingerprint method, only a few with histogram
   - it was observed from the raw data that wp\_600/13VPb matched surprisingly poorly with rest of the corpus. This was due to (persistance threshold, residue afterglow?):
     % /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_600/13VPb/2015-05-06-004852
     vs.
     % /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_400/13VPb/2015-05-05-184418
-11a. Fingerprint method
-  - Equation \ref{equation:similarity-metric-no-peaks}: shortcoming of the fingerprint method?
+  - bin count? less frames because such low SNR...
+
 11b. How would the fingerprint method perform if...
   - bin count < 180
   - frames: 3/4
 
-\section{Challenges and Future Work}
-\begin{comment}
 
+
+summary of the findings:
+
+- histogram outperforms fingerprint method
+- lumia outperforms s4
+- long intervals provide better results
+- taggant preparation process has a great impact
+- fewer frames could suffice(?)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Challenges and Future Work}
+
+Address RQs
+
+\begin{comment}
 Ideally, the taggants would have been captured through a diffraction grating (or a prism). Translate to wavelengths through proper color calibration.
 
 There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
@@ -97,7 +139,8 @@ RGB is a device-dependent color model: different devices detect or reproduce a g
 
 \end{comment}
 
-- analysis/match params are very static
+- Equation \ref{equation:similarity-metric-no-peaks}: shortcoming of the fingerprint method?
+  - analysis/match params are very static
 - thus it be better to add some structural \& spatial similarity semantics (- more novel selection criterion) - analogies to existing solutions (InkSure \& CryptoGlyph)
   - alternative approach: colored dots form a discrete pattern, no grating necessary
 - high res images could be used as camera APIs improve
