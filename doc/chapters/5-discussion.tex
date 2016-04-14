@@ -26,13 +26,15 @@ The smartphone torch light in both the Samsung S4 and Lumia 1020 did not emit th
 
 As one of the goals of the project was to be able to compare results across different smartphones (as per \ref{R1}), the capture parameters needed to be standardized. For this purpose a set capture presets were defined (see Table \ref{table:capture-presets}). The preset values for the \emph{interval} duration were configured based on the taggants. As described in \cite{luminova}, the Luminova\textregistered pigments have a fairly long emission duration. For a smartphone to be able to capture any significant change in the emission the interval also needed to be long. The appropriate intervals of 200, 400 and 600ms were eventually derived empirically. The preset resolutions were set to the highest preview frame resolution supported by the given platform. As Windows Phone 8.1 did not support preview resolutions higher than $1280\times720$px only three presets were defined for the Lumia 1020.
 
-Different focus strategies were applied depending on the platform. Android 4.4.2 does not support setting focus to a fixed minimum distance. Therefore, macro focus mode was used to guarantee the Samsung S4 could still acquire accurate focus around its MFD. The macro focus mode however required the use of the focus light. The torch light was therefore not used on the Samsung S4 to avoid triggering the light source twice -- the focus light would function as the trigger instead. On the Lumia 1020 the focus could be set to a fixed minimum distance (MFD), and the (torch) light was used only as the light source trigger.
+Different focus strategies were applied depending on the platform. Android 4.4.2 does not support setting focus to a fixed minimum distance. Therefore, macro focus mode was used to guarantee the Samsung S4 could still acquire accurate focus around its MFD. The macro focus mode however required the use of the focus light. The torch light was therefore not used on the Samsung S4 to avoid triggering the light source twice -- the focus light would function as the trigger instead. Unfortunately, the focus light of the S4 introduced some bias to the pipeline as it contained enough energy to excite a few of the taggants as shown on the left in Figure \ref{figure:artefacts}. On the Lumia 1020 the focus could be set to a fixed minimum distance (MFD), and the (torch) light was used only as the light source trigger.
 
 A number of parameters were set to a fixed value (see Table \ref{table:capture-presets-fixed}). The number of frames (samples) to capture per fingerprint was fixed at five frames. It was empirically observed that additional frames would not provide much data due to decreasing Signal-to-noise ratio (SNR). Furthermore, capturing more frames would have led to worse experience for the user as the capture and processing times would have gotten longer. Capturing three or four frames could have provided similar results, but as emission peaks could still be detected even after 3000ms for some of the taggants, the frame count was not adjusted. Moreover, it would be trivial to retroactively compute results against four or less frames if necessary.
 
 The camera white balance was set to the \emph{Daylight} preset value as Android 4.4.2 does not support manual white balance adjustment. The Daylight preset was chosen over other available white balance presets as it typically applies the least compensation and corresponded well with the color temperature (5600K) of the experiment light source (Yongnuo YN565EX). The Daylight preset represents roughly a temperature of 5500-6500K depending on the vendor.
 
-Other capture parameters set to a fixed value were \emph{delay} and \emph{ISO}. The time to delay the capture of the first frame (after the light source has been triggered) was determined empirically by observing when the focus light of the Samsung S4 would no longer introduce artefacts. An example of the artefact caused by the interference from the S4's focus light is presented Figure \ref{figure:artefacts}. The interference was believed to have been caused by the decay of the smartphone's led light interfering with the preview feed signal. The Lumia 1020 exhibited no such behaviour. The capture ISO was set to \emph{auto} as Samsung S4 was unable to lock exposure for the time of the capture when a manual ISO value was used. This was believed to be a bug in the camera API of Android 4.4.2 when frames are captured from the preview feed. Ideally, a low ISO value of ISO100 would have been used to avoid introducing any unwanted noise to the pipeline.
+Other capture parameters set to a fixed value were \emph{delay} and \emph{ISO}. The time to delay the capture of the first frame (after the light source has been triggered) was determined empirically by observing when the focus light of the Samsung S4 would no longer introduce artefacts. An example of the artefact caused by the interference from the S4's focus light is presented Figure \ref{figure:artefacts} in the middle. The interference was believed to have been caused by the decay of the smartphone's led light interfering with the preview feed signal. The Lumia 1020 exhibited no such behaviour. The original corpus included taggant \emph{V}, but as it was suspectible to overexposure artefacts (see the image on the right in Figure \ref{figure:artefacts}) -- due to a human error in the taggant preparation process -- it was omitted from the final dataset.
+
+The capture ISO was set to \emph{auto} as Samsung S4 was unable to lock exposure for the time of the capture when a manual ISO value was used. This was believed to be a bug in the camera API of Android 4.4.2 when frames are captured from the preview feed. Ideally, a low ISO value of ISO100 would have been used to avoid introducing any unwanted noise to the pipeline.
 
 The motivation for using hue and hue-saturation histogram analysis as the basis of the fingerprint matching was largely inspired by how luminophores are studied in chemistry by means of spectroscopy. The idea of the histograms was to provide a rough estimate of the ``emission spectrum'' (color distribution) of the taggant. The capture of a proper emission spectrum would have required a way to diffract the incident light (e.g. via a diffraction grating) and apply proper color calibration for translating RGB values into wavelengths. The parameter values used for the fingerprint and histogram methods to analyze and match the capture data were largely based on apriori assumptions and observations how the results changed when a given parameter was adjusted.
 
@@ -59,7 +61,7 @@ Based on Figure \ref{figure:tags_presets} increasing $B_{count}$ from three to s
 
 As indicated by the clustering in Figure \ref{figure:clusters} and the match distributions in Figure \ref{figure:tags_presets} taggants \emph{24VP} and \emph{24SP} provide good results, especially with presets of the 600ms interval. Higher pigment concentrations seem to improve the SNR. When the boundary conditions are set to $B_{count} = 4$ and $B_{margin} = 30\%$ the success rate and precision of \emph{24SP} is 100\% and 84,26\%, and respectively 94,44\% and 57,35\% for \emph{24VP} using the histogram method. Given this it is surprising that the performance of \emph{24SV} is significantly worse (success rate: 55\%, precision: 46\%). The raw data shows that \emph{24SV} comes very close to matching its siblings. In 16 out of the 18 tracings (9 presets $\times$ 2 samples) 50-100\% of the matches included the correct taggant (\emph{24SV}). Thus, the low the success rate of \emph{24SV} was largely due to the given method's inability to distinguish between presets.
 
-Both of the methods were indeed better at distinguishing the fingerprints by the taggant rather than the preset as shown in Table \ref{table:match_precision_count1}. In the case of \emph{24SV} the $50\mu l$ addition of the green and blue pigments (\emph{G} and \emph{DB}) was not enough to produce any significant change in the emission as illustrated by Figure \ref{figure:SV} -- pigment \emph{DB} relaxes too \emph{slowly} for the sensor to capture any change.
+Both of the methods were indeed better at distinguishing the fingerprints by the taggant rather than the preset as shown in Table \ref{table:match_precision_count1}. In the case of \emph{24SV} the $50\mu l$ addition of the green and blue pigments (\emph{G} and \emph{DB}) was not enough to produce any significant change in the emission as illustrated by Figure \ref{figure:SV} -- pigment \emph{DB} relaxes too \emph{slowly} for the samrtphone camera sensor to capture any change.
 
 \begin{figure}[h!]
   \centering \includegraphics[page=1,width=\textwidth]{images/findings/SV}
@@ -67,11 +69,9 @@ Both of the methods were indeed better at distinguishing the fingerprints by the
   \label{figure:SV}
 \end{figure}
 
-max success rate indicated by clustering
-fingerprint method: more misses (histogram method more stable)
-- margin std. deviation shows randomess/unstable feat
+Overall the histogram method performs better than the fingerprint method. The fingerprint method provides at best a success rate of approximately 65\%, while it can be up to 95\% using the histogram method. Interestingly enough the maximal success rates are already indicated by Figure \ref{figure:clusters} in how many fingerprints the clusters cover (137 vs. 96). Perhaps one equally descriptive metric of the performance of the two methods is the ratio of misses, which is twice as high when using the fingerprint method and $B_{count} = 1$ (Table \ref{table:match_precision_count1}). Based on the standard deviation and mean of $B_{margin}$ visualized in Figure \ref{figure:match_precision_margin} the histogram method is able to find differences in (distinguish) fingerprints as the margin, within which the matches fit is bigger. The tradeoff of the more accurate histogram method is the increase in required computation time and storage space (or bandwidth).
 
-10. Anomalies \& Artefacts
+The most significant pitfall of the fingerprint method is the static nature of its analysis and matching parameters. Figure \ref{figure:fingerprint-method-pitfalls} illustrates two scenarions, in which this causes problems.
   - wp\_600/13VPb: matches everything with fingerprint method, only a few with histogram
   - it was observed from the raw data that wp\_600/13VPb matched surprisingly poorly with rest of the corpus. This was due to (persistance threshold, residue afterglow?):
     % /Users/Make/Documents/dippa/app/luminotrace-native/corpus/data/wp_600/13VPb/2015-05-06-004852
@@ -84,6 +84,12 @@ fingerprint method: more misses (histogram method more stable)
   - frames: 3/4
 
 
+\begin{figure}[h!]
+  \centering \includegraphics[page=1,width=\textwidth]{images/findings/persistance_pitfall}
+  \caption{Regardless of the increase in luminophore concentration and capture interval duration from 400ms to 600ms no significant changes could be observed between taggants \emph{13SV} and \emph{24SV}.}
+  \label{figure:persistance-pitfall}
+\end{figure}
+
 
 summary of the findings:
 
@@ -92,6 +98,7 @@ summary of the findings:
 - long intervals provide better results
 - taggant preparation process has a great impact
 - fewer frames could suffice(?)
+- the static nature of the fingerprint method parameters hinder its accuracy
 
 
 
