@@ -52,11 +52,12 @@ The implementation of the application can be divided into the following tasks:
 \item[--]Implement the UI
 \item[--]Implement the back end infrastructure (cloud)
 \end{itemize}
-
+\begin{comment}
 \begin{figure}[hb]
 \centering \includegraphics[width=13.25cm]{images/diagram_0404}
 \caption{A high-level overview of the structure of the application \label{fig:diagram}}
 \end{figure}
+\end{comment}
 
 The functionality outlined above can be largely achieved by utilizing existing Web technologies and the W3C Device APIs. However, a more granular control over the camera (e.g. burst-mode, flash settings) will require a native component to be implemented for each target platform. The preliminary target platform will be Windows Phone (WP). To improve scalability the fingerprint will be computed on the client-side. This will require for the existing algorithm to be ported into JavaScript. Scalability can be further improved by offloading parts of the (fingerprint) database from the server to the user's device. Moreover, usability is improved as the application can function offline without the overhead of network latency. Hosting fingerprint data on the user's device might however have security implications: can the data be safely/efficiently encrypted on the user's device?
 
