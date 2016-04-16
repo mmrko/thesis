@@ -16,7 +16,7 @@
 \chapter{Discussion}
 \label{chapter:discussion}
 
-This chapter discusses the design decisions taken during the implementation of the application and the findings made based on the the raw result data and the parts of it summarized in \ref{chapter:results}. Last, challenges faced during the project and an outline for future research work are presented. Motivation behind some of the design choices mentioned earlier in the writing are not reiterated here, and the interested reader is instead advised to refer to Chapter \ref{chapter:design-implementation} and the related appendices \ref{appendix:camera-module} and \ref{appendix:capture-presets}.
+This chapter first discusses the design decisions made during the implementation of the application and the findings made based on the raw result data and Chapter \ref{chapter:results}. Last, the research questions presented in \ref{chapter:research-questions} are reviewed, and challenges faced during the project and an outline for future research work are presented. Motivation behind some of the design choices mentioned earlier are not reiterated here, and the interested reader is instead advised to refer to Chapter \ref{chapter:design-implementation} and the related appendices \ref{appendix:camera-module} and \ref{appendix:capture-presets}.
 
 \section{Design Choices}
 
@@ -77,51 +77,34 @@ Both of the methods were indeed better at distinguishing the fingerprints by the
 
 Overall the histogram method performs better than the fingerprint method. The fingerprint method provides a success rate of approximately 65\% at best, while the success rate of the histogram method ranges up to 95\%. Interestingly enough the maximal success rates are already indicated by Figure \ref{figure:clusters} in how many fingerprints the clusters cover (137 vs. 96 out of 144). Perhaps one equally descriptive metric of the performance of the two methods is the ratio of misses, which is twice as high when using the fingerprint method and $B_{count} = 1$ as shown in Table \ref{table:match_precision_count1}. Based on the standard deviation and mean of $B_{margin}$ visualized in Figure \ref{figure:match_precision_margin} the histogram method is also better at separating (distinguishing) the fingerprints from one antoher as the margin (y-axis) -- within which the matches fit -- is bigger (up until $B_{margin} \approx 85\%$). The tradeoff of the more accurate histogram method is the increase in required computation time and storage space (and bandwidth).
 
-The most significant pitfall of the fingerprint method is the static nature of its analysis and matching parameters. Figure \ref{figure:fingerprint-method-pitfalls} illustrates two example problem cases.
-
-
-  - it was observed from the raw data that wp\_600/13VPb matched surprisingly poorly with rest of the corpus. This was due to (persistance threshold, residue afterglow?):
-  - bin count? less frames because such low SNR...
-
+The most significant pitfall of the fingerprint method is the static nature of its analysis parameters. Figure \ref{figure:fingerprint-method-pitfalls} illustrates two example cases where problems arise. The raw result data revealed that fingerprint \emph{wp\_600/13VPb} matched the rest of the corpus poorly when compared using the fingerprint method. This was due to the excessive number of peaks found in its fourth sample, which in turn resulted in relatively high $P_{hue}$ and $P_{int}$ scores. A fixed persistance threshold -- depicted by the red line in Figure \ref{figure:fingerprint-method-pitfalls} -- worked poorly as the SNR of a sample (frame) decreased. Moreover, using a fixed threshold the fingerprint method was unable to account for slight variations in the hue distribution caused by e.g. residual afterglow from a previous capture as seen in the Figure Figure \ref{figure:fingerprint-method-pitfalls} on the right. While increasing the size of the hue bins based on SNR could address these issues, it would become questionable whether or not the latter fingerprint samples could provide any useful information. Perhaps a better approach would be to improve the SNR itself e.g using a more novel filtering technique. Outstanding challenges and prospects for future work are discussed further in the next chapter.
 
 \begin{figure}[h!]
   \centering \includegraphics[page=1,width=\textwidth]{images/findings/persistance_pitfall}
-  \caption{A fixed persistance threshold (red line) provided inaccurate results when SNR was low (left image). Moreover, a fixed persistance threhold was unable to account for slight variations in the hue distribution -- caused by e.g. residual afterglow from a previous capture -- leading to inconsistent results (right image). The color bars on the x-axis depict the relative amounts of different hues in the histogram.}
+  \caption{A fixed persistance threshold (red line) provided inaccurate results when SNR was low (left image). Moreover, a fixed persistance threshold was unable to account for slight variations in the hue distribution -- caused by e.g. residual afterglow from a previous capture -- leading to inconsistent results (right image). The color bars on the x-axis depict the relative amounts of different hues in the histogram.}
   \label{figure:fingerprint-method-pitfalls}
 \end{figure}
 
-Based on the results and the findings presented above the following can be concluded:
+Based on the results presented in Chapter \ref{chapter:results} and the findings above the following is concluded:
+\clearpage
 
-\begin{itemize}
-\item - histogram outperforms fingerprint method
-\item - lumia outperforms s4
-\item - long intervals provide better results
-\item - taggant preparation process has a great impact
-\item - fewer frames could suffice(?)
-\item - the static nature of the fingerprint method parameters hinder its accuracy
-\end{itemize}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{enumerate}
+  \item The histogram method performs better overall, but the fingerprint method can have stricter space and time requirements
+    \begin{itemize}
+      \item proposed fingerprint method $B_{margin}$ and $B_{count}$: 50-80\% and 3-6
+      \item proposed histogram method $B_{margin}$ and $B_{count}$: 20-40\% and 3-8
+      \item boundary conditions could be adjusted as per user feedback (e.g. implementing a \emph{Show more} functionality)
+    \end{itemize}
+  \item Longer intervals provide better results, but have implications for user experience and depend largely on the taggant's excitation lifespan
+  \item Lumia 1020 outperforms the Samsung S4 likely due to its better quality (less noisy) sensor and the artefacts inherent in the Samsung S4
+  \item Taggant preparation has a significant impact on the tracing
+    \begin{itemize}
+      \item sibling taggant shape and size (concentration) must be similar
+      \item the luminophore should be fast enough for any significant change to be detected (preferably an excitation lifespan of \textless\ 5000ms)
+      \item the absorption wavelength of the luminophore should be close to the wavelength of the light source
+    \end{itemize}
+  \item The performance of the fingerprint could likely be improved by better noise filtering and adapting the persistance threshold based on SNR.
+\end{enumerate}
 
 \section{Challenges and Future Work}
 
