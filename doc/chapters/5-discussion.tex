@@ -20,7 +20,7 @@ This chapter first discusses the design decisions made during the implementation
 
 \section{Design Choices}
 
-One of the challenges early on in the project was the capture of a taggant's photoexcitation. A quick prototype of the camera module had already been developed prior the project for demonstration purposes. It provided good isolation from ambient light and even a built-in slot for different diffraction gratings and a slit. It however did not include an integrated light source, but instead, taggants needed to be excited manually by toggling a UV flashlight (Nightsearcher UV 365). A programmatic control over the light source was required for product authentication purposes. Moreover, as a 3D printed mold used for attaching a smartphone to the camera module was designed only for Lumia 920, integration of the Samsung S4 and Lumia 1020 proved difficult. Thus, an alternative, more customizable cardboard prototype was implemented, as presented in \ref{chapter:camera-module}. Figure \ref{figure:origina-camera-module} provides a wireframe of the original camera module design together with a sample image taken with a Lumia 920.
+One of the challenges early on in the project was the capture of a taggant's photoexcitation. A quick prototype of the camera module had already been developed prior the project for demonstration purposes. It provided good isolation from ambient light and even a built-in slot for different diffraction gratings and slits. It however did not include an integrated light source, but instead, taggants needed to be excited manually by toggling a UV flashlight (Nightsearcher UV 365). A programmatic control over the light source was required for product authentication purposes. The trade-off of using a diffraction grating and a slit to achieve higher color resolution would have been the loss of spatial information (taggant positioning) and its negative impact on the already low Signal-to-noise ratio (SNR). Moreover, as a 3D printed mold used for attaching a smartphone to the camera module was designed only for Lumia 920, integration of the Samsung S4 and Lumia 1020 would have increased the initial workload. Thus, an alternative, more customizable cardboard prototype was implemented, as presented in \ref{chapter:camera-module}. Figure \ref{figure:origina-camera-module} provides a wireframe of the original camera module design together with a sample image taken with a Lumia 920.
 
 \begin{figure}[h!]
   \centering \includegraphics[page=1,width=\textwidth]{images/findings/original_camera_module}
@@ -34,7 +34,7 @@ As one of the goals of the project was to be able to compare results across diff
 
 Different focus strategies were applied depending on the platform. Android 4.4.2 does not support setting focus to a fixed minimum distance. Therefore, macro focus mode was used to guarantee the Samsung S4 could still acquire accurate focus around its MFD. The macro focus mode however required the use of the focus light. The torch light was therefore not used on the Samsung S4 to avoid triggering the light source twice -- the focus light would function as the trigger instead. Unfortunately, the focus light of the S4 introduced some bias to the pipeline as it contained enough energy to excite a few of the taggants as shown on the left in Figure \ref{figure:artefacts}. On the Lumia 1020 the focus could be set to a fixed minimum distance (MFD), and the (torch) light was used only as the light source trigger.
 
-A number of parameters were set to a fixed value (see Table \ref{table:capture-presets-fixed}). The number of frames (samples) to capture per fingerprint was fixed at five frames. It was empirically observed that additional frames would not provide much data due to decreasing Signal-to-noise ratio (SNR). Furthermore, capturing more frames would have led to worse experience for the user as the capture and processing times would have gotten longer. Capturing three or four frames could have provided similar results, but as emission peaks could still be detected even after 3000ms for some of the taggants, the frame count was not adjusted. Moreover, it would be trivial to retroactively compute results against four or less frames if necessary.
+A number of parameters were set to a fixed value (see Table \ref{table:capture-presets-fixed}). The number of frames (samples) to capture per fingerprint was fixed at five frames. It was empirically observed that additional frames would not provide much data due to decreasing SNR. Furthermore, capturing more frames would have led to worse experience for the user as the capture and processing times would have gotten longer. Capturing three or four frames could have provided similar results, but as emission peaks could still be detected even after 3000ms for some of the taggants, the frame count was not adjusted. Moreover, it would be trivial to retroactively compute results against four or less frames if necessary.
 
 The camera white balance was set to the \emph{Daylight} preset value as Android 4.4.2 does not support manual white balance adjustment. The Daylight preset was chosen over other available white balance presets as it typically applies the least compensation and corresponded well with the color temperature (5600K) of the experiment light source (Yongnuo YN565EX). The Daylight preset represents roughly a temperature of 5500-6500K depending on the vendor.
 
@@ -67,7 +67,7 @@ Based on Figure \ref{figure:tags_presets} increasing $B_{count}$ from three to s
 
 As indicated by the clustering in Figure \ref{figure:clusters} and the match distributions in Figure \ref{figure:tags_presets} taggants \emph{24VP} and \emph{24SP} provide good results, especially with presets of the 600ms interval. Higher pigment concentrations seem to improve the SNR. When the boundary conditions are set to $B_{count} = 4$ and $B_{margin} = 30\%$ the success rate and precision of \emph{24SP} is 100\% and 84,26\%, and respectively 94,44\% and 57,35\% for \emph{24VP} using the histogram method. Given this it is surprising that the performance of \emph{24SV} is significantly worse (success rate: 55\%, precision: 46\%). The raw data shows that \emph{24SV} comes very close to matching its siblings. In 16 out of the 18 tracings (9 presets $\times$ 2 samples) 50-100\% of the matches included the correct taggant (\emph{24SV}). Thus, the low the success rate of \emph{24SV} was largely due to the given method's inability to distinguish between presets.
 
-Both of the methods were indeed better at distinguishing the fingerprints by the taggant rather than the preset as shown in Table \ref{table:match_precision_count1}. In the case of \emph{24SV} the $50\mu l$ addition of the green and blue pigments (\emph{G} and \emph{DB}) was not enough to produce any significant change in the emission as illustrated by Figure \ref{figure:SV} -- pigment \emph{DB} relaxes too \emph{slowly} for the samrtphone camera sensor to capture any change.
+Both of the methods were indeed better at distinguishing the fingerprints by the taggant rather than the preset as shown in Table \ref{table:match_precision_count1}. In the case of \emph{24SV} the $50\mu l$ addition of the green and blue pigments (\emph{G} and \emph{DB}) was not enough to produce any significant change in the emission as illustrated by Figure \ref{figure:SV} -- pigment \emph{DB} attenuates too \emph{slowly} for the samrtphone camera sensor to capture any change.
 
 \begin{figure}[h!]
   \centering \includegraphics[page=1,width=\textwidth]{images/findings/SV}
@@ -110,34 +110,29 @@ Based on the results presented in Chapter \ref{chapter:results} and the findings
 
 \section{Challenges and Future Work}
 
-\begin{comment}
-Ideally, the taggants would have been captured through a diffraction grating (or a prism). Translate to wavelengths through proper color calibration.
-- use of diffraction grating and spectral analysis
-
-There are mainly two modules responsible for the color-rendering accuracy of a digital camera: the former is the illuminant estimation and correction module, and the latter is the color matrix transformation aimed to adapt the color response of the sensor to a standard color space. These two modules together form what may be called the color correction pipeline.
+The primary challenge in systems that rely on color information -- be it an image of a taggant or its emission spectrum -- is color calibration. There are mainly two modules responsible for the color rendering accuracy (color correction) of a digital instrument: illuminant estimation (capture context) and color matrix transformation (color profile), the purpose of which is to transform the sensor output to a standard color space.
 
 RGB is a device-dependent color model: different devices detect or reproduce a given RGB value differently, since the color elements (such as phosphors or dyes) and their response to the individual R, G, and B levels vary from manufacturer to manufacturer, or even in the same device over time. Thus an RGB value does not define the same color across devices without some kind of color management.
-\url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
-\url{http://www.cs.unc.edu/techreports/04-012.pdf}
 
-% https://www.cs.unc.edu/~welch/media/pdf/Ilie2005_Calib.pdf
-% Unfortunately most cameras—even of the same typedo not exhibit consistent responses. Figure 1 illustrates the
-% differences between the responses of 8 cameras to the 24 colors of the GretagMacbeth [5] ColorCheckerTM chart
-% imaged under the same illumination conditions and using the same hardware settings. The data shows that color
-% values are significantly different from camera to camera. This is due for example to aperture variations, fabrication
+- color calibration (requires use of RAW, unrendered color data), computation heavy
+
+% due for example to aperture variations, fabrication
 % variations, electrical noise, and interpolation artifacts arising from the reconstruction of a full-resolution color image
 % from a half-resolution Bayer pattern image
-- color calibration (requires use of RAW data), computation heavy
+\url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
+\url{http://www.cs.unc.edu/techreports/04-012.pdf}
+\url{https://www.cs.unc.edu/~welch/media/pdf/Ilie2005_Calib.pdf}
 
-\end{comment}
 
-- in the meanwhile it'd be better...
+
+
 - to add some structural \& spatial similarity semantics (- more novel selection criterion)
-- analogies to existing solutions (InkSure \& CryptoGlyph)
   - alternative approach: colored dots form a discrete pattern, no grating necessary
-  % - The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
-- YCbCr suffers from clipping (https://en.wikipedia.org/wiki/YCbCr)
-- high res images could be used as camera APIs improve
+  - analogies to existing solutions (InkSure \& CryptoGlyph)
+
+- The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
+  - YCbCr suffers from clipping (https://en.wikipedia.org/wiki/YCbCr)
+  - high res images could be used as camera APIs improve
 
 ALGOS
 - use histogram method. Fingerprint method useful for querying/filtering?
@@ -154,7 +149,6 @@ TAGGANT
 APP
 - change management / how to handle updates \& different devices?
 - device detection (automatic configuration, database per phone model), scalability concerns
-
 - easily extendable due to iOS (due to hybrid approach) support (ios with c++? On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.)
 
 CLOUD
@@ -171,6 +165,7 @@ Traditional Cookie-Based Auth (could be extended to Modern Token-Based Auth such
   \item \label{RQ1} \textbf{RQ1}: How can photoluminescence and smartphones be integrated for product authentication purposes?
   \item \label{RQ2} \textbf{RQ2}: Which factors affect the analysis of photoluminescent material in the context of smartphones?
   \item \label{RQ3} \textbf{RQ3}: Does modern smartphone technology provide the means for photoluminescence based product authentication in practice?
+    Artificial, customized luminophores
 \end{itemize}
 
 \end{document}
