@@ -107,44 +107,21 @@ Based on the results presented in Chapter \ref{chapter:results} and the findings
 \end{enumerate}
 
 
-
 \section{Challenges and Future Work}
 
-The primary challenge in systems that rely on color information -- be it an image of a taggant or its emission spectrum -- is color calibration. There are mainly two modules responsible for the color rendering accuracy (color correction) of a digital instrument: illuminant estimation (capture context) and color matrix transformation (color profile), the purpose of which is to transform the sensor output to a standard color space.
+The primary challenge in systems that rely on color information -- be it an image of a taggant or its emission spectrum -- is color calibration. As RGB is a device-dependent color model, different smartphones detect and reproduce a given RGB value differently: the sensor's response to the individual R, G, and B levels vary from vendor to vendor -- or even in the same device over time due to e.g. fabrication and aperture variations. Thus, an RGB value does not define the same color across devices without some kind of color management process. There are mainly two modules responsible for the color management (color correction) of a digital instrument: illuminant estimation (capture context) and color matrix transformation (color profile), the purpose of which is to transform the sensor output to a standard (rendered) color space. The capture context could be made constant by using the same camera module (and the associated light source), but color profiles would still need to be created separately for each supported smartphone model. Furthermore, the sensor data would need to be captured in RAW format, since a color profile is only really useful when it is applied to \emph{unrendered} sensor data. Thus, color calibration would have implications for both scalability (color profile creation) and performance (RAW capture). \cite{multiple_cameras} \cite{color_correction_pipeline}
 
-RGB is a device-dependent color model: different devices detect or reproduce a given RGB value differently, since the color elements (such as phosphors or dyes) and their response to the individual R, G, and B levels vary from manufacturer to manufacturer, or even in the same device over time. Thus an RGB value does not define the same color across devices without some kind of color management.
+Perhaps a better approach would be to omit color calibration altogether, and instead, have one fingerprint database per each smartphone model. This would offload the complexity of the normalization to the storage layer, where each database would contain the fingerprint corpus captured using a given smartphone model. The impact on scalability would also be minimal as NoSQL databases are typically \emph{horizontally scalable} \cite{nosql_scalability}. To further improve the accuracy of the pipeline additional selection criterion, such as structural and spatial similarity, could be applied. For example, taggants of various shapes and sizes could be used to form a discrete pattern allowing the matching algorithm measure similarity by more dimensions. % Spectra Systems \& CryptoGlyph
 
-- color calibration (requires use of RAW, unrendered color data), computation heavy
+Due to the lack of support for burst mode and timed capture by the camera API of both Android 4.4.2 and Windows Phone 8.1 images needed to be captured using the preview frame feed. This was unideal for two reasons. First, the preview feed degrades image quality for better FPS. Second, the application logic required for implementing the capture of the image data from the preview feed incurred additional complexity. Furthermore, in the case of Android, artefacts were introduced. As the camera APIs continue to mature, new capture methods like burst mode will hopefully provide a more stable and higher quality approach to scheduling the capture of multiple frames. In the interim, the use of high definition video remains an intriguing -- although equally challenging -- alternative.
 
-% due for example to aperture variations, fabrication
-% variations, electrical noise, and interpolation artifacts arising from the reconstruction of a full-resolution color image
-% from a half-resolution Bayer pattern image
-\url{http://www.cis.rit.edu/~jxj1770/publications/paperEI_Xerox.pdf}
-\url{http://www.cs.unc.edu/techreports/04-012.pdf}
-\url{https://www.cs.unc.edu/~welch/media/pdf/Ilie2005_Calib.pdf}
+Regardless of the corpus normalization technique, additional selection semantics or the capture logic, the methods presented in this thesis for analyzing and matching fingerprints remain applicable. As realised in the previous chapter, the histogram method is the preferred method for matching fingerprints. The fingerprint method could still prove useful as a fingerprint \emph{descriptor} for querying and filtering larger sets of fingerprints (e.g. a database). However, the apparent pitfalls of the fingerprint method as previously introduced in Chapter \ref{chapter:findings} would need to be addressed by implementing a more novel analysis algorithm for filtering and peak finding.
 
+Equally important to that of the capture and analysis methods are the luminous properties of the taggants and the light source. The LumiNova\textregistered\ pigments -- originally developed for use in watch dials -- used in the experiment were not entirely ideal test subjects. Their relatively long excitation lifetime made them difficult to differentiate. The full-spectrum white light source used for the photoexcitation would have ideally been replaced by a less powerful light source of a specific wavelength range for a more controlled and realistic experimentation setting. The light source should be small to be practical but also powerful enough to excite the taggant. A light source emitting a specific wavelength range would likely be better than a general purpose full-spectrum white light. However, as different luminophores have different excitation wavelength ranges, the question becomes which wavelength range the light source should cover? The excitation wavelength of a luminophore can be artifically
 
-
-
-- to add some structural \& spatial similarity semantics (- more novel selection criterion)
-  - alternative approach: colored dots form a discrete pattern, no grating necessary
-  - analogies to existing solutions (InkSure \& CryptoGlyph)
-
-- The preview feed was used since the Android and Windows Phone versions (Kitkat and 8.1, respectively) lacked the proper support for burst mode (image capture at a predefined interval). Furthermore, frames could not be captured individually as Thus, there was no way to schedule the capture to take place at a specific interval.
-  - YCbCr suffers from clipping (https://en.wikipedia.org/wiki/YCbCr)
-  - high res images could be used as camera APIs improve
-
-ALGOS
-- use histogram method. Fingerprint method useful for querying/filtering?
-- more sophisticated peak finding / matching algorithms
-- compensate for differences in the MFD by adjusting the zoom level (only if lossless zoom is available)
-
-TAGGANT
 - idempotence of the luminphores (photobleach)
-- phosphorescence vs. fluorescence (infeasible coz time)
-- Afterglow brightness is also proportional to the intensity of UV contained in the excitation light.
-- LumiNova pigments originally developed for use in watch dials
-- Erilaisilla hiloilla, suodattimilla, raoilla ja peileilla on ehdottoman tarkea tehtavansa riittavan resoluution aikaansaamiseksi ja jotta saadaan valituksi tarkka viritysaallonpituus ja saadaan minimoiduksi sironta ja taustaluminesenssi. aikaerotteisen maarityksen etuna on se, etta viritysvalo ehtii sammua kokonaan ja sirontailmioiden aiheuttaman taustan vaikutus poistuu. Pitka elinika mahdollistaa myos edullisen ja varsin yksinkertaisen laitteiston kayton.122,124
+- cost of artificial fabrication
+
 
 APP
 - change management / how to handle updates \& different devices?
@@ -162,9 +139,9 @@ Traditional Cookie-Based Auth (could be extended to Modern Token-Based Auth such
 
 
 \begin{itemize}
-  \item \label{RQ1} \textbf{RQ1}: How can photoluminescence and smartphones be integrated for product authentication purposes?
-  \item \label{RQ2} \textbf{RQ2}: Which factors affect the analysis of photoluminescent material in the context of smartphones?
-  \item \label{RQ3} \textbf{RQ3}: Does modern smartphone technology provide the means for photoluminescence based product authentication in practice?
+  \item \textbf{RQ1}: How can photoluminescence and smartphones be integrated for product authentication purposes?
+  \item \textbf{RQ2}: Which factors affect the analysis of photoluminescent material in the context of smartphones?
+  \item \textbf{RQ3}: Does modern smartphone technology provide the means for photoluminescence based product authentication in practice?
     Artificial, customized luminophores
 \end{itemize}
 
