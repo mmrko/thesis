@@ -123,37 +123,44 @@ Due to the lack of support for burst mode and timed capture by the camera API of
 
 The accuracy of the fingerprint tracing could also be improved by applying additional selection criterion, such as structural and spatial similarity. For example, in a similar way to CryptoGlyph\textregistered\ taggants of various shapes and sizes could be used to form discrete patterns to allow fingerprints to be compared in one additional dimension.
 
-Regardless of the prospect of corpus normalization techniques, more robust capture logic or additional selection semantics the methods presented in this thesis for analyzing and matching fingerprints remain applicable for small scale, internal authentication needs. As realised in the previous chapter, the histogram method should be the preferred method for matching fingerprints. The fingerprint method could still prove useful as a fingerprint \emph{descriptor} for querying and filtering larger sets of fingerprints. However, before any wider adoption its apparent pitfalls -- as introduced in Chapter \ref{chapter:findings} -- would need to be addressed by implementing a more novel analysis algorithm for filtering and peak finding.
+Regardless of the prospect of corpus normalization techniques (color calibration), more robust capture logic (native burst capture) or additional selection semantics (spatial dimension) the methods presented in this thesis for analyzing and matching fingerprints can still remain applicable for small scale, internal authentication needs. As realised in the previous chapter, the histogram method should be the preferred method for matching fingerprints. The fingerprint method could prove useful as a lightweight \emph{fingerprint descriptor} for querying and filtering larger sets of fingerprints. However, for better robustness its apparent pitfalls -- as outlined in Chapter \ref{chapter:findings} -- would need to be addressed first.
 
-Equally, if not more, relevant to that of the capture and analysis methods are the luminous properties of the taggants and the light source. The LumiNova\textregistered\ pigments -- originally developed for use in watch dials -- used in the experiments were not entirely ideal test subjects. Their relatively long excitation lifetime made them difficult to distinguish. Ideally, the full-spectrum white light source used for the photoexcitation would also have been replaced by a less powerful light source of a specific wavelength range for a more controlled and realistic experimentation setting. The light source should be small to be practical but also powerful enough to excite the taggant. A light source emitting a specific wavelength range would likely be better than a general purpose full-spectrum white light. However, as different luminophores have different excitation wavelength ranges, the question becomes which wavelength range the light source should cover?
+Equally relevant to that of the capture and analysis methods are the luminous properties of the taggants and the light source. The LumiNova\textregistered\ pigments used in the experiments -- originally developed for use in watch dials -- were not entirely ideal test subjects. Their relatively long excitation lifetime made them difficult to distinguish. Ideally, the full-spectrum white light source used for the photoexcitation would also have been replaced by a less powerful light source of a specific wavelength range for a more controlled and realistic experimentation setting. The light source should be small to be practical but also powerful enough to excite the taggant. A light source emitting a specific wavelength range would likely be better than a general purpose full-spectrum white light. However, as different luminophores have slightly different excitation wavelength ranges, the question becomes which wavelength range the light source should cover?
 
+The robustness of the luminophores poses another challenge as luminophores are subject to \emph{photobleaching} (or fading): after many absorption/emission cycles the molecules begin to deteriorate leading to alterations in the luminophore's emission. The loss of activity caused by photobleaching can be controlled by reducing the intensity or time-span of light exposure, by increasing the concentration, by reducing the intensity (frequency) of the light source, or by employing more robust fluorophores that are less prone to bleaching. The robustness, excitation wavelength and lifetime of a luminophore can be artifically enginereed to match the requirements of the application. However, this has implications for the cost-effectiveness of the solution as artificial fabrication of luminophores is often a tedious and costly process.
 
-% The excitation wavelength of a luminophore can be artifically
-
-- idempotence of the luminphores (photobleach)
-- cost of artificial fabrication
-
-
-APP
-- change management / how to handle updates \& different devices?
-- device detection (automatic configuration, database per phone model), scalability concerns
-- easily extendable due to iOS (due to hybrid approach) support (ios with c++? On iOS this extra bridge is unnecessary as C++ code can directly invoke Objective-C APIs.)
+On the application side, the outstanding challenges relate to offline support and security. client side storage, especially if the preferred histogram method is used, due to storage size constraints
+offered as experimental feature, should leverage native storage (local db populated on app install)
 
 CLOUD
 - more efficient/safer matching if done server-side (leverage histogram data directly?)
   - easy to switch over because the offline-first approach taken
+
+As for platform support, the WebView app architecture would allow extending support for iOS with minimal effort. Moreover, less platform-specific code would need to be written for iOS, as its APIs can be directly invoked from C++ -- as opposed to Android and Windows Phone, for which JNI and C++/CX code is required.
+
 Attack scenarios
 - get hold of the device or man-in-the-middle (metadata works as a layer of indirection)
 using a predefined username and password (easily extendable to a real user auth)
 - CouchDB uses a traditional cookie based authentication scheme, and as such, applications can be vulnerable to CSRF attacks. However, the application has no CSRF attacks vectors as it the DBMS and the application server is read-only
 Traditional Cookie-Based Auth (could be extended to Modern Token-Based Auth such as JWT)
 
+\section{Review of the Research Questions}
 
-\begin{itemize}
+This chapter addresses the research questions presented in Chapter \ref{chapter:research-questions}.
+
+\begin{itemize}[label=, leftmargin=*]
   \item \textbf{RQ1}: How can photoluminescence and smartphones be integrated for product authentication purposes?
+
+Aenean sit amet vehicula mauris. Donec at congue felis. Aenean vitae dictum enim. Aenean congue at nunc pellentesque eleifend. Integer ac purus nulla. Ut magna ipsum, vulputate non metus nec, lacinia bibendum metus. Nunc scelerisque augue tellus, non tincidunt ligula volutpat eu. Maecenas a massa euismod, aliquam arcu nec, molestie lectus\\
+
   \item \textbf{RQ2}: Which factors affect the analysis of photoluminescent material in the context of smartphones?
+
+Aenean sit amet vehicula mauris. Donec at congue felis. Aenean vitae dictum enim. Aenean congue at nunc pellentesque eleifend. Integer ac purus nulla. Ut magna ipsum, vulputate non metus nec, lacinia bibendum metus. Nunc scelerisque augue tellus, non tincidunt ligula volutpat eu. Maecenas a massa euismod, aliquam arcu nec, molestie lectus\\
+
   \item \textbf{RQ3}: Does modern smartphone technology provide the means for photoluminescence based product authentication in practice?
-    Artificial, custom tailored luminophores
+
+Aenean sit amet vehicula mauris. Donec at congue felis. Aenean vitae dictum enim. Aenean congue at nunc pellentesque eleifend. Integer ac purus nulla. Ut magna ipsum, vulputate non metus nec, lacinia bibendum metus. Nunc scelerisque augue tellus, non tincidunt ligula volutpat eu. Maecenas a massa euismod, aliquam arcu nec, molestie lectus\\
+
 \end{itemize}
 
 \end{document}
