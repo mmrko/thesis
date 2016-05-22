@@ -128,6 +128,7 @@ Once the light source has been triggered the camera application will wait a pred
 The image sequence is not captured as individual frames, but instead, due to the lack of proper support by the respective camera APIs, data is captured from the camera's preview feed. The output from the sensor is read in the YCbCr format. Android encodes the data in the NV21 format whereas Windows Phone uses the NV12 format. The difference between NV21 and NV12 is that the interleaving order of the Cr and Cb samples is the opposite. The subsampling ratio of these formats is 4:2:0. The rate at which new preview frames are capture depends on the Frames Per Second (FPS) supported by the sensor. Higher rate of frames allows shorter intervals to be used, and thus, the preview FPS is set to the highest possible value (or, range) supported by the platform during the camera initialization.
 
 \subsection{Taggant Analysis}
+\label{chapter:taggant-analysis}
 
 The purpose of the taggant analysis step is to construct a unique fingerprint from the captured frames. The analysis process is outlined in Figure \ref{figure:taggant-analysis-process}. To prevent blocking the main UI thread and affecting the capture performance the frames are processed (analysed) concurrently in their own threads.
 
