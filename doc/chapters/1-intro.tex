@@ -29,14 +29,15 @@ This thesis explores an alternative, competing technology.
 The focus of this thesis is the design and implementation of a scalable hybrid mobile application. The application will be developed as a part of the LuminoTrace project at Aalto CHEM for the purposes production authenticaion.
 The verification is done by analyzing the spectrum of a special chemical compound embedded in the material. Both the underlying algorithm and the compound have already been developed as a part of the LuminoTrace project.}
 
-\sout{The functionality outlined above can be largely achieved by utilizing existing Web technologies. However, a more granular control over the camera (e.g. burst-mode, flash settings) will require a native component to be implemented for each target platform. The preliminary target platform will be Windows Phone (WP). To improve scalability the fingerprint will be computed on the client-side. This will require for the existing algorithm to be ported into JavaScript. Scalability can be further improved by offloading parts of the (fingerprint) database from the server to the user's device. Moreover, usability is improved as the application can function offline without the overhead of network latency. Hosting fingerprint data on the user's device might however have security implications: can the data be safely/efficiently encrypted on the user's device? The product authentication ecosystem \ref{fig:landscape}.}
+\sout{The functionality outlined above can be largely achieved by utilizing existing Web technologies. However, a more granular control over the camera (e.g. burst-mode, flash settings) will require a native component to be implemented for each target platform. The preliminary target platform will be Windows Phone (WP). To improve scalability the fingerprint will be computed on the client-side. This will require for the existing algorithm to be ported into JavaScript. Scalability can be further improved by offloading parts of the (fingerprint) database from the server to the user's device.}
+
+%Moreover, usability is improved as the application can function offline without the overhead of network latency. Hosting fingerprint data on the user's device might however have security implications: can the data be safely/efficiently encrypted on the user's device? The product authentication ecosystem \ref{fig:landscape}.
 
 \begin{figure}[h!]
 \centering \includegraphics[width=\linewidth]{images/landscape}
 \caption{Product authentication landscape \label{fig:landscape}}
 \end{figure}
 
-\clearpage
 \section{Research Questions}
 \label{chapter:research-questions}
 
