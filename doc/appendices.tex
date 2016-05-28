@@ -7,7 +7,7 @@
 \chapter{Camera Module}
 \label{appendix:camera-module}
 
-The camera module photographed from the top and side. Cardboard is used to encase the taggant and cover it from ambient lighting. An additional piece of cardboard is used to set the smartphone to be at a fixed distance (of lens MFD) from the taggant allowing more accurate focus.
+The camera module photographed from the top and side. Cardboard is used to encase the taggant and cover it from ambient lighting. An additional piece of cardboard (an extension) is used to set the smartphone to be at a fixed distance (of lens MFD) from the taggant allowing more accurate focus.
 
 \begin{figure}[h]
 \centering \includegraphics[width=\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/camera_module-actual.jpg}
@@ -44,7 +44,7 @@ The code utilizes Simon Monk's Arduino Timer library (version 1.3) \cite{arduino
 \chapter{Fingerprint format}
 \label{appendix:fingerprint}
 
-The fingerprint can be represented as a $n \times m$ matrix where $n$ denotes the number of frames and $m$ the maximum number of peaks found in a single frame (sample), and encoded as a JavaScript array with additional metadata:
+The fingerprint can be represented as an $n \times m$ matrix where $n$ denotes the number of frames and $m$ the maximum number of peaks found in a single frame (sample), and encoded as a JavaScript array with additional metadata:
 \[
 M=
   \begin{bmatrix}
@@ -83,7 +83,7 @@ M=
 
 \chapter{Fingerprint Design Document}
 \label{appendix:fingerprint-design-doc}
-A CouchDB design document used for creating an index keyed by the peak count and weighted hue average of the first sample of each fingerprint to allow fingerprints to be queried directly by peak count and average hue.
+A CouchDB design document used for creating an index (view) keyed by the peak count and weighted hue average of the first sample of each fingerprint to allow fingerprints to be queried directly by peak count and average hue.
 \vspace{5mm}
 
 \lstinputlisting[language=JavaScript]{./chapters/design_doc.js}
@@ -91,7 +91,7 @@ A CouchDB design document used for creating an index keyed by the peak count and
 \chapter{Experiment Taggants}
 \label{appendix:taggants}
 \enlargethispage{10\baselineskip}
-For each LumiNova\textregistered\ pigment (luminophore) a stock solution was created. The taggants were created by pipeting the stock solutions in increments of $50\mu l$ into intermediary solutions, from which another $50\mu l$ would be pipeted onto a blank white carton as the taggant. For example, taggant \emph{13VP} would require $200\mu l$ of stock solution ($50\mu l$ and $150\mu l$ of pigments G and O, respectively), of which $50\mu l$ would eventually be pipeted on to the carton. In total, 16 different taggants were prepared for the experiement (including two samples for each taggant): \emph{S}, \emph{P}, \emph{13SP}, \emph{13SV}, \emph{13VP}, \emph{24SP}, \emph{24SV} and \emph{24VP}.
+For each LumiNova\textregistered\ pigment (luminophore) a stock solution was created. The taggants were created by pipeting the stock solutions in increments of $50\mu l$ into intermediary solutions, from which another $50\mu l$ was pipeted onto a blank white carton as the taggant. For example, taggant \emph{13VP} required $200\mu l$ of stock solution ($50\mu l$ and $150\mu l$ of pigments G and O, respectively), of which $50\mu l$ was eventually be pipeted on to the carton. In total, 16 different taggants were prepared for the experiement (including two samples for each taggant): \emph{S}, \emph{P}, \emph{13SP}, \emph{13SV}, \emph{13VP}, \emph{24SP}, \emph{24SV} and \emph{24VP}.
 
 \vspace{-1em}
 \begin{table}[ht]
