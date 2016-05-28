@@ -2,37 +2,47 @@
 
 \documentclass[thesis.tex]{subfiles}
 
+% Johdanto selvittaa samat asiat kuin tiivistelma, mutta laveammin. Johdannossa kerrotaan yleensa seuraavat asiat
+% \item[--]Tutkimuksen taustaa ja tutkimusaiheen yleisluonteinen esittely
+% \item[--]Tutkimuksen tavoitteet
+% \item[--]Paakysymys ja osaongelmat
+% \item[--]Tutkimuksen rajaus ja keskeiset kasitteet
+% Aiheen rajaus johdantoon.
 
 \begin{document}
 
 \chapter{Introduction}
 \label{chapter:intro}
 
+Numeric Identifier/ One dimension-Bar Code
+QR code and other two dimensional bar codes
+3. Physical Fingerprint Technology on visible spectrum: holograms, paper, inks, security threads and regardless it is overt or covert.
+NFC Radio Frequency Identifier (RFID)
+
+Driving smartphones forward as an authentication device has not only been their automation, but also their convenience. Concurrently, anti-counterfeit solutions offering high levels of security are also often costly to implement, making them difficult to afford. It is therefore highly desirable to consider technologies that are both secure and cost-effective, and do not require special readers to be detected.
+
+Most importantly, unlike special reading devices, smartphones provide true portability and rapid deployment, making it possible to develop an authentication application that will work in different environments and be distributed in multiple markets, without adapting the hardware or the source code.
 
 % http://ipimediaworld.com/wp-content/uploads/2013/10/Turning-your-smartphone.pdf
 
-\sout{Tsekkaa löytyskö LuminoTrace PowerPointista vielä jotain pointteja?
-Aiheen rajaus johdantoon.
-Johdanto selvittaa samat asiat kuin tiivistelma, mutta laveammin. Johdannossa kerrotaan yleensa seuraavat asiat
-Kuten kirjallisessa osassa todettiin, vaarentajat pyrkivat selvittamaan tekniikan periaatteen nopeasti, joten turvallisuussovelluksissa kaytettavia merkintoja on oltava riittavan monimutkaisia ja niita on voitava muunnella helposti. Kuten luvuissa 2.1.1-2.1.2 todettiin, luminoforien luminesenssiominaisuudet muuttuvat yhdisteen rakenteen muuttuessa. Erilaisten rakenteiden suunnitelmallinen synteesi onkin tarkeaa, mikali tekniikkaa halutaan kehittaa eteenpain. Luminoforien viritys- ja emissioaallonpituuksien tulisi soveltua myos kaytetyn laitteiston vaatimuksiin.
-Fotoluminesenssiin perustuva pintamerkkiaineteknologia}
+vaarentajat pyrkivat selvittamaan tekniikan periaatteen nopeasti, joten turvallisuussovelluksissa kaytettavia merkintoja on oltava riittavan monimutkaisia ja niita on voitava muunnella helposti. luminoforien luminesenssiominaisuudet muuttuvat yhdisteen rakenteen muuttuessa. Erilaisten rakenteiden suunnitelmallinen synteesi onkin tarkeaa, mikali tekniikkaa halutaan kehittaa eteenpain. Luminoforien viritys- ja emissioaallonpituuksien tulisi soveltua myos kaytetyn laitteiston vaatimuksiin.
 
-\begin{itemize}
-\item[--]Tutkimuksen taustaa ja tutkimusaiheen yleisluonteinen esittely
-\item[--]Tutkimuksen tavoitteet
-\item[--]Paakysymys ja osaongelmat
-\item[--]Tutkimuksen rajaus ja keskeiset kasitteet
-\end{itemize}
 
-\sout{Product authentication, or brand protection, ...
-This thesis explores an alternative, competing technology.
-The focus of this thesis is the design and implementation of a scalable hybrid mobile application. The application will be developed as a part of the LuminoTrace project at Aalto CHEM for the purposes production authenticaion.
-The verification is done by analyzing the spectrum of a special chemical compound embedded in the material. Both the underlying algorithm and the compound have already been developed as a part of the LuminoTrace project.}
+on the product surfaces and on their packages
+Important application fields are e.g. packages of medicines and expensive products and their packages. Developed markings are typically not visible for the bare eyes.
 
-\sout{The functionality outlined above can be largely achieved by utilizing existing Web technologies. However, a more granular control over the camera (e.g. burst-mode, flash settings) will require a native component to be implemented for each target platform. The preliminary target platform will be Windows Phone (WP). To improve scalability the fingerprint will be computed on the client-side. This will require for the existing algorithm to be ported into JavaScript. Scalability can be further improved by offloading parts of the (fingerprint) database from the server to the user's device.}
+- Tools for identifying counterfeit goods
+- OECD has estimated the value of internatioanlly traded counterfeit products in 2015 would be 770-990 billion US
+- low cost marking technology for production authentication/track-and-trace purposes
+- portable low-cost, handheld reading instrument
+- printable
+- stakeholders: brand owners, distributions, packaging industry, authorities
+
+% Product authentication, or brand protection, ...
+% This thesis explores an alternative, competing technology.
 
 %Moreover, usability is improved as the application can function offline without the overhead of network latency. Hosting fingerprint data on the user's device might however have security implications: can the data be safely/efficiently encrypted on the user's device? The product authentication ecosystem \ref{fig:landscape}.
-
+http://www.iccwbo.org/Advocacy-Codes-and-Rules/BASCAP/BASCAP-Research/Economic-impact/Global-Impacts-Study/
 \begin{figure}[h!]
 \centering \includegraphics[width=\linewidth]{images/landscape}
 \caption{Product authentication landscape \label{fig:landscape}}
