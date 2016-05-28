@@ -3,20 +3,19 @@
 \begin{document}
 
 
-
 \chapter{Background}
 \label{chapter:background}
 
-This chapter provides an introduction to concepts that help understand how smartphones and photoluminescence can be applied for product authentication purposes. Chapter \ref{section:existing_solutions} presents an overview of existing smartphone-based product authentication solutions. Chapter \ref{section:photoluminescence} continues with an introduction to photoluminescence and its applications. Chapter \ref{section:rgbhsv} discusses three widely adopted color models (RGB, HSV and YCbCr) and their distinct application areas. Chapter \ref{section:mobile_camera_technology} will first discuss the color image pipeline of a camera to provide a better understanding of the recent mobile camera innovations introduced later in the chapter. Last, Chapter \ref{section:hybrid_mobile_landscape} covers the hybrid mobile landscape, the different ways of developing hybrid applications (WebView app and Compiled Hybrid app) and how they compare to fully native solutions. The focus will be on WebView apps while an overview of different Compiled Hybrid app solutions will be provided towards the end of the chapter.
+This chapter provides an introduction to concepts that help understand how smartphones and photoluminescence can be applied for product authentication purposes. Chapter \ref{section:existing_solutions} presents an overview of existing smartphone-based product authentication solutions. Chapter \ref{section:photoluminescence} continues with an introduction to photoluminescence and its applications. Chapter \ref{section:rgbhsv} discusses three widely adopted color models (RGB, HSV and YCbCr) and their distinct application areas. Chapter \ref{section:mobile_camera_technology} provides an overview of the image pipeline of a camera as an introduction for the recent mobile camera innovations disussed later in the chapter. Last, Chapter \ref{section:hybrid_mobile_landscape} covers the hybrid mobile landscape, the different ways of developing hybrid applications (WebView app and Compiled Hybrid app) and how they compare to fully native solutions. The focus will be on WebView apps while an overview of different Compiled Hybrid app solutions will be provided towards the end of the chapter.
 
-\clearpage
+% \clearpage
 
 \section{Existing Solutions}
 \label{section:existing_solutions}
 
 A wide spectrum of technologies exist for product authentication purposes. Existing solutions range from the use of inexpensive seals and electronic labels to carefully crafted watermarks and even DNA. These technologies can be categorized, for example, by their level of security, cost and portability. The focus of this chapter is on commercial smartphone-based product authentication solutions that often trade high precision (or reliability) for better cost-efficiency and portability. For a more in-depth overview of different product authentication technologies the reader is referred to \cite{kuosmanen}.
 
-Spectra Systems' SmartSure technology authenticates products by utilizing a chemical marker (taggant) embedded in a hologram. The authenticity of the taggant is verified by capturing an image of the hologram and sending it to a cloud platform for further processing. The platform also offers track-and-trace reporting services. The smartphone application uses a QR scanner and visual aids to help the user position the viewfinder properly over the hologram. \cite{inksure} An example of SmartSure's user interface can be seen in Figure \ref{figure:inksure}.
+Spectra Systems' SmartSure technology authenticates products by utilizing a chemical marker (taggant) embedded in a hologram. The authenticity of the taggant is verified by capturing an image of the hologram and sending it to a cloud platform for further processing. The platform also offers track-and-trace reporting services. The smartphone application uses a QR scanner and visual aids to help the user position the viewfinder properly over the hologram. \cite{inksure} An example of SmartSure's UI can be seen in Figure \ref{figure:inksure}.
 
 \begin{figure}[ht]
 \centering \includegraphics[width=13.25cm]{images/existing_solutions/smartsure}
@@ -25,58 +24,63 @@ Spectra Systems' SmartSure technology authenticates products by utilizing a chem
 
 AlpVision and its CryptoGlyph\textregistered\ technology takes a very different approach. CryptoGlyph\textregistered\ makes use of a pseudo-random pattern of tiny dots (40-80 microns) printed on the coating of a material. The color and size of the dots are customized based on the packaging color. The authenticity of a product is verified by matching a pattern on the product to a pattern stored in a remote database. As of this writing AlpVision's iOS and Android applications are not publicly available in their respective application stores, but instead distributed as tailored applications ``to meet the client's unique authentication needs''. Figure \ref{figure:alpvision} illustrates how differently sized and color dots affect their visibility and how they are applied to the coating of a material. \cite{alpvision}
 
-\begin{figure}[hb]
+The growing number of NFC-enabled phones in the market (estimated to have reached 53\% of the overall market in 2015 according to \cite{frost-sullivan}) has given companies the incentive to utilize NFC technology for product authentication purposes. Secure and specialized NFC tags have been manufactured by a number of companies since the technology was first introduced to the market in 2006. However, only few companies have developed the software and services exclusively for NFC-based product authentication. Examples of such companies include FinnCode\footnote{\url{http://www.finncode.com/}} and Selinko\footnote{\url{http://selinko.com/}}, which manufacture their own secure NFC tags and offer a SaaS-based product authentication platform for their clients. Other notable smartphone powered product authentication applications include scryptoTRACE\textregistered\ by U-NICA, CertiEye by Infotoo and AuthentiGuard by DSS. A summary of the different solutions is provided in Table \ref{table:existing-solutions} for comparison.
+
+\begin{figure}
 \centering \includegraphics[width=\textwidth]{images/existing_solutions/cryptoglyph}
+\vspace{-8mm}
 \caption{AlpVision's CryptoGlyph\textregistered\ embeds micro-dots on the coating of a material to create unique invisible patterns for product authentication \cite{alpvision}. \label{figure:alpvision}}
+\vspace{-5mm}
 \end{figure}
 
-The growing number of NFC-enabled phones in the market (estimated to have reached 53\% of the overall market in 2015 according to \cite{frost-sullivan}) has given companies the incentive to utilize NFC technology for product authentication purposes. Secure and specialized NFC tags have been manufactured by a number of companies since the technology was first introduced to the market in 2006. However, only few companies have developed the software and services exclusively for NFC-based product authentication. Examples of such companies include FinnCode\footnote{\url{http://www.finncode.com/}} and Selinko\footnote{\url{http://selinko.com/}}, which manufacture their own secure NFC tags and offer a SaaS-based product authentication platform for their clients.
-
-Other notable smartphone powered product authentication applications include scryptoTRACE\textregistered\ by U-NICA, CertiEye by Infotoo and AuthentiGuard by DSS. A summary of the different solutions is provided in Table \ref{table:existing-solutions} for comparison.
-
-\begin{table}[ht]
+\begin{table}[h!]
 	\caption{Existing solutions for smartphone-based product authentication.} \label{table:existing-solutions}
-
 	\begin{center}
-	\begin{tabular}{| m{2cm} | m{3.25cm} | m{3cm} | m{3.75cm} |}
-
+	\begin{tabular}{| m{2.95cm} | m{3.15cm} | m{2.35cm} | m{3.45cm} |}
 		\hline
 		\textbf{Company}				&	\textbf{Product name}			&	\textbf{Platforms}			&	\textbf{Technologies} \\ \hline
 		Spectra Systems\newline (American)		&	SmartSure						&	iOS							&	Chemical taggant,\newline hologram \\ \hline
-		U-NICA\newline (Swiss)			&	scryptoTRACE\textregistered		&	iOS, Android				&	Micro-printing,\newline edge detection \\ \hline
+		U-NICA\newline (Swiss)			&	scryptoTRACE\textregistered		&	iOS,\newline Android				&	Micro-printing,\newline edge detection \\ \hline
 		AlpVision\newline (Swiss)		&	CryptoGlyph\textregistered		&	Customized\footnotesize{*}	&	Micro-printing,\newline pattern recognition \\ \hline
 		DSS\newline (American)			&	AuthentiGuard					&	Customized\footnotesize{*}	&	Undisclosed \\ \hline
-		Infotoo\newline (Chinese)		&	CertiEye						&	iOS, Android				&	Undisclosed \\ \hline
-		FinnCode\newline (Finnish)		&	FinnCode\newline Authentication	&	iOS, Android				&	NFC \\ \hline
+		Infotoo\newline (Chinese)		&	CertiEye						&	iOS,\newline Android				&	Undisclosed \\ \hline
+		FinnCode\newline (Finnish)		&	FinnCode\newline Authentication	&	iOS,\newline Android				&	NFC \\ \hline
 		Selinko\newline (Belgian)		&	Selinko							&	Android						&	NFC \\
 		\hline
 	\end{tabular}
 	\end{center}
+	\vspace{-3mm}
 	\scriptsize{*} \small{privately distributed, the application is developed according to the client's needs.}
 \end{table}
 
 \section{Photoluminescence}
 \label{section:photoluminescence}
-
+\enlargethispage{2\baselineskip}
 Photoluminescence, one of the many forms of luminescence (light emission), is a process where a substance absorbs photons (light) and emits back a certain wavelength of light. Based on the lifetime of the emission (decay time) photoluminescence can be more specifically referred to as \emph{fluorescence} or \emph{phosphorescence}. Fluorescence is typically measured in nanoseconds (from absorbtion to emission) whereas the duration of phosphorescence is anything from a few milliseconds to seconds, or even hours \cite{luminescence_basics}. Materials that have \emph{photoluminescent} properties are typically referred to as \emph{luminophores} (or respectively, as fluorophores or phosphors).
 
-Figure \ref{figure:photoluminescence} illustrates the process of photoluminescence. The first phase of photoluminescence is \emph{photoexcitation}, the absorption of photons causing an electron to move to a higher energy state ($S_0 \rightarrow S_2$). The absorption is followed by internal conversion (IC), where the electron transitions within picoseconds from a higher energy state to a lower energy state. After the electron has reached the lowest excited energy state ($S_1$) it relaxes, eventually reaching the the ground state ($S_0$). This occurs either directly as a rapid emission of light (fluorescence) or through a so called intersystem crossing (ISC) resulting in a relatively slow emission of light as the electron travels from one state to another (phosphorescence).
+Figure \ref{figure:photoluminescence} illustrates the process of photoluminescence. The first phase of photoluminescence is \emph{photoexcitation}, the absorption of photons causing an electron to move to a higher energy state ($S_0 \rightarrow S_2$). The absorption is followed by internal conversion (IC), where the electron transitions within picoseconds from a higher energy state to a lower energy state. After the electron has reached the lowest excited energy state ($S_1$) it relaxes, eventually reaching the ground state ($S_0$). This occurs either directly as a rapid emission of light (fluorescence) or through a so called intersystem crossing (ISC) resulting in a relatively slow emission of light as the electron travels from one state to another (phosphorescence).
 
-\begin{figure}[hb]
+
+\begin{figure}[h!]
+\vspace{-4mm}
 \centering \includegraphics[width=\textwidth]{images/photoluminescence.pdf}
+\vspace{-8mm}
 \caption{A simplified Jablonski diagram of photoluminescence illustrating the emission pathways of fluorescence and phosphorescence. Phosphorescence occurs at longer wavelengths as the electron loses energy during ISC. \label{figure:photoluminescence}}
 \end{figure}
 
-\noindent Since the energy of the electron at the triplet state is lower than at the singlet state phosphorescence typically occurs at longer wavelengths of light than fluorescence. Furthermore, phosphors have a longer \emph{excited state lifetime} as the relaxation from the triplet state ($T_1$) to the singlet state ($S_0$) is kinetically unfavorable, and thus, occurs at a much slower pace. Due to the longer lifetime phosphors typically emit light long after the initial absorption of photons. \cite{CEJ}
+Since the energy of the electron at the triplet state is lower than at the singlet state phosphorescence typically occurs at longer wavelengths of light than fluorescence. Furthermore, phosphors have a longer \emph{excited state lifetime} as the relaxation from the triplet state ($T_1$) to the singlet state ($S_0$) is kinetically unfavorable, and thus, occurs at a much slower pace. Due to the longer lifetime phosphors typically emit light long after the initial absorption of photons. \cite{CEJ}
 
 Luminophores always emit longer wavelengths (less energy) than what they absorb. This is due to the loss of energy within the emission pathway. For example, during the IC and ISC transitions some of the excitation energy transforms into heat. The difference between the absorption and emission wavelength is known as the \emph{Stokes shift}. The magnitude of Stokes shift depends on the chemical properties of the luminophore. For fluorophores it is typically in the range of 30-50 nanometers while for phosphors, such as Lanthanide Chelates, it can range up to 200 nanometers. Luminophores are also subject to different environmental effects: changes in temperature, pH, concentration and the amount of dissolved oxygen in the compound affect the intensity of the luminophore and can even shift its natural emission wavelength. \cite{luminescence_basics}\cite{hemmila}
 
-Photoluminescence has many applications areas. It can be used for forensic analysis, to detect impurities in a system, or to study structures \cite{photoluminescence_use_case_2}\cite{photoluminescence_use_case_1}\cite{photoluminescence_use_case_3}. This is typically achieved through \emph{luminescence spectroscopy}, which provides a non-destructive and non-invasive manner to study materials using luminescence. In commercial products luminescence is often used for illuminating the dials of a watch under poor lighting conditions as illustrated in Figure \ref{figure:photoluminescence_example}. Phosphor-coated dials exposed to bright daylight continue to glow in the dark for the duration of the phosphorescence. More expensive watches, however, utilize radiation -- instead of depending on an external light source -- to excite the electrons by enclosing radioactive substance within the phosphor coating. This form of luminescence is known as radioluminescence.
+Photoluminescence has many applications areas. It can be used for forensic analysis, to detect impurities in a system, or to study structures \cite{photoluminescence_use_case_2}\cite{photoluminescence_use_case_1}\cite{photoluminescence_use_case_3}. This is typically achieved through \emph{luminescence spectroscopy}, which provides a non-destructive and non-invasive manner to study materials using luminescence. In commercial products luminescence is often used for illuminating watch dials under poor lighting conditions as illustrated in Figure \ref{figure:photoluminescence_example}.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering \includegraphics[width=\textwidth]{images/photoluminescence_example}
 \caption{Illuminated watch dials are a typical commercial application of photoluminescence. More expensive watches typically use radioluminance and a radioactive substance like tritium for a similar effect.\label{figure:photoluminescence_example}}
 \end{figure}
+
+\noindent Phosphor-coated dials exposed to bright daylight continue to glow in the dark for the duration of the phosphorescence. More expensive watches, however, utilize radiation -- instead of depending on an external light source -- to excite the electrons by enclosing radioactive substance within the phosphor coating. This form of luminescence is known as radioluminescence.
+
 
 \section{Color Models}
 \label{section:rgbhsv}
@@ -92,7 +96,6 @@ Like all color models, RGB itself does not specify what is meant by red, green a
 
 A given color space can only produce the colors that fall within its \textit{gamut}, the triangle defined by the chromaticities of its primaries as illustrated in Figure \ref{figure:srgb}. As RGB has been found to model the human color vision reasonably accurately, sRGB has become the standard color space in today's digital consumer products. However, for some use cases there exists better alternatives, which are covered in more detail in the following chapters.
 
-\clearpage
 \begin{figure}[ht]
 \centering \includegraphics[width=0.75\textwidth]{images/srgb}
 \caption{The CIE x-y chromaticity diagram and sRGB gamut (triangle). A color space can only render the subset of colors that are within its gamut.\label{figure:srgb}}
@@ -102,15 +105,16 @@ A given color space can only produce the colors that fall within its \textit{gam
 
 HSV (hue-saturation-value) color model was developed in the late 1970s in an attempt to create a more intuitive and perceptually relevant color model for different computer graphics applications. HSV rearranges the cartesian geometry of RGB to a cylindrical coordinate system separating the color information (chroma) from the brightness information (luma). The geometrical representations of RGB and HSV are depicted in Figure \ref{figure:rgb_hsv} for comparison.
 
-The ability to decouple luma from chroma brings many benefits for graphics processing applications. Many common computer vision algorithms designed for grayscale images, such histogram equalization, canny edge detection or binary thresholding, become trivial in HSV space as the grayscale information can be read directly from the luma component (V) \cite{color_segmentation}. HSV has also become the de facto model for color pickers as the relationship between hue, saturation and brightness are both conceptually and perceptually easier to reason about than that of red, green and blue.
-
 \begin{figure}[ht]
 \centering \includegraphics[width=\textwidth]{images/rgb_hsv}
 \caption{RGB colors are typically presented in cartesian coordinates whereas HSV colors use cylinder coordinates \cite{hsv_cylinder}\cite{rgb_cube}.\label{figure:rgb_hsv}}
 \end{figure}
 
-RGB values can be converted into HSV using a simple linear transformation. The formal definition of the transformation is given by the following formula:
+The ability to decouple luma from chroma brings many benefits for graphics processing applications. Many common computer vision algorithms designed for grayscale images, such histogram equalization, canny edge detection or binary thresholding, become trivial in HSV space as the grayscale information can be read directly from the luma component (V) \cite{color_segmentation}. HSV has also become the de facto model for color pickers as the relationship between hue, saturation and brightness are both conceptually and perceptually easier to reason about than that of red, green and blue.
 
+RGB values can be converted into HSV using a simple linear transformation. The formal definition of the transformation is given by the following formulae:
+
+\vspace{-4mm}
 \begin{align}
 \label{rgb-to-hsv}
 V &\leftarrow C_{max}	&
@@ -127,6 +131,7 @@ H &\leftarrow
 	\end{cases}
 \end{align}
 \noindent where
+\vspace{-2mm}
 \begin{flalign*}
 &C_{max}=max(R, G, B),\\
 &C_{delta}=max(R, G, B) - min(R, G, B),\\
@@ -207,7 +212,7 @@ Advancements in mobile camera technology have not only taken place in hardware b
 
 Mobile applications can be generally developed as native, hybrid or web applications. A native implementation offers the highest performance (least overhead) and the best access to the native device APIs (sensors, storage, contacts). On the other hand, building a mobile web application allows for better portability and code re-use across platforms and devices reducing development time and costs. Hybrid mobile applications (or, hybrid apps) combine the best of both worlds by leveraging web technologies to deploy native-like mobile applications to a broad range of smartphones.
 
-Hybrid apps can be further divided into \textit{WebView apps} and \textit{Compiled Hybrid apps}. WebView apps use web technologies (HTML, CSS and JavaScript) and the platform's native browser component (commonly known as the web view) to communicate with the platform's native layer. Compiled Hybrid apps hand allow code written in one programming language to target multiple platforms by compiling it to platform-specific native code.
+Hybrid apps can be further divided into \textit{WebView apps} and \textit{Compiled Hybrid apps}. WebView apps use web technologies (HTML, CSS and JavaScript) and the platform's native browser component (commonly known as the web view) to communicate with the platform's native layer. Compiled Hybrid apps allow code written in one programming language to target multiple platforms by compiling it to platform-specific native code.
 
 \subsection{The Landscape}
 
@@ -232,7 +237,8 @@ Unlike many of its commercial counterparts Cordova does not provide any readily 
 
 	\end{tabular}
 	\end{center}
-	\scriptsize{*} \small{platform-specific themes available as 3rd party extensions}
+	\vspace{-3mm}
+	\scriptsize{*} \small{platform-specific themes are available as 3rd party extensions}
 \end{table}
 
 \subsection{WebView Applications}

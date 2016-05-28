@@ -40,8 +40,6 @@ The goal of the thesis was to investigate the feasibility of utilizing smartphon
 
 The general architecture of the LuminoTrace application is depicted in Figure \ref{figure:architecture}. The camera application and the external camera module work in tandem to capture and analyze the taggant to construct a fingerprint. To find a product linked to the fingerprint a request is sent over the network to the application server, which queries the databases for a possible match. Alternatively, if the network is unavailable the application will fallback to querying a local copy of the fingerprint database. Finally, the result of the trace is rendered in the UI. In the context of this thesis this process of capturing, analyzing and matching is referred to as \emph{tracing}.
 
-\clearpage
-
 \begin{figure}[h]
 \centering \includegraphics[width=13.5cm]{images/design_implementation/architecture.pdf}
 \caption{The general architecture of the LuminoTrace application. The entities involved include a smartphone, an external camera module, a taggant and the cloud (an application server and a DBMS). \label{figure:architecture}}
