@@ -55,15 +55,17 @@ The camera application was implemented as a WebView application using Apache Cor
 Figure \ref{figure:user_interface} presents the user interface. For brevity, the landing page and the two sidebar views (\emph{Past traces} and \emph{Settings}) are combined into a single image and other views, such as success and error pages, are omitted. The \emph{Past traces} view displays a history of successfully matched products and allows the user to navigate further to view the relevant product information (e.g. product description and link to an online marketplace). The \emph{Settings} sidebar mainly consists of parameters for configuring the underlying algorithms and the smartphone's camera. These settings were only exposed for research and development purposes and would not be rendered in the actual end-user application. The main interaction endpoint for the user is the red capture button on the landing page, which initiates the tracing process. The tracing process is discussed in more detail in Chapter \ref{chapter:fingerprint-pipeline}.
 
 \begin{figure}[h]
-\centering \includegraphics[width=0.83\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/user_interface}
+\centering \includegraphics[width=0.98\textwidth,height=\textheight,keepaspectratio=true]{images/design_implementation/user_interface}
+\vspace{-4mm}
 \caption{The user interface of the LuminoTrace application consists of two sidebar views for configuring settings and viewing trace history. \label{figure:user_interface}}
 \end{figure}
 
 To interact with the native Android and Window Phone camera APIs a custom Cordova plugin was implemented. Existing Cordova camera plugins or native 3rd party camera libraries could not be utilized as a more granular control of the output image data was required. The parameters supported by the plugin and passed to the underlying camera APIs are listed in Table \ref{table:camera-parameters}. Other relevant camera parameters were either disabled (exposure compensation and flash mode) or set to their logical default value (e.g. zoom level of 0). Shutter speed and lens aperture could not be configured due to the lack of support by the API and the hardware, respectively. To capture the fingerprint the plugin interacts with an external camera module, the implementation of which is dicussed in the next chapter.
 
 \begin{table}[ht]
+	\vspace{-3mm}
 	\caption{Camera parameters supported by the LuminoTrace application.} \label{table:camera-parameters}
-
+	\vspace{-2mm}
 	\begin{center}
 	\begin{tabular}{| m{2.75cm} | m{9.75cm} |}
 
@@ -87,6 +89,7 @@ To interact with the native Android and Window Phone camera APIs a custom Cordov
 		\hline
 	\end{tabular}
 	\end{center}
+	\vspace{-3mm}
 	\scriptsize{*} \small{\emph{min} and \emph{max} refer to the minimum/maximum value supported by the platform}
 \end{table}
 

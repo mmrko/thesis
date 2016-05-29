@@ -62,9 +62,7 @@ Photoluminescence, one of the many forms of luminescence (light emission), is a 
 
 Figure \ref{figure:photoluminescence} illustrates the process of photoluminescence. The first phase of photoluminescence is \emph{photoexcitation}, the absorption of photons causing an electron to move to a higher energy state ($S_0 \rightarrow S_2$). The absorption is followed by internal conversion (IC), where the electron transitions within picoseconds from a higher energy state to a lower energy state. After the electron has reached the lowest \emph{excited} energy state ($S_1$) it relaxes, eventually reaching the ground state ($S_0$). This occurs either directly as a rapid emission of light (fluorescence) or through a so called intersystem crossing (ISC) resulting in a relatively slow emission of light as the electron travels from one state to another (phosphorescence).
 
-
 \begin{figure}[h!]
-\vspace{-4mm}
 \centering \includegraphics[width=\textwidth]{images/photoluminescence.pdf}
 \vspace{-8mm}
 \caption{A simplified Jablonski diagram of photoluminescence illustrating the emission pathways of fluorescence and phosphorescence. Phosphorescence occurs at longer wavelengths as the electron loses energy during ISC. \label{figure:photoluminescence}}
@@ -117,7 +115,7 @@ HSV (hue-saturation-value) color model was developed in the late 1970s in an att
 
 The ability to decouple luma from chroma brings many benefits for graphics processing applications. Many common computer vision algorithms designed for grayscale images, such histogram equalization, canny edge detection or binary thresholding, become trivial in HSV space as the grayscale information can be read directly from the luma component (V) \cite{color_segmentation}. HSV has also become the de facto model for color pickers as the relationship between hue, saturation and brightness are both conceptually and perceptually easier to reason about than that of red, green and blue.
 
-RGB values can be converted into HSV using a simple linear transformation. The formal definition of the transformation is given by the following formulae:
+RGB values can be converted into HSV using a simple linear transformation. The formal definition of the transformation is given by the following formulae (the H channel is scaled down to 0-180 to fit into an 8-bit integer):
 
 \vspace{-4mm}
 \begin{flalign*}
@@ -125,14 +123,14 @@ RGB values can be converted into HSV using a simple linear transformation. The f
 V &\leftarrow 255 \cdot C_{max}	&
 S &\leftarrow
 	\begin{cases}
-		\frac{255\ \cdot\ C_{delta}}{C_{max}}, & \text{if $V\neq0$}\\
+		\frac{255 \cdot C_{delta}}{C_{max}}, & \text{if $V\neq0$}\\
 		0, & \text{otherwise}
 	\end{cases}			&
 H &\leftarrow
 	\begin{cases}
-		\frac{30(G-B)}{C_{delta}}, & \text{if V=R}\vspace{2mm}\\
-		\frac{60+30(B-R)}{C_{delta}}, & \text{if V=G}\vspace{2mm}\\
-		\frac{120+30(R-G)}{C_{delta}}, & \text{if V=B}
+		\frac{30(G-B)}{C_{delta}} & \text{if R=$C_{max}$}\vspace{2mm}\\
+		60+\frac{30(B-R)}{C_{delta}} & \text{if G=$C_{max}$}\vspace{2mm}\\
+		120+\frac{30(R-G)}{C_{delta}} & \text{if B=$C_{max}$}
 	\end{cases}
 \end{flalign*}
 \noindent where
