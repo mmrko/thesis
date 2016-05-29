@@ -13,20 +13,23 @@ This chapter provides an introduction to concepts that help understand how smart
 \section{Existing Solutions}
 \label{section:existing_solutions}
 
-A wide spectrum of technologies exist for product authentication purposes. Existing solutions range from the use of inexpensive seals and electronic labels to carefully crafted watermarks and even DNA. These technologies can be categorized, for example, by their level of security, cost and portability. The focus of this chapter is on commercial smartphone-based product authentication solutions that often trade high precision (or reliability) for better cost-efficiency and portability. For a more in-depth overview of different product authentication technologies the reader is referred to \cite{kuosmanen}.
+A wide spectrum of technologies exist for product authentication purposes. Existing solutions range from the use of inexpensive seals and electronic labels to carefully crafted watermarks and even DNA. These technologies can be categorized, for example, by their level of security, cost and portability. The focus of this chapter is on commercial smartphone-based product authentication solutions that often trade high precision (or reliability) for better cost-efficiency and portability. In comparsion to more traditional standalone readers the advantage of a smartphone as the development platform is not only better portability but also the ease of application deployment via online application stores and marketplaces. For a more in-depth overview of different product authentication technologies the reader is referred to \cite{kuosmanen}.
 
 Spectra Systems' SmartSure technology authenticates products by utilizing a chemical marker (taggant) embedded in a hologram. The authenticity of the taggant is verified by capturing an image of the hologram and sending it to a platform in the cloud for further processing. The cloud platform also offers track-and-trace reporting services. The smartphone application uses a QR scanner and visual aids to help the user position the viewfinder properly over the hologram. \cite{inksure} An example of SmartSure's UI can be seen in Figure \ref{figure:inksure}.
 
 \begin{figure}[ht]
 \centering \includegraphics[width=13.25cm]{images/existing_solutions/smartsure}
+\vspace{-4mm}
 \caption{Spectra Systems' SmartSure application UI. The red rectangle and a virtual spirit level are used to position the smartphone correctly \cite{inksure}. \label{figure:inksure}}
 \end{figure}
+\enlargethispage{1\baselineskip}
 
 AlpVision and its CryptoGlyph\textregistered\ technology takes a very different approach. CryptoGlyph\textregistered\ makes use of a pseudo-random pattern of tiny dots (40-80 microns) printed on the coating of a material. The color and size of the dots are customized based on the packaging color. The authenticity of a product is verified by matching a pattern on the product to a pattern stored in a remote database. As of this writing AlpVision's iOS and Android applications are not publicly available in their respective application stores, but instead distributed as tailored applications ``to meet the client's unique authentication needs''. Figure \ref{figure:alpvision} illustrates how differently sized and color dots affect their visibility and how they are applied to the coating of a material. \cite{alpvision}
 
 The growing number of NFC-enabled phones in the market (estimated to have reached 53\% of the overall market in 2015 according to \cite{frost-sullivan}) has given companies the incentive to utilize NFC technology for product authentication purposes. Secure and specialized NFC tags have been manufactured by a number of companies since the technology was first introduced to the market in 2006. However, only a few of them have ventured into developing the software and services for NFC-based product authentication. Examples of such companies include FinnCode\footnote{\url{http://www.finncode.com/}} and Selinko\footnote{\url{http://selinko.com/}}, which manufacture their own secure NFC tags and offer a SaaS-based product authentication platform for their clients.
 
 Other notable smartphone powered product authentication solutions include scryptoTRACE\textregistered\ by U-NICA, CertiEye by Infotoo and AuthentiGuard by DSS, a summary of which is provided in Table \ref{table:existing-solutions} for comparison.
+\enlargethispage{1\baselineskip}
 
 \begin{figure}
 \centering \includegraphics[width=\textwidth]{images/existing_solutions/cryptoglyph}
