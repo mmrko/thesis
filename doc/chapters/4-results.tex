@@ -34,9 +34,10 @@ The purpose of the experiment was to investigate the feasibility and performance
 
 The luminophores used for the experiment were LumiNova\textregistered\ red (O), green (G) and blue (DB) pigments. Each of the pigments was mixed with a \emph{transparent carrier} to form stock solutions. The stock solutions were pipeted in increments of $50\mu l$ onto white blank cartons to form eight unique taggants. Two samples ($a$ and a replicate sample $b$) were taken from each solution, so a total of 16 different taggants were prepared for the experiment. The taggants and the amount of phosphor and transparent carrier used to create them are listed in Appendix \ref{appendix:taggants}. For information about the chemical properties of the LumiNova\textregistered\ pigments the reader is referred to \cite{luminova}.
 
-The taggants were captured using Samsung S4 (version 4.4.2) and Lumia 1020 (version WP8.1) smartphones. The MFD of the S4 and the 1020 was determined empirically to be around 100mm and 150mm, respectively. The height of the camera module (extension) was adjusted accordingly to ensure that no image blur would be introduced. As depicted in Figure \ref{figure:camera_module} the light source was positioned perpendicular to the taggant as per the common conventions in fluorescense spectoscopy \cite{spectroscopy-principles}. Yongnuo YN565EX\footnote{Yongnuo YN565EX User Manual: \url{http://www.yongnuo.com.cn/usermanual/pdf/USER_MANUAL_YN565EX_EN.pdf}} external camera flash was used as the light source as it provided a convenient way to produce a high quality, full-spectrum white light for the photoexcitation. The power and zoom level of the flash were set to 1/32 and 24mm, respectively. The zoom level of the flash was set to the widest supported level assuming that the taggant would be more suspectible to uneven exposure on higher levels of zoom due to a more concentrated burst of light. The power level of 1/32 was selected by observing at which level the captured frames would no longer be subject to overexposure.
+The taggants were captured using Samsung S4 (version 4.4.2) and Lumia 1020 (version WP8.1) smartphones. The MFD of the S4 and the 1020 was determined empirically to be around 100mm and 150mm, respectively. The height of the camera module (extension) was adjusted accordingly to ensure that no image blur would be introduced. As depicted in Figure \ref{figure:camera_module} the light source was positioned perpendicular to the taggant as per the common conventions in fluorescense spectoscopy \cite{spectroscopy-principles}. Yongnuo YN565EX external camera flash was used as the light source as it provided a convenient way to produce a high quality, full-spectrum white light for the photoexcitation. The power and zoom level of the flash were set to 1/32 and 24mm, respectively. The zoom level of the flash was set to the widest supported level assuming that the taggant would be more suspectible to uneven exposure on higher levels of zoom due to a more concentrated burst of light. The power level of 1/32 was selected by observing at which level the captured frames would no longer be subject to overexposure.
 
-In total, nine different capture presets were defined: six presets for the Samsung S4 (prefixed $an$) and three presets for the Lumia 1020 ($wp$). The capture presets and the corresponding parameter values are listed in Appendix \ref{appendix:capture-presets}. The parameter values are discussed more thoroughly in Chapter \ref{chapter:discussion}. All of the 16 taggants were captured with each of the presets resulting in a corpus of 144 fingerprints. The fingerprints were labeled based on the capture preset and the taggant in the following format: \emph{\{preset\}/\{taggant\}\{sample\}} (e.g. \emph{wp200/Sa}). A subset of the taggants captured with the Samsung S4 and Lumia 1020 are presented in Figure \ref{figure:taggants} for preview.
+In total, nine different capture presets were defined: six presets for the Samsung S4 (prefixed $an$) and three presets for the Lumia 1020 ($wp$). The presets define a set of camera configuration parameters to use for the fingerprint capture. The capture presets and the corresponding parameter values are listed in Appendix \ref{appendix:capture-presets}. The parameter values are discussed more thoroughly in Chapter \ref{chapter:discussion}. All of the 16 taggants were captured with each of the presets resulting in a corpus of 144 fingerprints. The fingerprints were labeled based on the capture preset and the taggant in the following format: \emph{\{preset\}/\{taggant\}\{sample\}} (e.g. \emph{wp200/Sa}). A subset of the taggants captured with the Samsung S4 and Lumia 1020 are presented in Figure \ref{figure:taggants} for preview.
+
 
 \begin{figure}[h]
 \label{figure:taggants}
@@ -68,23 +69,23 @@ To gain more insight into how well the methods rank the fingerprints -- that is,
 
 Figures \ref{figure:match_precision_fingerprint} and \ref{figure:match_precision_histogram} present the \emph{success rate} and \emph{precision} of the fingerprint and histogram methods as a function of $B_{margin}$ for different $B_{count}$. Success rate describes the ratio of the corpus fingerprints, for which the matches found included at least one sibling fingerprint. The ratio of sibling fingerprints among these matches is given by precision. For example, when out of the top six candidates ($B_{count}=6$) ranked by the fingerprint method only those that were within a 75\% margin ($B_{margin}=0.75$) of the best match were qualified, approximately $59\%$ of the cases included at least one valid match (a sibling fingerprint), and in each case approximately $53\%$ of the matches were relevant (siblings).
 
-The results for $B_{count}=1$ are omitted from the graphs, and instead, presented in Table \ref{table:match_precision_count1} with a few additional statistics. \emph{Matched Taggant} and \emph{Matched Preset} describe the ratio of cases where the fingerprint matched its matches either only by the taggant or preset. \emph{Misses} represent cases where neither the taggant nor the preset of the matches corresponded the subject fingerprint. In a few cases more than one of a fingerprint's matches would be given the same best score resulting in situation where the number of matches could potentially be greater than $B_{count}$. The fingerprint method clearly exhibits this behaviour as the precision is less than 100\% already at $B_{count}=1$.
-
 \clearpage
 
-\begin{figure}[h!]
+\begin{figure}
   \centering \includegraphics[page=1,width=\textwidth]{images/experiment/match_precision}
   \caption{Success rate and precision of the fingerprint method for different $B_{count}$ as a function of $B_{margin}$.}
   \label{figure:match_precision_fingerprint}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 \centering \includegraphics[page=2,width=\textwidth,height=\textheight,keepaspectratio=true]{images/experiment/match_precision}
 \caption{Success rate and precision of the histogram method for different $B_{count}$ as a function of $B_{margin}$.}
 \label{figure:match_precision_histogram}
 \end{figure}
 
-Let $M_n$ represent the margin, within which the top $n$ matches (or less) of a fingerprint fit. Figure \ref{figure:match_precision_margin} presents per method the mean and standard deviation of $M_4$ as a function of $B_{margin}$. For example, when the top four matches (or less) within a 50\% boundary margin ($B_{margin}=0.5$) of the best match would be qualified, $M_4$ was on average 17\% and 31\% for the fingerprint and histogram method, respectively. Figure \ref{figure:tags_presets} provides a summary of the total number of matches per taggant and preset for $B_{count}$ of 3, 4 and 6. The $B_{margin}$ values of 75\% (for the fingerprint method) and 30\% (for the histogram method) were selected based on when the methods reach identical precision at $B_{count}=4$ ({\raise.17ex\hbox{$\scriptstyle\sim$}}55\%). Capture artefacts encountered during the experiment are summarized in Figure \ref{figure:artefacts}.
+\clearpage
+
+The results for $B_{count}=1$ are omitted from the graphs, and instead, presented in Table \ref{table:match_precision_count1} with a few additional statistics. \emph{Matched Taggant} and \emph{Matched Preset} describe the ratio of cases where the fingerprint matched its matches either only by the taggant or preset. \emph{Misses} represent cases where neither the taggant nor the preset of the matches corresponded the subject fingerprint. In a few cases more than one of a fingerprint's matches would be given the same best score resulting in situation where the number of matches could potentially be greater than $B_{count}$. The fingerprint method clearly exhibits this behaviour as the precision is less than 100\% already at $B_{count}=1$.
 
 \begin{table}[h!]
   \caption{Statistics per method when only the best fingerprint candidate is qualified ($B_{count} = 1$). Histogram method outperforms the fingerprint method in all aspects.}
@@ -109,13 +110,19 @@ Let $M_n$ represent the margin, within which the top $n$ matches (or less) of a 
   \end{center}
 \end{table}
 
-\begin{figure}[h!]
+Let $M_n$ represent the margin, within which the top $n$ matches (or less) of a fingerprint fit. Figure \ref{figure:match_precision_margin} presents per method the mean and standard deviation of $M_4$ as a function of $B_{margin}$. For example, when the top four matches (or less) within a 50\% boundary margin ($B_{margin}=0.5$) of the best match would be qualified, $M_4$ was on average 17\% and 31\% for the fingerprint and histogram method, respectively.
+
+\clearpage
+
+\begin{figure}
 \centering \includegraphics[page=3,width=\textwidth,height=\textheight,keepaspectratio=true]{images/experiment/match_precision}
 \caption{Mean and standard deviation of the margin, within which a subject fingerprint's matches fit when $B_{count}=4$.}
 \label{figure:match_precision_margin}
 \end{figure}
 
-\begin{figure}[h!]
+Figure \ref{figure:tags_presets} provides a summary of the total number of matches per taggant and preset for $B_{count}$ of 3, 4 and 6. The $B_{margin}$ values of 75\% (for the fingerprint method) and 30\% (for the histogram method) were selected based on when the methods reach identical precision at $B_{count}=4$ ({\raise.17ex\hbox{$\scriptstyle\sim$}}55\%). Capture artefacts encountered during the experiment are summarized in Figure \ref{figure:artefacts}.
+
+\begin{figure}[t]
 \centering \includegraphics[page=7,width=0.99\textwidth,height=\textheight,keepaspectratio=true]{images/experiment/tags_configs}
 \vspace{-3mm}
 \caption{Total number of matches per preset and taggant for three different $B_{count}$. The results of the fingerprint (left) and histogram (right) methods are computed using a $B_{margin}$ of 75\% and 30\%, respectively.}
