@@ -9,9 +9,23 @@
 \chapter{Introduction}
 \label{chapter:intro}
 
-The past decade has seen the rapid growth of different e-commerce platorms such as Amazon, eBay Etsy and Alibaba. In quest of pushing products to consumers at an increasing pace and convenience services like \emph{1-Click Purchase} and \emph{Same-Day Delivery} are becoming the norm. Even the more traditional retailers like Walmart and IKEA have hopped on the e-commerce bandwagon in the hopes of defending their marketshare and increase sales volumes. In the near future drones and droids are likely to carry the Last Mile deliveries as competition for customers continues.
+The past decade has seen the rapid growth of e-commerce platorms such as Amazon, eBay Etsy and Alibaba. In quest of pushing products to consumers at an increasing pace and convenience services like \emph{1-Click Purchase} and \emph{Same-Day Delivery} are becoming ever more common. Even the more traditional retailers like Walmart and IKEA have hopped on the e-commerce bandwagon in the hopes of increasing global sales volumes and to defend their marketshare. In the near future the supply chain between the retailer and the consumer becomes ever more streamlined as automation (drones and droids) takes over Last Mile deliveries.
 
-Increase in consumerism also...
+The influx of products available for purchase both online and offline has also been seen in the steady increase of counterfeit goods on the market. Estimations by the International Chamber of Commerce (ICC) back in 2008 indicated that the value of internationally traded counterfeit products would reach upto 1770 billion US dollars by 2015 \cite{icc}. Counterfeit products do not only have an adversial effect on the manufacturer but the consumer as well. While at worst fake, dysfunctional items can prove physically dangerous, they ultimately lead to losses in tax income and other societal effects.
+
+The number counterfeit goods in the market can be reduced by introducing a variety of preventive product authentication measures into the product lifecycle. Overt security features such as 1D/2D barcodes, watermarks and signatures/serial codes are straightforward and widely adopted techniques for labelling products uniquely. However, they are also easily compromised. Thus, for improved security covert techniques like ultra-violet or infrared inks, biometrics or other materials invisible to the are eye must be employed. The tradeoff is that covert authentication techniques often require a separate reader and are thus less cost-effective. Ideally the authentication measures taken combine multiple techniques and use location (tracking) information.
+
+calls for ...
+
+% Erilaisten tuotteiden ja sitä kautta myös tuoteväärennösten määrä on jatkuvassa kasvussa. Väärennökset eivät aiheuta haittaa pelkästään aidon tuotteen valmistajille, vaan myös vaarallisten tai toimimattomien tuotteiden ostajille sekä yhteiskunnalle verotulojen menetyksenä ja muina laajempina yhteiskunnallisina vaikutuksina. OECD:n (Organisation for Economic Co-operation and Development) arvion mukaan tuoteväärennösten ja piraattituotteiden arvo tulee olemaan vuonna 2015 jopa 1,5 biljoonaa dollaria eli 2 koko maailman bruttokansantuotteesta1
+
+% Tuoteväärennöksiä voidaan vähentää kehittämällä tuotteiden aitouden todistamiseksi yhä selkeämpiä ja luotettavampia menetelmiä. Monen tyyppisiä aitous- ja jäljitettävyysmenetelmiä tarvitaan tuotteen kulkiessa tehtaalta lopulliselle ostajalleen. Avoimet merkinnät, kuten hologrammit ja vesileimat ovat jokaisen nähtävillä ilman apuvälineitä. Piilotetut merkinnät vaativat apuvälineen, kuten ultraviolettivalonlähteen käyttöä ja soveltuvatkin hyvin esimerkiksi vähittäiskauppiaille lisävarmenteeksi.
+
+% Merkinnät, joiden lukemiseen vaaditaan laboratoriotason määritysteknologia, perustuvat usein salaukseen ja ne pyritäänkin yleensä pitämään vain tuotteen valmistajan ja luotettavimpien yhteistyökumppaneiden tietona. Jäljitysteknologiat tukevat logistiikkaa ja sisältävät tietoa siitä, onko aito ja oikeanlainen tuote halutussa paikassa oikeaan aikaan. Parhaimmillaan merkintätekniikka on useamman edellä mainitun suojaustavan yhdistelmä.
+
+% Merkintämenetelmää valittaessa on tehtävä kompromisseja käytettävyyden, luotettavuuden ja hinnan välillä. Kalliiden tuotteiden lisäksi nykyään väärennetään yhä enemmän edullisia, suurimyyntivolyymisia tuotteita. Näissä tapauksissa suojausmenetelmän edullisuus ja helppous ovat avaintekijöitä. Arvokkaissa tuotteissa taas aitousmerkintöjen luotettavuus ja väärentämisen mahdottomuus ovat tekijöitä, joista ollaan valmiita maksamaan. Näiden äärilaitojen väliltä löytyy laaja valikoima tuotteita ja materiaaleja, jotka vaativat omanlaisensa merkintäteknologiat. Myös väärentäjien jatkuvasti kehittyvä taito aitousmerkintöjen jäljentämisessä aiheuttaa sen, että uudenlaisille teknologioille on tulevaisuudessa yhä enemmän kysyntää
+
+% Tämän diplomityön kirjallisuusosan tavoitteena on tehdä laaja kartoitus erilaisista tuotteiden ja materiaalien aitous- ja jäljitettävyysmerkinnöistä. Työssä ei käsitellä aineettomassa tai sähköisessä muodossa olevien tuotteiden suojausta, vaan ainoastaan konkreettisten materiaalien merkintöjä, keskittyen kaupallisten tuotteiden suojaukseen. Työn kokeellisen osan tavoitteena oli fotoluminesenssiin perustuvan pintamerkkiaineteknologian perusteiden kehitys. Menetelmän salattavuus, luotettavuus, käytettävyys sekä edullisuus ovat teknologian avaintekijöitä.
 
 % Tutkimuksen taustaa
 Numeric Identifier/ One dimension-Bar Code
@@ -27,11 +41,13 @@ on the product surfaces and on their packages
 Important application fields are e.g. packages of medicines and expensive products and their packages. Developed markings are typically not visible for the bare eyes.
 
 - Tools for identifying counterfeit goods
-- OECD has estimated the value of internatioanlly traded counterfeit products in 2015 would be 770-990 billion US
+% - OECD has estimated the value of internatioanlly traded counterfeit products in 2015 would be 770-990 billion US
 - low cost marking technology for production authentication/track-and-trace purposes
 - portable low-cost, handheld reading instrument
 - printable
 - stakeholders: brand owners, distributions, packaging industry, authorities
+
+% Projektin tavoitteena on kaupallistaa Proof-of-Concept -tasolla toimivaksi osoitettu luminoforeihin perustuva aitous- ja jäljitettävyys- ja merkintätekniikka aitous- ja tunnistusmerkintäsovelluksia varten, sekä kehittää menetelmiä pidemmälle. Menetelmien perustana on älypuhelimien ja/tai tablettitietokoneiden käyttö aitoustunnistusten tekoon joko perustuen mobiililaitteen omaan salamaan ja kameraan tai hyödyntäen erillistä monipuolisempaa lukijapäätä, joka koostuu LED-viritysvalolähteestä ja valodetektorista lisäosineen. Näissä sovelluksissa älypuhelinta tai tablettitietokonetta käytetään lukupään ohjaukseen, datan keräykseen ja prosessointiin sekä yhteyden pitoon erilaisten tietopankkien kanssa.
 
 % Tutkimusaiheen yleisluonteinen esittely ja tavoitteet
 % Tutkimuksen rajaus ja keskeiset kasitteet
@@ -45,6 +61,7 @@ Important application fields are e.g. packages of medicines and expensive produc
   %Moreover, usability is improved as the application can function offline without the overhead of network latency. Hosting fingerprint data on the user's device might however have security implications: can the data be safely/efficiently encrypted on the user's device? The product authentication ecosystem \ref{fig:landscape}.
   http://www.iccwbo.org/Advocacy-Codes-and-Rules/BASCAP/BASCAP-Research/Economic-impact/Global-Impacts-Study/
 
+\clearpage
 \begin{figure}[h!]
 \centering \includegraphics[width=\linewidth]{images/pa_landscape}
 \caption{LuminoTrace seeks to fit into the cost-efficient end of today's product authentication landscape. \label{fig:landscape}}
