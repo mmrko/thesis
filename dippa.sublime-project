@@ -8,6 +8,12 @@
 				"luminotrace/libs",
 				".tmp"
 			],
+			"extra_file_exclude_patterns": [
+				"*.pdf"
+			],
+			"binary_file_patterns": [
+				"*.pdf"
+			],
 			"file_exclude_patterns":
 			[
 				"*.aux",
