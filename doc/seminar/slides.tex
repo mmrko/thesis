@@ -12,7 +12,7 @@
 \usepackage{color}
 
 \linespread{1.1}
-\title{LuminoTrace: fotoluminesenssiin perustuva aitouden tunnistaminen älypuhelimissa}
+\title{LuminoTrace: fotoluminesenssi-perusteinen aitouden tunnistaminen älypuhelimissa}
 
 \author[M. Raatikka]{Marko Raatikka}
 \institute[AUT]{Automaatio- ja Systeemitekniikan laitos\\
@@ -87,7 +87,7 @@ Aalto-yliopisto, Sähkötekniikan korkeakoulu\\marko.raatikka@aalto.fi}
 
 \begin{itemize}
   \setlength\itemsep{1em}
-  \item \textbf{fotoluminesenssi}: valon fotoni virittää elektronin ylemmälle viritystilalle, jonka purkautuessa atomi emittoi valoa tietyllä aallonpituudella (värivaikutelma)
+  \item \textbf{fotoluminesenssi}: valon fotoni virittää elektronin ylemmälle viritystilalle, jonka purkautuessa atomi emittoi valoa tietyllä aallonpituusalueella (värivaikutelma)
   \item \color{lightgray}kuvan valottumiseen vaikuttaa pääsääntöisesti 3 tekijää: linssin aukkokoko, valotusaika ja sensorin herkkyys (ISO)
   \item hybridimobiilisovellus mahdollistaa web-teknologioiden hyödyntämisen natiivisovelluksen kehittämisessä
 \end{itemize}
@@ -246,11 +246,14 @@ Aalto-yliopisto, Sähkötekniikan korkeakoulu\\marko.raatikka@aalto.fi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Yhteenveto}
-  \emph{``RQ3: Mahdollistaako moderni älypuhelinteknologia fotolumine- senssin hyödyntämisen aitoudentunnistukseen käytännössä?''}
-  \vspace{6mm}
+  \begin{itemize}
+    \item Asetetut tavoitteet saavutettiin sovelluksen toiminallisuuden osalta (referenssi-implementaatio)
+  \end{itemize}
+  \vspace{3mm}
+  ``RQ3: Mahdollistaako moderni älypuhelinteknologia fotolumine- senssin hyödyntämisen aitoudentunnistukseen käytännössä?''
+  \vspace{3mm}
   \begin{itemize}
     \setlength\itemsep{1em}
-    \item Asetetut tavoitteet saavutettiin sovelluksen toiminallisuuden osalta (referenssi-implementaatio)
     \item Hyödynettävissä sisäiseen / pienen skaalan käyttöön
     \item Laajempi käyttöönotto pitkälti riippuvainen erillisen viritysvalon integraatiotarpeesta (ratkaisu: Google Ara?)
   \end{itemize}
