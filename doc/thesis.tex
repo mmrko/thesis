@@ -121,7 +121,7 @@
 %                     first page of the first chapter
 %   twoinstructors  - changes the title of instructors to plural form
 %   twosupervisors  - changes the title of supervisors to plural form
-\usepackage[mydraft,doublenumbering,twoinstructors]{aalto-thesis}
+\usepackage[doublenumbering,twoinstructors]{aalto-thesis}
 
 \hyphenation{lu-mi-no-pho-res}
 
@@ -160,8 +160,8 @@ Jouni Paltakari Professori (tek.), Aalto CHEM}
 % Professorship code is the same in all languages
 \newcommand{\PROFCODE}{AS-75}
 
-\newcommand{\KEYWORDS}{photoluminescence, smartphone, mobile application, product authentication, cross-platform, counterfeit}
-\newcommand{\FKEYWORDS}{fotoluminesenssi, älypuhelin, mobiiliapplikaatio, aitouden tunnistaminen, väärennös}
+\newcommand{\KEYWORDS}{product authentication, photoluminescence, smartphone, mobile application, hybrid, counterfeit}
+\newcommand{\FKEYWORDS}{aitouden tunnistaminen, todentaminen, fotoluminesenssi, älypuhelin, mobiiliapplikaatio, hybridi, väärennös}
 
 \newcommand{\LANGUAGE}{English}
 \newcommand{\FLANGUAGE}{Englanti}
@@ -227,23 +227,32 @@ Jouni Paltakari Professori (tek.), Aalto CHEM}
 
 % Abstract in English
 % ------------------------------------------------------------------
-\thesisabstract{english}{
+\thesisabstract{english}{Estimations by ICC in 2008 indicated that the value of internationally traded counterfeit products would reach upto 1770 billion US dollars by 2015 \cite{icc}. At the same time high-volume commodities are becoming an increasily more popular target. While brand owners might be willing to tradeoff low-cost and ease of use for greater security to protect their high-end products, for high-volume commodities the cost-effectiveness and simplicity of the product authentication solution are often imperative.
 
+This thesis introduces \emph{LuminoTrace} -- a photoluminescence-based product authentication technology for smartphones -- that seeks to combine a covert, low-cost and portable feature set for high-security product authentication needs. This is achieved by smartphone-based colorimetrical and temporal analysis of luminophores to construct a \emph{fingerprint} that can be used to uniquely authenticate a product. To facilitate the requirements of end-to-end product authencation needs a proof-of-concept cloud architecture was implemented.
 
-}
+The results of this thesis indicate that the technology is not yet ready for mainstream adoption. Outstanding challenges relate to both the current smartphone technology and the luminophores. For efficient temporal analysis natively supported RAW and timed burst capture capabilities are required. Furthermore, artifical fabrication is called for to create cost-effective luminophores with the desired properties (photobleach resistance, narrow absorption wavelength, short lifetime).
 
-\thesisabstract{finnish}{
+In the future \emph{tunable fluorescent materials} may provide the means for cost-effective luminophore fabrication. Emerging mobile technologies such as modular smartphones like \emph{Google Ara} may enable seamless integration of the required light source with the smartphone to facilitate a wider adoption of photoluminescence-based product authentication solutions. The technique developed in this thesis however remains applicable for small-scale, internal authentication needs.}
 
-fotoluminesenssiin perustuva pintamerkkiaineteknologia
+\thesisabstract{finnish}{Kansainvälisen kauppakamarin (ICC) laskelmien mukaan kansainvälisesti kaupattujen väärennettyjen tuotteiden arvo kasvanee 1770 miljardiin dollariin vuonna 2015 \cite{icc}. Suuren volyymin tuotteet ovat jatkuvasti suositumpi väärennyskohde. Vaikka tuotemerkin omistajat olisivat valmiita hyväksymään korkeammat kustannukset ja huonomman siirrettävyyden (engl. \emph{portability}) paremman turvallisuustason nimissä, suuren volyymin hyödykkeille turvallisuusratkaisun kustannustehokkuus ja helppokäyttöisyys ovat usein tärkeitä.
 
-}
+Tämän diplomityön tulos on \emph{LuminoTrace} -- fotoluminesenssiin perustuva aitouden tunnistus teknologia älypuhelimille -- joka pyrkii yhdistämään peitetyn, edullisen ja helposti siirrettävän turvallisuusratkaisun ominaisuudet korkeisiin turvallisuustarpeisiin. Teknologia perustuu älypuhelimella suoritettavaan luminoforin kolorimetriseen ja aikaerotteiseeen analyysiin tuotteen autentikoimiseen soveltuvan uniikin \emph{sormenjäljen} luomiseksi. Menetelmän tueksi toteutettiin pilviarkkitehtuuri kokonaisvaltaisen tuotteen todentamisratkaisun demonstroimiseksi.
 
+Työn tulokset osoittavat, ettei kyseinen ratkaisu ole vielä sellaisenaan sovellettavissa laajempaan käyttöön. Jäljellä olevat haasteet liittyvät sekä nykyisen älypuhelinteknologian että luminoforien ominaisuuksiin. Tarkan aikaerotteisen analyysin suorittamiseksi älypuhelimen tulisi tukea raakakuvaformaattia (RAW) sekä ajastettua sarjakuvausta. Myös valmistusmenetelmiä sopivien luminoforien (kapea viritysaallonpituusalue, lyhyt emissio) valmistamiseksi vaaditaan.
+
+Tulevaisuudessa \emph{muokattavat fluoresoivat materiaalit} saattavat auttaa kustannustehokkaiden luminoforien valmistuksessa. Orastavat älypuhelinteknologiat kuten modulaarinen älypuhelinarkkitehtuuri (Google Ara) saattavat mahdollistaa vaaditun valolähteen saumattoman integraation, ja siten myös fotoluminesenssi-perusteisen aitouden tunnistusratkaisujen laajemman käyttöönoton. Tässä työssä kehitetty ratkaisu soveltunee kuitenkin sisäisiin, pienen skaalan käyttötarpeisiin.}
 
 \selectlanguage{english}
 
 \addcontentsline{toc}{chapter}{Acknowledgments}
 
 \chapter*{Acknowledgments}
+First and foremost I would like thank my instructor Dr. Jari Kleimola for his professionalism, positive outlook and utmost patience during the guidance of my work. Your advice was invaluable, a great example of which was the idea for \emph{cross-modal} communication with the camera module. I would also like to extend my gratitude to Prof. Jouni Paltakari and my supervisor Prof. Petri Vuorimaa for acting as the facilitators for such an interesting project. Thank you for letting me take the time it took to finish the thesis.
+
+Last, I should not forget friends and family, whose encouraging words and countless ways of reminding me of the work ahead helped push this over the finish line. Final kudos to Minna, Mirja and Riina for your invaluable support.
+
+
 % The taggants were prepared by MSc. Päivi Kuosmanen
 
 \vskip 10mm
